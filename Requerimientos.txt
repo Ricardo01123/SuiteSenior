@@ -2,7 +2,6 @@ Reproducir voz
 pip install pyttsx3
 
 pip install openai
-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
 
 Archivos MP4
 pip install soundfile
