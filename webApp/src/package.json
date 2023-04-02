@@ -1,0 +1,19 @@
+{
+
+    "name": "hello_world",
+  
+    "private": true,
+  
+    "version": "0.0.1",
+  
+    "description": "Hello world Example",
+  
+    "author": "",
+  
+    "dependencies": {
+  
+          "express": "3.2.4"
+  
+     }
+  
+  }
