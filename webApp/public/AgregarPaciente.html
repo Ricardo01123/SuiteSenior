@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Paciente</title>
+</head>
+<body>
+    <h1>Fromulario para agregar Pacientes a la BD</h1>
+
+    <form action="/AgregarPaciente" method="post">
+        <p>Expediente</p>
+        <input type="number" name="Expediente" id="Expediente">
+        <p>Nombre</p>
+        <input type="text" name="Nombre" id="Nombre">
+        <p>Edad</p>
+        <input type="number" name="Edad" id="FechaNacimiento">
+        <p>Sexo</p>
+        <select name="Sexo" id="Sexo">
+            <option value="1">Hombre</option>
+            <option value="2">Mujer</option>
+        </select>
+        <p>Numero de Telefono</p>
+        <input type="number" name="Telefono" id="Telefono">
+        <p>Foto</p>
+        <input type="file" name="Foto" id="Foto">
+        <p>Otros contactos</p>
+        <input type="Num" name="Otros" id="Otros">
+        <br>
+        <p>Padecimiento</p>
+
+        <select name="Padecimiento" id="Padecimiento">
+            <option value="1">Estrés</option>
+            <option value="2">Depresión</option>
+            <option value="3">Ansiedad</option>
+        </select>
+        <input type="submit" name="Enviar" id="Enviar">
+    </form>
+</body>
+</html>
