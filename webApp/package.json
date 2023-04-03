@@ -1,0 +1,30 @@
+{
+  "name": "senior_suite",
+  "version": "1.0.0",
+  "description": "Aplicacion para mejorar la calidad de vida de adultos mayores",
+  "main": "ConexionBD.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ricardo01123/SuiteSenior.git"
+  },
+  "keywords": [
+    "suite_senior"
+  ],
+  "author": "Ricardo Ayala, Donnagi Aguilera, Cristóbal de la Huerta, Alyne León y Irene Briones",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ricardo01123/SuiteSenior/issues"
+  },
+  "homepage": "https://github.com/Ricardo01123/SuiteSenior#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
