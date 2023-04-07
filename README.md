@@ -16,7 +16,7 @@ Un asistente conversacional programado con python 3.9.15 e integrado con servici
 
 ## Requisitos para correr el proyecto
 
-###Aplicación web:
+### Aplicación web:
 
 docker: ya instalado docker en tu computadora, en la carpeta webApp en la consola levantas los cotenedores son $docker-compose up
 Node js: Una vez instalado node y con los contenedores de docker montados, en la carpeta webApp en consola corres el comando $npm run dev (si te indica un error relacionado con nodemon $npm install nodemon). Podrás ver el mensaje "Servidor escuchando en el puerto 8080 ayuda por favor"
