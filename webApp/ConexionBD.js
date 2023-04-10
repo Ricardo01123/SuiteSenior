@@ -2,6 +2,12 @@ const express = require('express');
 const mysql = require('mysql');
 var app = express();
 
+const path = require('path')
+
+var formidable = require('formidable');
+var fs = require('fs');
+const fileUpload = require('express-fileupload');
+
 var bodyParser= require('body-parser');
 var con = mysql.createConnection({
 	host:'localhost',
@@ -17,7 +23,7 @@ app.use(bodyParser.urlencoded({
 	extended: true
 }))
 	
-
+app.use(fileUpload());
 
 app.use(express.static('public'))
 
@@ -28,7 +34,25 @@ app.post('/AgregarPaciente', (req,res)=>{
 	let sexo = req.body.Sexo
 	let tel = req.body.Telefono
 	let padecimiento = req.body.Padecimiento
-	con.query('INSERT INTO Paciente(No_Expediente, Nombre, Edad, Sexo, Padecimiento, Telefono) values("'+expediente+'","'+nombre+'","'+edad+'","'+sexo+'","'+padecimiento+'","'+tel+'")', (err, respuesta, fields)=>{
+
+  let form = new formidable.IncomingForm();
+
+  
+  let FotoPath = req.files.Foto,
+      newPhotoPath = "/home/yerry/Documentos/github/SuiteSenior/webApp/public/FotosPacientes/" + FotoPath.name;
+  console.log(FotoPath)
+
+  //primero cargamos la foto al servidor para depsués agregar al nuevo paciente a la base de datos
+
+  FotoPath.mv(newPhotoPath, err => {
+    if (err) { return res.status(500).send(err); }
+    console.log("File uploaded!");
+  });
+
+  //recortamos el nombre de acceso para que el servidor lea las fotos posteriormente
+  newPhotoPath = "./FotosPacientes/" + FotoPath.name
+
+	con.query('INSERT INTO Paciente(No_Expediente, Nombre, Edad, Sexo, Padecimiento, Telefono, Foto) values("'+expediente+'","'+nombre+'","'+edad+'","'+sexo+'","'+padecimiento+'","'+tel+'","'+newPhotoPath+'")', (err, respuesta, fields)=>{
 		if(err) return console.log('ERROR', err);
 		return res.send(
 		`
@@ -322,7 +346,7 @@ app.post("/Paciente", (req, res)=>{
                 <div class="u-layout-row">
                   <div class="u-container-style u-custom-color-1 u-layout-cell u-left-cell u-radius-43 u-shape-round u-size-26 u-layout-cell-1" src="">
                     <div class="u-container-layout u-container-layout-1">
-                      <div class="u-image u-image-circle u-image-1" data-image-width="1080" data-image-height="1080"></div>
+                      <img src="${respuesta[0].Foto}" class="u-image u-image-circle u-image-1" width="250px" height="250px"></img>
                       <p class="u-large-text u-text u-text-variant u-text-2">DATOS PERSONALES</p>
                       <p class="u-large-text u-text u-text-variant u-text-3">Fecha de Nacimiento </p>
                       <p>${respuesta[0].Edad}</p>
