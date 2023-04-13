@@ -28,7 +28,7 @@ app.use(fileUpload());
 app.use(express.static('public'))
 
 app.post('/AgregarPaciente', (req,res)=>{
-	let nombre = req.body.Nombre
+	let nombre = req.body.Nombre +' '+ req.body.Apellidos
 	let expediente = req.body.Expediente
 	let edad = req.body.Edad
 	let sexo = req.body.Sexo
@@ -36,11 +36,16 @@ app.post('/AgregarPaciente', (req,res)=>{
 	let padecimiento = req.body.Padecimiento
 
   let form = new formidable.IncomingForm();
-
   
   let FotoPath = req.files.Foto,
       newPhotoPath = "/home/yerry/Documentos/github/SuiteSenior/webApp/public/FotosPacientes/" + FotoPath.name;
   console.log(FotoPath)
+
+
+  //variables del contacto del paciente
+  let faNom = req.body.FamiliarNombre + ' ' + req.body.FamiliarApellido
+  let parentezco = req.body.Parentezco
+  let faTelefono = req.body.FamiliarTelefono
 
   //primero cargamos la foto al servidor para depsués agregar al nuevo paciente a la base de datos
 
@@ -52,15 +57,40 @@ app.post('/AgregarPaciente', (req,res)=>{
   //recortamos el nombre de acceso para que el servidor lea las fotos posteriormente
   newPhotoPath = "./FotosPacientes/" + FotoPath.name
 
+  //query para insertar al paciente
 	con.query('INSERT INTO Paciente(No_Expediente, Nombre, Edad, Sexo, Padecimiento, Telefono, Foto) values("'+expediente+'","'+nombre+'","'+edad+'","'+sexo+'","'+padecimiento+'","'+tel+'","'+newPhotoPath+'")', (err, respuesta, fields)=>{
 		if(err) return console.log('ERROR', err);
-		return res.send(
-		`
-		<h1>Paciente agregado con exito </h1>
-		<a href= /index>regresar al lobby</a>
-		
-		`);
+		console.log("Paciente agregado correctamente")
+
+    con.query('INSERT INTO Familiar(Nombre, id_Parentezco, Telefono) values("'+faNom+'","'+parentezco+'","'+faTelefono+'")', (err, respuesta, fields)=>{
+      if(err){
+        console.log('ERROR', err);
+        console.log('No se ha añadido ningun familiar')
+      }else{
+        console.log("familiar del paciente agregado")
+      }
+  
+      con.query('update Paciente set id_Familiar = (select id_Familiar from Familiar where Nombre = "'+faNom+'") where No_Expediente="'+expediente+'"', (err, respuesta, fields)=>{
+        if(err){
+          console.log('ERROR', err);
+          console.log('No se ha asignado al familiar')
+        }else{
+          console.log("familiar del paciente asignado")
+        }
+
+        return res.send(
+          `
+          <h1>Paciente agregado con exito </h1>
+          <a href= /index>regresar al lobby</a>
+          
+          `);
+      })
 	})
+
+  //query para insertar el contacto
+  
+  })
+  
 })
 
 app.get('/index', (req, res)=>{
@@ -265,11 +295,12 @@ app.post("/Paciente", (req, res)=>{
   let expediente = req.body.expediente
   let nombre = req.body.nombre
   console.log("este es el expediente, y estamos en paciente: "+ expediente)
-  con.query("select * from Paciente natural join Notas_medicas natural join Padecimiento natural join Sexo natural join Sesiones_diarias where No_Expediente='"+expediente+"' or Nombre='"+nombre+"'", (err, respuesta, fields)=>{
+  con.query("select * from Paciente natural join Notas_medicas natural join Padecimiento natural join Sexo natural join Sesiones_diarias natural join Familiar natural join Parentezco where No_Expediente='"+expediente+"' or Nombre='"+nombre+"'", (err, respuesta, fields)=>{
     if(err) return console.log('Ha ocurrido un error en la visualizacion del paciente', err);
 
     var pacienteHTML=``
     var sesionesHTML=``
+    var familiaresHTML=``
     var i = 0, j=0
     console.log(respuesta)
     
@@ -297,6 +328,19 @@ app.post("/Paciente", (req, res)=>{
         <td class="u-border-1 u-border-grey-30 u-table-cell"></td>
       </tr>
       
+      `
+    })
+
+    respuesta.forEach(familiar =>{
+
+      familiaresHTML += `
+      
+      <tr style="height: 28px;">
+        <td class="u-table-cell">${familiar.Nombre_Familiar}</td>
+        <td class="u-table-cell">${familiar.Valor_Parentezco}</td>
+        <td class="u-table-cell">${familiar.Telefono_Familiar}</td>
+      </tr>
+
       `
     })
 
@@ -403,16 +447,7 @@ app.post("/Paciente", (req, res)=>{
                                 </tr>
                               </thead>
                               <tbody class="u-table-body u-table-body-1">
-                                <tr style="height: 28px;">
-                                  <td class="u-table-cell">P1</td>
-                                  <td class="u-table-cell">P1P</td>
-                                  <td class="u-table-cell">#1</td>
-                                </tr>
-                                <tr style="height: 28px;">
-                                  <td class="u-table-cell">P2</td>
-                                  <td class="u-table-cell">P2P</td>
-                                  <td class="u-table-cell">#2</td>
-                                </tr>
+                                ${familiaresHTML}
                               </tbody>
                             </table>
                           </div>
