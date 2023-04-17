@@ -38,7 +38,7 @@ app.post('/AgregarPaciente', (req,res)=>{
   let form = new formidable.IncomingForm();
   
   let FotoPath = req.files.Foto,
-      newPhotoPath = "/home/yerry/Documentos/github/SuiteSenior/webApp/public/FotosPacientes/" + FotoPath.name;
+      newPhotoPath = "C:/Users/Yerry/Documents/github/SuiteSenior/webApp/public/FotosPacientes/" + FotoPath.name;
   console.log(FotoPath)
 
 
@@ -62,7 +62,7 @@ app.post('/AgregarPaciente', (req,res)=>{
 		if(err) return console.log('ERROR', err);
 		console.log("Paciente agregado correctamente")
 
-    con.query('INSERT INTO Familiar(Nombre, id_Parentezco, Telefono) values("'+faNom+'","'+parentezco+'","'+faTelefono+'")', (err, respuesta, fields)=>{
+    con.query('INSERT INTO Familiar(Nombre_Familiar, Parentezco, Telefono_Familiar) values("'+faNom+'","'+parentezco+'","'+faTelefono+'")', (err, respuesta, fields)=>{
       if(err){
         console.log('ERROR', err);
         console.log('No se ha añadido ningun familiar')
@@ -70,7 +70,7 @@ app.post('/AgregarPaciente', (req,res)=>{
         console.log("familiar del paciente agregado")
       }
   
-      con.query('update Paciente set id_Familiar = (select id_Familiar from Familiar where Nombre = "'+faNom+'") where No_Expediente="'+expediente+'"', (err, respuesta, fields)=>{
+      con.query('update Paciente set Familiar = (select Familiar from Familiar where Nombre_Familiar = "'+faNom+'") where No_Expediente="'+expediente+'"', (err, respuesta, fields)=>{
         if(err){
           console.log('ERROR', err);
           console.log('No se ha asignado al familiar')
