@@ -61,7 +61,7 @@
                 <div class="u-container-layout u-container-layout-1"><span class="u-file-icon u-icon u-icon-circle u-text-black u-icon-1"><img src="../images/10252345-df9e1d53.png" alt=""></span>
                   <h2 class="u-text u-text-1">Iniciar Sesión</h2>
                   <div class="u-form u-form-1">
-                    <form action="/iniciarSesion" method="post">
+                    <form action="/iniciarSesion" method="post" id="form_iniciar_sesion">
                       <div class="u-form-group u-form-name u-label-none">
                         <label for="name-6797" class="u-label">Name</label>
                         <input type="text" placeholder="Usuario" id="name-6797" name="usuario" class="u-input u-input-rectangle" required="">
@@ -78,6 +78,7 @@
                       <div class="u-form-send-error u-form-send-message">Unable to send your message. Please fix errors then try again.</div>
                       <input type="hidden" value="" name="recaptchaResponse">
                       <input type="hidden" name="formServices" value="5485c5eb111a961ce36c3f15744c2ace">
+                    <p class="warnings" id="warnings"></p>
                     </form>
                   </div>
                   <p class="u-small-text u-text u-text-variant u-text-2"> ¿Olvidaste tu contraseña? <a href="https://nicepage.com/html-templates" class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-2">Recuperar contraseña</a>
@@ -106,5 +107,5 @@
         <span>Website Builder Software</span>
       </a>. 
     </section>
-
+    <script src="/js/validacion.js"></script>
 </body></html>
