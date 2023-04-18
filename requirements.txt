@@ -11,4 +11,4 @@ soundfile==0.12.1
 audiosegment==0.23.0
 numpy==1.24.2
 flask==6.4.1
-whisper==1.1.10
+git+https://github.com/openai/whisper.git

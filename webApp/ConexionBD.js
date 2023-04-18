@@ -38,7 +38,7 @@ app.post('/AgregarPaciente', (req,res)=>{
   let form = new formidable.IncomingForm();
   
   let FotoPath = req.files.Foto,
-      newPhotoPath = "C:/Users/Yerry/Documents/github/SuiteSenior/webApp/public/FotosPacientes/" + FotoPath.name;
+      newPhotoPath = "/home/yerry/Documentos/github/SuiteSenior/webApp/public/FotosPacientes/" + FotoPath.name;
   console.log(FotoPath)
 
 
