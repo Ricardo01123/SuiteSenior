@@ -22,7 +22,11 @@
   "homepage": "https://github.com/Ricardo01123/SuiteSenior#readme",
   "dependencies": {
     "express": "^4.18.2",
-    "mysql": "^2.18.1"
+    "express-fileupload": "^1.4.0",
+    "formidable": "^2.1.1",
+    "fs": "^0.0.1-security",
+    "mysql": "^2.18.1",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
