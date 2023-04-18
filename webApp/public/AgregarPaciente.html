@@ -9,9 +9,10 @@
 <body>
     <h1>Fromulario para agregar Pacientes a la BD</h1>
 
-    <form action="/AgregarPaciente" method="post">
+    <form action="/AgregarPaciente" method="post" id="form_paciente">
         <p>Expediente</p>
         <input type="number" name="Expediente" id="Expediente">
+        <p class="errores" id="err_expediente"></p>
         <p>Nombre</p>
         <input type="text" name="Nombre" id="Nombre">
         <p>Edad</p>

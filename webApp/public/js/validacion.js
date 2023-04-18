@@ -15,22 +15,23 @@ form.addEventListener("submit",e=>{
         invalido=true
     }
     if(password.value.length<8){
-        warnings += 'La contraseña es menor a 8 digitos <br>'
+        warnings += 'Contraseña invalida <br>'
         invalido =true
     }
-    if(!password.match(/[A-z]/)){
-        warnings += 'La contraseña debe tener al menos una letra <br>'
-        invalido =true
-    }
-    if(!password.match(/[A-Z]/)){
-        warnings += 'La contraseña debe tener al menos una letra mayuscula <br>'
-        invalido =true
-    }
-    if(!password.match(/\d/)){
-        warnings += 'La contraseña debe tener al menos un número <br>'
-        invalido =true
-    }
+    // if(!password.match(/[A-z]/)){
+    //     warnings += 'La contraseña debe tener al menos una letra <br>'
+    //     invalido =true
+    // }
+    // if(!password.match(/[A-Z]/)){
+    //     warnings += 'La contraseña debe tener al menos una letra mayuscula <br>'
+    //     invalido =true
+    // }
+    // if(!password.match(/\d/)){
+    //     warnings += 'La contraseña debe tener al menos un número <br>'
+    //     invalido =true
+    // }
     if (invalido){
+        console.log(warnings)
         alertas.innerHTML=warnings
     }else{
         //registrar en la BD
