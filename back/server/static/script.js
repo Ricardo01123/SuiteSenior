@@ -23,6 +23,7 @@ if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
             const blob = new Blob(chunks, {'type': 'audio/wav'})
             chunks = []
             audioURL = window.URL.createObjectURL(blob)
+            console.log(audioURL)
             document.querySelector('audio').src = audioURL
 
             
@@ -35,7 +36,7 @@ if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
             xhr.onload = function () {
             if (xhr.status === 200) {
                 console.log(xhr.responseText)
-                console.log("Archivo enviado exitosamente.");
+                console.log("Archivo de audio enviado exitosamente al servidor.");
             } else {
                 console.log("Error al enviar el archivo.");
             }
