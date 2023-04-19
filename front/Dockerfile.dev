@@ -1,0 +1,17 @@
+# Base image
+FROM node:19-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Install dependencies
+# Copy app files
+COPY . .
+
+RUN npm install -g pnpm
+RUN pnpm install
+
+
+
+# Start development server
+CMD ["pnpm", "dev"]
