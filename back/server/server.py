@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, send_from_directory
 import whisper
 
 
@@ -14,6 +14,22 @@ def index():
 @app.route("/script.js")
 def script():
     return app.send_static_file("script.js")
+
+#---------------------------------------------------------------------------------#
+
+app.config['CLIENT_IMAGES'] = "/home/yerry/Documentos/github/SuiteSenior/back/server/Fotos"
+
+@app.route("/get_image/<image_name>")
+def get_image(image_name):
+    
+    print(app.config['CLIENT_IMAGES'])
+    #return "thanks"
+    
+    try:
+        return send_from_directory(app.config['CLIENT_IMAGES'], image_name, as_attachment=False)
+    except (FileNotFoundError):
+        abort(404)
+#---------------------------------------------------------------------------------#
 
 @app.route("/upload", methods=["POST"])
 def upload():
@@ -33,4 +49,4 @@ def upload():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run("0.0.0.0")
