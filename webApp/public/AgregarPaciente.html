@@ -13,7 +13,16 @@
     <meta name="referrer" content="origin">
     <link id="u-theme-google-font" rel="stylesheet" href="./css/https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
     
+    <!-- formato para fecha-->
     
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="addPacient.css">
+
     <script type="application/ld+json">{
 		"@context": "http://schema.org",
 		"@type": "Organization",
@@ -61,28 +70,38 @@
     <section class="u-clearfix u-section-1" id="sec-6cd5">
       <div class="u-clearfix u-sheet u-sheet-1">
         <h3 class="u-text u-text-default u-text-1">Agregar Paciente</h3>
+        <div class="Card">
+        
         <div class="u-form u-form-1">
           <form action="/AgregarPaciente" method="post" enctype="multipart/form-data">
             <p class="u-form-group u-form-text u-text u-text-2"> DATOS DEL PACIENTE</p>
             <div class="u-form-group u-form-group-2">
-              <label for="text-3d4d" class="u-label">No. Expediente</label>
-              <input type="text" id="text-3d4d" name="Expediente" class="u-input u-input-rectangle" required="required">
+              <!-- 4año de registro 3institucion (072) no paciente 4digito -->
+              <!-- 20210720001-->
+              <!-- 20200720002-->
+              <label for="text-3d4d" class="u-label input-container">No. Expediente <span style="color: red">*</span> </label>
+               <input type="text" id="text-3d4d" name="Expediente" class="u-input u-input-rectangle" required="required">
             </div>
-            <div class="u-form-group u-form-name u-form-partition-factor-2 u-form-group-3">
-              <label for="name-b6ca" class="u-label">Nombre(s)</label>
+            <div class="u-form-group u-form-name u-form-partition-factor-2 u-form-group-3 flex-grow">
+              <label for="name-b6ca" class="u-label">Nombre(s) <span style="color: red">*</span></label>
               <input type="text" placeholder="Ingrese su nombre" id="name-b6ca" name="Nombre" class="u-input u-input-rectangle" required="">
+              
             </div>
-            <div class="u-form-group u-form-name u-form-partition-factor-2 u-form-group-4">
-              <label for="name-b6ca" class="u-label">Apellidos</label>
+            <div class="u-form-group u-form-name u-form-partition-factor-2 u-form-group-4 flex-grow">
+              <label for="name-b6ca" class="u-label">Apellidos <span style="color: red">*</span></label>
               <input type="text" placeholder="Ingrese sus apellidos" id="name-b6ca" name="Apellidos" class="u-input u-input-rectangle" required="">
             </div>
             <div class="u-form-date u-form-group u-form-group-5">
-              <label for="date-aeb1" class="u-label">Fecha de Nacimiento</label>
+              <label for="date-aeb1" class="u-label">Fecha de Nacimiento <span style="color: red">*</span></label>
+              <input  type="date" id="fechaNacimiento" name="trip-start"
+                    min="1900-01-01" max="2024-12-31" class="u-input u-input-rectangle grid-grow" required="">
               <!--input type="text" readonly="readonly" placeholder="MM/DD/YYYY" id="date-aeb1" name="Edad" class="u-input u-input-rectangle" required="" data-date-format="mm/dd/yyyy"-->
-              <input type="number" name="Edad" class="u-input u-input-rectangle" required="">
+              <h1 id="edad"></h1>
+              <!--input type="number" name="Edad" class="u-input u-input-rectangle" required=""-->
             </div>
+            
             <div class="u-form-checkbox-group u-form-group u-form-input-layout-horizontal u-form-group-6">
-              <label class="u-label">Sexo</label>
+              <label class="u-label">Sexo<span style="color: red">*</span></label>
               <div class="u-form-checkbox-group-wrapper">
                 <div class="u-input-row">
                   <input id="field-d33e" type="radio" name="Sexo" value="2" class="u-field-input" data-calc="Femenino" required="required">
@@ -94,16 +113,23 @@
                 </div>
               </div>
             </div>
-            <div class="u-form-group u-form-phone u-form-group-7">
-              <label for="phone-c919" class="u-label">Teléfono</label>
+            <div class="u-form-group u-form-phone u-form-group-7 ">
+              <label for="phone-c919" class="u-label">Teléfono <span style="color: red">*</span></label>
               <input type="tel" pattern="\+?\d{0,3}[\s\(\-]?([0-9]{2,3})[\s\)\-]?([\s\-]?)([0-9]{3})[\s\-]?([0-9]{2})[\s\-]?([0-9]{2})" placeholder="Enter your phone (e.g. +14155552675)" id="phone-c919" name="Telefono" class="u-input u-input-rectangle" required="">
             </div>
             <div class="u-form-group u-form-group-8">
+              <div class="card">
+                <div class="image-container">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6dELQJyJy7ztzrvRwn5hZDqng576Fg8kxljVjlzYBgxln-dq_dUhk-3Tae5FBktIzzHU&usqp=CAU" id="profile-pic">
+                  <label for="input-file" class="foto">Subir Foto</label>
+                </div>
+                <input type="file" id="input-file" class="fotoinput" accept="image/jpeg,image/png,image/jpg">
+              </div>
               <label for="text-10ec" class="u-label">Foto</label>
               <input type="file" placeholder="" id="text-10ec" name="Foto" class="u-input u-input-rectangle">
             </div>
             <div class="u-form-checkbox-group u-form-group u-form-input-layout-horizontal u-form-group-9">
-              <label class="u-label">Transtorno</label>
+              <label class="u-label">Transtorno <span style="color: red">*</span></label>
               <div class="u-form-checkbox-group-wrapper">
                 <div class="checkbox-group required">
                   <input id="field-3dd5" type="checkbox" name="Padecimiento" value="1" class="u-field-input" data-calc="estrés">
@@ -174,6 +200,7 @@
             <input type="hidden" name="formServices" value="9c9200e6ee6509b1b8131a8b97db2bc6">
           </form>
         </div>
+        </div>
         <a href="Menu.html" class="u-border-none u-btn u-button-style u-custom-color-4 u-hover-custom-color-5 u-btn-2">Cancelar</a>
       </div>
     </section>
@@ -191,5 +218,27 @@
         <span>Website Builder Software</span>
       </a>. 
     </section>
-  
+    <!-- script para fecha-->
+    <script src="js/edad.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+      flatpickr("input[type=datatime-local]", {});
+    </script>
+    <!-- SCRIPT IMAGEN-->
+    <script>
+      const input = document.getElementById('input-file');
+      const img = document.getElementById('profile-pic');
+    
+      input.addEventListener('change', () => {
+        const file = input.files[0];
+        const reader = new FileReader();
+    
+        reader.addEventListener('load', () => {
+          img.src = reader.result;
+        });
+    
+        reader.readAsDataURL(file);
+      });
+    </script>
+
 </body></html>
