@@ -1,6 +1,41 @@
 from flask import Flask, request, render_template, send_from_directory
 import whisper
+import pymysql
 
+#---------------------------------------------------------------------------------#
+#coneccion BD
+
+def obtener_conexion():
+    return pymysql.connect(host='localhost',
+                                user='root',
+                                password='n0m3l0',
+                                db='SeniorSuite')
+
+def obtener_paciente_por_expediente(expediente):
+    conexion = obtener_conexion()
+    paciente = None
+    with conexion.cursor() as cursor:
+        cursor.execute(
+            "SELECT No_Expediente, Nombre FROM Paciente WHERE No_Expediente = %s", (expediente,))
+        paciente = cursor.fetchone()
+    conexion.close()
+
+    print(paciente)
+    return paciente
+
+def obtener_No_sesiones(expediente):
+    conexion = obtener_conexion()
+    sesiones = 0
+    with conexion.cursor() as cursor:
+        cursor.execute(
+            "SELECT count(id_sesion) FROM Sesiones_diarias WHERE No_Expediente = %s", (expediente,))
+        sesiones = cursor.fetchone()
+    conexion.close()
+
+    print(sesiones)
+    return paciente
+
+#---------------------------------------------------------------------------------#
 
 app = Flask(__name__)
 
@@ -17,16 +52,16 @@ def script():
 
 #---------------------------------------------------------------------------------#
 
-app.config['CLIENT_IMAGES'] = "/home/yerry/Documentos/github/SuiteSenior/back/server/Fotos"
+app.config['CLIENT_IMAGES'] = "C:/Users/Yerry/Documents/github/SuiteSenior/back/server/Fotos"
 
-@app.route("/get_image/<image_name>")
-def get_image(image_name):
+@app.route("/audios/<audio_name>")
+def get_image(audio_name):
     
     print(app.config['CLIENT_IMAGES'])
     #return "thanks"
     
     try:
-        return send_from_directory(app.config['CLIENT_IMAGES'], image_name, as_attachment=False)
+        return send_from_directory(app.config['CLIENT_IMAGES'], audio_name, as_attachment=False)
     except (FileNotFoundError):
         abort(404)
 #---------------------------------------------------------------------------------#
@@ -50,3 +85,10 @@ def upload():
 
 if __name__ == "__main__":
     app.run("0.0.0.0")
+
+    x = input("inserte el expediente del paciente")
+    
+    paciente = obtener_paciente_por_expediente(x)
+    sesiones = obtener_No_sesiones(x)
+    print(paciente)
+    print("sesiones: ", sesiones)
