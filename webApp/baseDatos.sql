@@ -1,4 +1,4 @@
--- Adminer 4.8.1 MySQL 8.0.32 dump
+-- Adminer 4.8.1 MySQL 8.0.33 dump
 
 SET NAMES utf8;
 SET time_zone = '+00:00';
@@ -38,6 +38,7 @@ DROP TABLE IF EXISTS `Paciente`;
 CREATE TABLE `Paciente` (
   `No_Expediente` int NOT NULL,
   `Nombre` varchar(50) NOT NULL,
+  `FechaNacimiento` date NOT NULL,
   `Edad` int NOT NULL,
   `Sexo` int NOT NULL,
   `Padecimiento` int NOT NULL,
@@ -126,8 +127,8 @@ CREATE TABLE `Sexo` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `Sexo` (`Sexo`, `Genero`) VALUES
-(1,	'H'),
-(2,	'M');
+(1,	'Masculino'),
+(2,	'Femenino');
 
 DROP TABLE IF EXISTS `Usuario`;
 CREATE TABLE `Usuario` (
@@ -144,4 +145,4 @@ INSERT INTO `Usuario` (`id_usuario`, `usuario`, `contraseña`, `rol`) VALUES
 (1,	'jacob',	'jacob',	1),
 (2,	'Bety',	'Bety',	2);
 
--- 2023-04-13 06:38:59
+-- 2023-04-21 05:19:00
