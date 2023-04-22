@@ -431,7 +431,7 @@ app.post("/Paciente", (req, res)=>{
                           <p class="u-align-left u-text u-text-9"><span class="u-file-icon u-icon u-text-white"><img src="images/159832-e6b11a25.png" alt=""></span>&nbsp; Teléfono
                           </p>
                           <p class="u-align-left u-text u-text-10">${respuesta[0].Telefono}</p>
-                          <h6 class="u-align-left u-text u-text-11">CONTACTOS</h6>
+                          <h6 class="u-align-left u-text u-text-11">COntactanos y yama lla</h6>
                           <div class="u-table u-table-responsive u-table-1">
                             <table class="u-table-entity">
                               <colgroup>
