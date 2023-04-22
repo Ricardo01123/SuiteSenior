@@ -16,7 +16,7 @@ def obtener_paciente_por_expediente(expediente):
     paciente = None
     with conexion.cursor() as cursor:
         cursor.execute(
-            "SELECT No_Expediente, Nombre FROM Paciente WHERE No_Expediente = %s", (expediente,))
+            "SELECT No_Expediente, Nombre, id_usuario FROM Paciente natural join Usuario WHERE No_Expediente = %s", (expediente,))
         paciente = cursor.fetchone()
     conexion.close()
 
@@ -35,6 +35,7 @@ def obtener_No_sesiones(expediente):
     print(sesiones)
     return paciente
 
+
 #---------------------------------------------------------------------------------#
 
 app = Flask(__name__)
@@ -42,8 +43,12 @@ app = Flask(__name__)
 LANGUAGE="Spanish"
 model = whisper.load_model("small", )
 
-@app.route("/")
-def index():
+#voy a hacer una ligera modificacion a la pagina index para que puedan recibir la informacion del paciente
+
+@app.route("/<expediente>")
+def index(expediente):
+    paciente = obtener_paciente_por_expediente(expediente)
+
     return render_template("index.html")
 
 @app.route("/script.js")
@@ -52,16 +57,16 @@ def script():
 
 #---------------------------------------------------------------------------------#
 
-app.config['CLIENT_IMAGES'] = "C:/Users/Yerry/Documents/github/SuiteSenior/back/server/Fotos"
+app.config['CLIENT_AUDIOS'] = "C:/Users/Yerry/Documents/github/SuiteSenior/back/server/audios"  #<- Esto se tiene que cambiar en cada pc
 
 @app.route("/audios/<audio_name>")
 def get_image(audio_name):
     
-    print(app.config['CLIENT_IMAGES'])
+    print(app.config['CLIENT_AUDIOS'])
     #return "thanks"
     
     try:
-        return send_from_directory(app.config['CLIENT_IMAGES'], audio_name, as_attachment=False)
+        return send_from_directory(app.config['CLIENT_AUDIOS'], audio_name, as_attachment=False)
     except (FileNotFoundError):
         abort(404)
 #---------------------------------------------------------------------------------#

@@ -421,10 +421,10 @@ app.post("/Paciente", (req, res)=>{
                           <h6 class="u-align-center u-text u-text-2">DATOS PERSONALES</h6>
                           <p class="u-align-left u-text u-text-3"><span class="u-file-icon u-icon u-text-white"><img src="images/3239948-dbce9193.png" alt=""></span>&nbsp; Fecha de nacimiento
                           </p>
-                          <p class="u-align-left u-text u-text-4">${respuesta[0].Edad} fecha XD</p>
+                          <p class="u-align-left u-text u-text-4">${respuesta[0].FechaNacimiento}</p>
                           <p class="u-align-left u-text u-text-5"><span class="u-file-icon u-icon u-text-white"><img src="images/1742553-00bc93d6.png" alt=""></span>&nbsp; Edad
                           </p>
-                          <p class="u-align-left u-text u-text-6">##</p>
+                          <p class="u-align-left u-text u-text-6">${respuesta[0].Edad}</p>
                           <p class="u-align-left u-text u-text-7"><span class="u-file-icon u-icon u-text-white"><img src="images/1161016-6952b3cd.png" alt=""></span>&nbsp; Sexo
                           </p>
                           <p class="u-align-left u-text u-text-8">${respuesta[0].Genero}</p>
@@ -546,6 +546,14 @@ app.post("/Paciente", (req, res)=>{
   })
 })
 
+app.get("/grabarAudio", (req, res)=>{
+
+  let expediente=req.body.expediente;
+  var cadena = "http://localhost:5000/"+expediente
+  console.log(cadena)
+  res.redirect(cadena)
+})
+
 app.listen(8080, ()=>{
-	console.log('Servidor escuchando en el puesrto 8080 aiuda porfavor')
+	console.log('Servidor escuchando en el puerto 8080 aiuda porfavor')
 })
