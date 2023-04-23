@@ -20,8 +20,10 @@ CREATE TABLE `Familiar` (
   PRIMARY KEY (`Familiar`),
   KEY `Parentezco` (`Parentezco`),
   CONSTRAINT `Familiar_ibfk_1` FOREIGN KEY (`Parentezco`) REFERENCES `Parentezco` (`Parentezco`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+INSERT INTO `Familiar` (`Familiar`, `Nombre_Familiar`, `Parentezco`, `Telefono_Familiar`) VALUES
+(7,	'Pepe',	1,	5544778899);
 
 DROP TABLE IF EXISTS `Notas_medicas`;
 CREATE TABLE `Notas_medicas` (
@@ -31,23 +33,28 @@ CREATE TABLE `Notas_medicas` (
   PRIMARY KEY (`id_nota`),
   KEY `Paciente` (`No_Expediente`),
   CONSTRAINT `Notas_medicas_ibfk_1` FOREIGN KEY (`No_Expediente`) REFERENCES `Paciente` (`No_Expediente`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+INSERT INTO `Notas_medicas` (`id_nota`, `No_Expediente`, `Nota`) VALUES
+(20,	5557600,	'No hay notas aún');
 
 DROP TABLE IF EXISTS `Paciente`;
 CREATE TABLE `Paciente` (
   `No_Expediente` int NOT NULL,
   `Nombre` varchar(50) NOT NULL,
+  `FechaNacimiento` date NOT NULL,
   `Edad` int NOT NULL,
   `Sexo` int NOT NULL,
   `Padecimiento` int NOT NULL,
   `Telefono` bigint NOT NULL,
   `Foto` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `Familiar` int DEFAULT NULL,
+  `id_usuario` int DEFAULT NULL,
   PRIMARY KEY (`No_Expediente`),
   KEY `Padecimiento` (`Padecimiento`),
   KEY `Sexo` (`Sexo`),
   KEY `Familiar` (`Familiar`),
+  KEY `id_usuario` (`id_usuario`),
   CONSTRAINT `Paciente_ibfk_1` FOREIGN KEY (`Sexo`) REFERENCES `Sexo` (`Sexo`) ON DELETE CASCADE,
   CONSTRAINT `Paciente_ibfk_2` FOREIGN KEY (`Padecimiento`) REFERENCES `Padecimiento` (`Padecimiento`) ON DELETE CASCADE,
   CONSTRAINT `Paciente_ibfk_3` FOREIGN KEY (`Sexo`) REFERENCES `Sexo` (`Sexo`) ON DELETE CASCADE,
@@ -55,9 +62,12 @@ CREATE TABLE `Paciente` (
   CONSTRAINT `Paciente_ibfk_5` FOREIGN KEY (`Sexo`) REFERENCES `Sexo` (`Sexo`) ON DELETE CASCADE,
   CONSTRAINT `Paciente_ibfk_6` FOREIGN KEY (`Sexo`) REFERENCES `Sexo` (`Sexo`) ON DELETE CASCADE,
   CONSTRAINT `Paciente_ibfk_7` FOREIGN KEY (`Sexo`) REFERENCES `Sexo` (`Sexo`) ON DELETE CASCADE,
-  CONSTRAINT `Paciente_ibfk_8` FOREIGN KEY (`Familiar`) REFERENCES `Familiar` (`Familiar`) ON DELETE SET NULL
+  CONSTRAINT `Paciente_ibfk_8` FOREIGN KEY (`Familiar`) REFERENCES `Familiar` (`Familiar`) ON DELETE SET NULL,
+  CONSTRAINT `Paciente_ibfk_9` FOREIGN KEY (`id_usuario`) REFERENCES `Usuario` (`id_usuario`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+INSERT INTO `Paciente` (`No_Expediente`, `Nombre`, `FechaNacimiento`, `Edad`, `Sexo`, `Padecimiento`, `Telefono`, `Foto`, `Familiar`, `id_usuario`) VALUES
+(5557600,	'Gerardo Cristobal De La Huerta Avalos',	'2002-03-29',	21,	1,	1,	5511223366,	'/FotosPacientes/wolf.jpg',	7,	2);
 
 DELIMITER ;;
 
@@ -115,8 +125,10 @@ CREATE TABLE `Sesiones_diarias` (
   PRIMARY KEY (`id_sesion`),
   KEY `No_Expediente` (`No_Expediente`),
   CONSTRAINT `Sesiones_diarias_ibfk_1` FOREIGN KEY (`No_Expediente`) REFERENCES `Paciente` (`No_Expediente`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+INSERT INTO `Sesiones_diarias` (`id_sesion`, `No_Expediente`, `Resumen`) VALUES
+(15,	5557600,	'No hay resumen de sesion aún');
 
 DROP TABLE IF EXISTS `Sexo`;
 CREATE TABLE `Sexo` (
@@ -126,22 +138,22 @@ CREATE TABLE `Sexo` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `Sexo` (`Sexo`, `Genero`) VALUES
-(1,	'H'),
-(2,	'M');
+(1,	'Masculino'),
+(2,	'Femenino');
 
 DROP TABLE IF EXISTS `Usuario`;
 CREATE TABLE `Usuario` (
-  `id_usuario` int NOT NULL AUTO_INCREMENT,
+  `id_usuario` int NOT NULL,
   `usuario` varchar(20) NOT NULL,
   `contraseña` varchar(30) NOT NULL,
   `rol` int NOT NULL,
   PRIMARY KEY (`id_usuario`),
   KEY `rol` (`rol`),
   CONSTRAINT `Usuario_ibfk_1` FOREIGN KEY (`rol`) REFERENCES `Rol` (`id_rol`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `Usuario` (`id_usuario`, `usuario`, `contraseña`, `rol`) VALUES
 (1,	'jacob',	'jacob',	1),
 (2,	'Bety',	'Bety',	2);
 
--- 2023-04-13 06:38:59
+-- 2023-04-22 06:06:48
