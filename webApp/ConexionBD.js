@@ -775,12 +775,39 @@ app.post("/HistorialMedico", (req, res)=>{
 
 })
 
-app.get("/grabarAudio", (req, res)=>{
+app.post("/grabarAudio", (req, res)=>{
 
   let expediente=req.body.expediente;
   var cadena = "http://localhost:5000/"+expediente
   console.log(cadena)
-  res.redirect(cadena)
+  res.send(`
+  
+  <!DOCTYPE HTML>
+<html>
+
+<body>
+  <div class="container">
+      <div class="display">
+
+      </div>
+      <button type="button" id="btn">Start</button>
+      <button type="button" id="btn_pause">Pause</button>
+      <button type="button" id="btn_stop">Stop</button>
+  </div>
+  <!-- Para el codificador de mp3 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.2.1/lame.min.js"></script>
+  <!-- Librería para generar las grabadoras de audio -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/RecordRTC/5.5.6/RecordRTC.js"></script>
+  <!-- Librería para un cliente de HTTP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.6/axios.min.js"></script>
+  <script src="./js/grabarAudio.js"></script>
+
+
+</body>
+
+</html>
+  
+  `)
 })
 
 app.listen(8080, ()=>{
