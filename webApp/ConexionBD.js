@@ -295,16 +295,23 @@ app.post("/Paciente", (req, res)=>{
   let expediente = req.body.expediente
   let nombre = req.body.nombre
   console.log("este es el expediente, y estamos en paciente: "+ expediente)
-  con.query("select * from Paciente natural join Notas_medicas natural join Padecimiento natural join Sexo natural join Sesiones_diarias natural join Familiar natural join Parentezco where No_Expediente='"+expediente+"' or Nombre='"+nombre+"'", (err, respuesta, fields)=>{
+  con.query("select * from Paciente natural join Notas_medicas natural join Padecimiento natural join Sexo natural join Sesiones_diarias natural join Familiar natural join Parentezco where No_Expediente='"+expediente+"' ORDER BY id_sesion ASC", (err, respuesta, fields)=>{
     if(err) return console.log('Ha ocurrido un error en la visualizacion del paciente', err);
 
     var pacienteHTML=``
     var sesionesHTML=``
     var familiaresHTML=``
     var i = 0, j=0
+    var previousFam = "";
+    var previousSick = "";
+
     console.log(respuesta)
     
     respuesta.forEach(paciente =>{
+      if(paciente.Valor_Padecimiento == previousSick){
+
+      }else{
+
       i++
       pacienteHTML += `
       
@@ -314,6 +321,8 @@ app.post("/Paciente", (req, res)=>{
       </div>
       
       `
+      }
+      previousSick = paciente.Valor_Padecimiento;
     })
 
     respuesta.forEach(sesion =>{
@@ -332,7 +341,10 @@ app.post("/Paciente", (req, res)=>{
     })
 
     respuesta.forEach(familiar =>{
+      
+      if(familiar.Nombre_Familiar == previousFam){
 
+      }else{
       familiaresHTML += `
       
       <tr style="height: 28px;">
@@ -342,6 +354,8 @@ app.post("/Paciente", (req, res)=>{
       </tr>
 
       `
+      }
+      previousFam=familiar.Nombre_Familiar;
     })
 
     return res.send(`
@@ -471,8 +485,8 @@ app.post("/Paciente", (req, res)=>{
                               <button type="submit" name="Expediente" id="Expediente" value="${respuesta[0].No_Expediente}" class="btn btn-primary btn-group-lg  u-border-none  u-btn-rectangle u-button-style u-custom-color-1 u-hover-palette-2-base u-btn-1">Historial Médico</button>
                             </form>
 
-                            <form action="/grabarAudio" method="post">
-                              <button type="submit" name="Expediente" id="Expediente" value="${respuesta[0].No_Expediente}" class="btn btn-primary btn-group-lg  u-border-none  u-btn-rectangle u-button-style u-custom-color-3 u-hover-palette-3-base u-btn-1">Iniciar nueva seseion</button>
+                            <form action="/grabarAudioPantalla" method="post">
+                              <button type="submit" name="Expediente" id="Expediente" value="${respuesta[0].No_Expediente}" class="btn btn-primary btn-group-lg  u-border-none  u-btn-rectangle u-button-style u-custom-color-3 u-hover-palette-3-base u-btn-1">Iniciar sesion terapeutica</button>
                             </form>
                           </div>
                           
@@ -510,11 +524,19 @@ app.post("/HistorialMedico", (req, res)=>{
   let expediente = req.body.Expediente;
 
   var familiaresHTML="";
+  var previousFam = "";
+  var previousSession = "";
+  var sesionesFechasHTML = "";
 
-  con.query("select * from Paciente natural join Notas_medicas natural join Padecimiento natural join Sexo natural join Sesiones_diarias natural join Familiar natural join Parentezco where No_Expediente='"+expediente+"'", (err, respuesta, fields)=>{
+  var contador = 0;
+
+  con.query("select * from Paciente natural join Notas_medicas natural join Padecimiento natural join Sexo natural join Sesiones_diarias natural join Familiar natural join Parentezco where No_Expediente='"+expediente+"' ORDER BY id_sesion ASC;", (err, respuesta, fields)=>{
 
     respuesta.forEach(familiar =>{
 
+      if(familiar.Nombre_Familiar == previousFam){
+
+      }else{
       familiaresHTML += `
       
       <tr style="height: 28px;">
@@ -524,6 +546,25 @@ app.post("/HistorialMedico", (req, res)=>{
       </tr>
 
       `
+      }
+      previousFam = familiar.Nombre_Familiar;
+    })
+
+    contador = 0;
+    respuesta.forEach(sesion =>{
+      
+
+      sesionesFechasHTML += `
+      
+      <tr>
+        <th scope="row">${contador}</th>
+        <td>${sesion.fechaSesion}</td>
+        <td>Sesión ${respuesta.length - contador}</td>
+      </tr>
+      
+      `
+
+      contador++;
     })
 
     res.send(`
@@ -683,21 +724,7 @@ app.post("/HistorialMedico", (req, res)=>{
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>17/03/2000</td>
-      <td>Sesión 8</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>18/03/2023</td>
-      <td>Sesión 4</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td >02/05/2021</td>
-      <td >Sesión 3</td>
-    </tr>
+    ${sesionesFechasHTML}
   </tbody>
 </table>
                             </div>
@@ -709,22 +736,12 @@ app.post("/HistorialMedico", (req, res)=>{
                                 <div class="panel panel-default">
                                   <div class="panel-heading">
                                     <h4 class="panel-title">
-                                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Sesión 5</a>
+                                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Sesión ${contador}</a>
                                     </h4>
                                   </div>
                                   <div id="collapse1" class="panel-collapse collapse in">
                                     <div class="panel-body" style="height: 300px; overflow-y: auto;">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    ${respuesta[0].SesionCompleta}
                                   </div>
                                   </div>
                                 </div>
@@ -736,21 +753,7 @@ app.post("/HistorialMedico", (req, res)=>{
                                   </div>
                                   <div id="collapse2" class="panel-collapse collapse">
                                     <div class="panel-body" style="height: 300px; overflow-y: auto;">
-                                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    ${respuesta[0].Resumen}
                                     </div>
                                   </div>
                                 </div>
@@ -775,13 +778,12 @@ app.post("/HistorialMedico", (req, res)=>{
 
 })
 
-app.post("/grabarAudio", (req, res)=>{
+app.post("/grabarAudioPantalla", (req, res)=>{
+  let expediente=req.body.Expediente;
+  let doctor = req.body.doctor;
 
-  let expediente=req.body.expediente;
-  var cadena = "http://localhost:5000/"+expediente
-  console.log(cadena)
   res.send(`
-  
+
   <!DOCTYPE HTML>
 <html>
 
@@ -793,6 +795,18 @@ app.post("/grabarAudio", (req, res)=>{
       <button type="button" id="btn">Start</button>
       <button type="button" id="btn_pause">Pause</button>
       <button type="button" id="btn_stop">Stop</button>
+
+      <form action="/grabarAudio" method="post">
+        <input type="text" id="texto" name="texto" >
+        <input type="text" value="${expediente}" id="expediente" name="expediente" hidden="True">
+        <!--input type="text" disabled="True" value="${doctor}" id="doctor" name="doctor" hidden="True"-->
+        <input type="submit" value="guardar Sesion">
+
+      </form>
+
+      <!-- <form action="/grabarAudio" method="post">
+        <input type="submit" name="texto" id="texto" value="valor">
+      </form> -->
   </div>
   <!-- Para el codificador de mp3 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.2.1/lame.min.js"></script>
@@ -806,8 +820,59 @@ app.post("/grabarAudio", (req, res)=>{
 </body>
 
 </html>
-  
+
+
   `)
+})
+
+app.post("/grabarAudio", (req, res)=>{
+
+  let expediente=req.body.expediente;
+  let doctor = req.body.doctor;
+  let texto = req.body.texto;
+  console.log(texto)
+  console.log(expediente)
+  var cadena = "http://localhost:5000/"+expediente
+
+  con.query("insert into Sesiones_diarias(No_Expediente, SesionCompleta) values('"+expediente+"', '"+texto+"')", (err, respuesta, fields)=>{
+    if(err) return console.log('Ha ocurrido un error en la insercion de la sesion', err);
+
+    console.log("se ha insertado una sesion para el paciente")
+
+    return res.redirect("/index");
+  })
+
+ 
+  
+  
+//   res.send(`
+  
+//   <!DOCTYPE HTML>
+// <html>
+
+// <body>
+//   <div class="container">
+//       <div class="display">
+
+//       </div>
+//       <button type="button" id="btn">Start</button>
+//       <button type="button" id="btn_pause">Pause</button>
+//       <button type="button" id="btn_stop">Stop</button>
+//   </div>
+//   <!-- Para el codificador de mp3 -->
+//   <script src="https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.2.1/lame.min.js"></script>
+//   <!-- Librería para generar las grabadoras de audio -->
+//   <script src="https://cdnjs.cloudflare.com/ajax/libs/RecordRTC/5.5.6/RecordRTC.js"></script>
+//   <!-- Librería para un cliente de HTTP -->
+//   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.6/axios.min.js"></script>
+//   <script src="./js/grabarAudio.js"></script>
+
+
+// </body>
+
+// </html>
+  
+//   `)
 })
 
 app.listen(8080, ()=>{

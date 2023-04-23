@@ -124,15 +124,20 @@ DROP TABLE IF EXISTS `Sesiones_diarias`;
 CREATE TABLE `Sesiones_diarias` (
   `id_sesion` int NOT NULL AUTO_INCREMENT,
   `No_Expediente` bigint NOT NULL,
-  `Resumen` varchar(500) NOT NULL,
+  `Resumen` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'No existe un resumen de esta sesion',
+  `SesionCompleta` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `Audio` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT './audios/audio.wav',
+  `fechaSesion` date NOT NULL DEFAULT '2023-04-24',
   PRIMARY KEY (`id_sesion`),
   KEY `No_Expediente` (`No_Expediente`),
   CONSTRAINT `Sesiones_diarias_ibfk_1` FOREIGN KEY (`No_Expediente`) REFERENCES `Paciente` (`No_Expediente`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO `Sesiones_diarias` (`id_sesion`, `No_Expediente`, `Resumen`) VALUES
-(15,	5557600,	'No hay resumen de sesion aún'),
-(16,	20230750001,	'No hay resumen de sesion aún');
+INSERT INTO `Sesiones_diarias` (`id_sesion`, `No_Expediente`, `Resumen`, `SesionCompleta`, `Audio`, `fechaSesion`) VALUES
+(15,	5557600,	'No hay resumen de sesion aún',	'Esta seria la sesion comleta',	'./audios/audio.wav',	'2023-04-24'),
+(16,	20230750001,	'No hay resumen de sesion aún',	'Esta seria la sesion comleta',	'./audios/audio.wav',	'2023-04-24'),
+(17,	20230750001,	'No existe un resumen de esta sesion',	' Mis si ma misma pruebas',	'./audios/audio.wav',	'2023-04-24'),
+(18,	20230750001,	'No existe un resumen de esta sesion',	' Mis si ma misma pruebas',	'./audios/audio.wav',	'2023-04-24');
 
 DROP TABLE IF EXISTS `Sexo`;
 CREATE TABLE `Sexo` (
@@ -160,4 +165,4 @@ INSERT INTO `Usuario` (`id_usuario`, `usuario`, `contraseña`, `rol`) VALUES
 (1,	'jacob',	'jacob',	1),
 (2,	'Bety',	'Bety',	2);
 
--- 2023-04-23 07:07:07
+-- 2023-04-23 22:01:31
