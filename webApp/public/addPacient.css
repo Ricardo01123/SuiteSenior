@@ -1,49 +1,102 @@
-.u-form-group {
-    margin-bottom: 10px;
-  }
-  
-  .u-label-left {
-    display: inline-block;
-    width: 40%;
-    text-align: right;
-    margin-right: 10px;
-  }
-  
-  
-
-  .u-input {
-    display: inline-block;
-    width: 55%;
-    vertical-align: middle;
-  }
-
-  .u-input-rectangle {
-    display: inline-block;
-    vertical-align: middle;
+.container-forms{
+    display: block;
+    border: 1px solid #bab6b6;
     border-radius: 5px;
-    margin: 5px;
-  }
+    margin-top: 15px;
+    margin-left: 80px;
+    margin-right: 80px;  
+    margin-bottom: 15px;
+   
+}
 
-  .input-container {
-    display: flex-grow;
-    align-items: center;
-    margin-left: 20%;
-  }
+.text-container-form{
+    width: auto;
+    border-bottom: 1px solid #bab6b6;
+    background-color: #f5f5f5f7;
+}
+
+.u-label{
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.u-input-rectangle{
+    border-radius: 5px;
+    margin-left: 20px;
+    width: 920px;
+}
+
+
+.u-text-2{
+    padding: 10px;
+    padding-left: 20px;
+    border-radius: 5px;
+    margin-top: 100px;
+}
+
+.u-text-3{
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 100px;
+}
+
+/*  FORM NAME   */
+.u-form-name {
+    display: inline-block;
+    vertical-align: top;
     
-  .input-container label {
-    margin-right: 10px;
+}
+
+.u-input-name-rec{  
+    width: 450px;
+
+}
+
+  
+
+
+/*  DATE FORM */
+.u-form-date{
+    display: inline-block;
+    vertical-align: top;
+    
+}
+
+.u-form-group-7 label {
+    display: block;
   }
 
+  .u-form-group-7 input {
+    display: block;
+    margin-top: 10px;
+    margin-left: 20px;
+  }
+
+.u-input-date-rec{
+    width: 450px;
+    
+}
+
+.u-field-label{
+    margin-right: 20px ;
+}
+
+.u-form-checkbox-group-wrapper{
+    margin-left: 20px;
+}
+
+/* DIV IMAGEN*/
 .card{
-    width: 400px;
+    margin-left:20px ;
+    width: 450;
+    border: none;
     background: #fff;
-    padding: auto;
     border-radius: 15px;
     text-align: center;
-    color: #333;
+    /*color: #333;*/
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
 }
 
 .image-container {
@@ -53,24 +106,68 @@
   }
 
 .card img{
-    width: 120px;
-    height: 120px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
-    margin-top: 40px;
-    margin-bottom: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 50px;
+    
 }
+
 .foto{
     display: block;
-    width: 200px;
-    background: #e33;
-    color: #fff;
-    padding: 10px auto;
+    width: 120px;
+    border: 2px solid #6DB8BB;
+    background: #fff;
+    color: #6DB8BB;
+    padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    
-
+}
+.foto:hover {
+    background: #6DB8BB; /* Cambia el color de fondo al pasar el cursor sobre el elemento */
+    color: #fff; /* Cambia el color del texto al pasar el cursor sobre el elemento */
 }
 
 .fotoinput{
     display: none;
+}
+
+
+.btn-primary{
+    margin: 15px;
+    border-radius: 5px;
+
+}
+
+
+.container-contacts{
+    border: 2px solid #dcdcdc69;
+    border-radius: 5px;
+    margin-top: 5px;
+    padding-bottom: 10px;
+}
+
+.cancel-button{
+    background: #8D9775;
+    border: none;
+    
+}
+
+.cancel-button:hover {
+    background: #747d61; /* Cambia el color de fondo al pasar el cursor sobre el elemento */
+    color: #fff; /* Cambia el color del texto al pasar el cursor sobre el elemento */
+}
+
+.add-button{
+
+    background: #E38F84;
+    border: none;
+    
+}
+
+.add-button:hover {
+    background: #d1796d; /* Cambia el color de fondo al pasar el cursor sobre el elemento */
+    color: #fff; /* Cambia el color del texto al pasar el cursor sobre el elemento */
 }
