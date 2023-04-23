@@ -13,7 +13,22 @@
     <meta name="referrer" content="origin">
     <link id="u-theme-google-font" rel="stylesheet" href="./css/https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
     
+    <link
+     rel="stylesheet"
+     href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
+   />
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+    <!-- formato para fecha-->
     
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="addPacient.css">
+
     <script type="application/ld+json">{
 		"@context": "http://schema.org",
 		"@type": "Organization",
@@ -58,31 +73,68 @@
           </div>
         </nav>
       </div></header>
+
     <section class="u-clearfix u-section-1" id="sec-6cd5">
       <div class="u-clearfix u-sheet u-sheet-1">
         <h3 class="u-text u-text-default u-text-1">Agregar Paciente</h3>
-        <div class="u-form u-form-1">
-          <form action="/AgregarPaciente" method="post" enctype="multipart/form-data">
+        <div class="container-forms">
+          <div class="text-container-form">
             <p class="u-form-group u-form-text u-text u-text-2"> DATOS DEL PACIENTE</p>
+          </div>
+
+          <div class="u-form u-form-1">
+            <form action="/AgregarPaciente" method="post" enctype="multipart/form-data">
+              
+              <div class="u-form-group u-form-group-8">
+                <label for="text-10ec" class="u-label"></label>
+                <div class="card">
+                  
+                  <div class="image-container">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6dELQJyJy7ztzrvRwn5hZDqng576Fg8kxljVjlzYBgxln-dq_dUhk-3Tae5FBktIzzHU&usqp=CAU" id="profile-pic">
+                    <label for="input-file" class="foto">Subir Foto</label>
+                  </div>
+                  <input type="file" id="input-file" name="Foto" class="fotoinput" accept="image/jpeg,image/png,image/jpg" required="required">
+                </div>
+              
+              <!--input type="file" placeholder="" id="text-10ec" name="Foto" class="u-input u-input-rectangle"-->
+            </div>
+            <!--  NOMBRE Y APELLIDO PACIENTE -->
+            <div class="u-form-group u-form-name u-form-partition-factor-2 u-form-group-3 flex-grow">
+              <label for="name-b6ca" class="u-label">Nombre(s) <span style="color: red">*</span></label>
+              <input type="text" placeholder="Ingrese su nombre" id="name-b6ca" name="Nombre" class="u-input u-input-rectangle u-input-name-rec" required="" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122 || event.charCode == 32)">
+            </div>
+            <div class="u-form-group u-form-name u-form-partition-factor-2 u-form-group-4 flex-grow">
+              <label for="name-b6ca" class="u-label">Apellidos <span style="color: red">*</span></label>
+              <input type="text" placeholder="Ingrese sus apellidos" id="name-b6ca-1" name="Apellidos" class="u-input u-input-rectangle u-input-name-rec" required="" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122 || event.charCode == 32)">
+            </div>
+            
+            <!-- NO EXPENDIE -->
             <div class="u-form-group u-form-group-2">
-              <label for="text-3d4d" class="u-label">No. Expediente</label>
-              <input type="text" id="text-3d4d" name="Expediente" class="u-input u-input-rectangle" required="required">
+              <!-- 4año de registro 3institucion (072) no paciente 4digito -->
+              <!-- 20210720001-->
+              <!-- 20200720002-->
+              <label for="text-3d4d" class="u-label input-container">No. Expediente <span style="color: red">*</span> </label>
+              <input type="text" id="text-3d4d-1" name="Expediente" class="u-input u-input-rectangle" required="required"
+              onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
             </div>
-            <div class="u-form-group u-form-name u-form-partition-factor-2 u-form-group-3">
-              <label for="name-b6ca" class="u-label">Nombre(s)</label>
-              <input type="text" placeholder="Ingrese su nombre" id="name-b6ca" name="Nombre" class="u-input u-input-rectangle" required="">
-            </div>
-            <div class="u-form-group u-form-name u-form-partition-factor-2 u-form-group-4">
-              <label for="name-b6ca" class="u-label">Apellidos</label>
-              <input type="text" placeholder="Ingrese sus apellidos" id="name-b6ca" name="Apellidos" class="u-input u-input-rectangle" required="">
-            </div>
+            
+            <!--  FECHA NACIMIENTO -->
             <div class="u-form-date u-form-group u-form-group-5">
-              <label for="date-aeb1" class="u-label">Fecha de Nacimiento</label>
+              <label for="date-aeb1" class="u-label">Fecha de Nacimiento <span style="color: red">*</span></label>
+              <input  type="date" id="fechaNacimiento" name="FechaNacimiento"
+                    min="1900-01-01" max="2024-12-31" class="u-input u-input-rectangle grid-grow u-input-date-rec" required="required" >
               <!--input type="text" readonly="readonly" placeholder="MM/DD/YYYY" id="date-aeb1" name="Edad" class="u-input u-input-rectangle" required="" data-date-format="mm/dd/yyyy"-->
-              <input type="number" name="Edad" class="u-input u-input-rectangle" required="">
+              <!--input type="number" name="Edad" class="u-input u-input-rectangle" required=""-->
             </div>
+            <!--  EDAD EN NUMERO -->
+            <div class="u-form-group u-form-date u-form-partition-factor-2 u-form-group-5 flex-grow">
+              <label for="name-b6ca" class="u-label">Edad <span style="color: red">*</span></label>
+              <input id="edad" type="text" placeholder="Ingrese su Edad" id="name-b6ca" name="Edad" class="u-input u-input-rectangle u-input-name-rec" required="">
+            </div>
+            
+            <!--  SEXO -->
             <div class="u-form-checkbox-group u-form-group u-form-input-layout-horizontal u-form-group-6">
-              <label class="u-label">Sexo</label>
+              <label class="u-label">Sexo<span style="color: red">*</span></label>
               <div class="u-form-checkbox-group-wrapper">
                 <div class="u-input-row">
                   <input id="field-d33e" type="radio" name="Sexo" value="2" class="u-field-input" data-calc="Femenino" required="required">
@@ -94,16 +146,17 @@
                 </div>
               </div>
             </div>
-            <div class="u-form-group u-form-phone u-form-group-7">
-              <label for="phone-c919" class="u-label">Teléfono</label>
-              <input type="tel" pattern="\+?\d{0,3}[\s\(\-]?([0-9]{2,3})[\s\)\-]?([\s\-]?)([0-9]{3})[\s\-]?([0-9]{2})[\s\-]?([0-9]{2})" placeholder="Enter your phone (e.g. +14155552675)" id="phone-c919" name="Telefono" class="u-input u-input-rectangle" required="">
+
+            <!--  INPUT TELEFONO PACIENTE   -->
+            <div class="u-form-group u-form-phone u-form-group-7 ">
+              <label for="phone-c919" class="u-label">Teléfono <span style="color: red">*</span></label>
+              <input id="phone" type="tel" pattern="\+?\d{0,3}[\s\(\-]?([0-9]{4})[\s\)\-]?([\s\-]?)([0-9]{4})" name="Telefono" class="u-input u-input-rectangle u-input-tel" required="required"
+              onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
             </div>
-            <div class="u-form-group u-form-group-8">
-              <label for="text-10ec" class="u-label">Foto</label>
-              <input type="file" placeholder="" id="text-10ec" name="Foto" class="u-input u-input-rectangle">
-            </div>
+             
+            <!--  TRANSTORNO -->
             <div class="u-form-checkbox-group u-form-group u-form-input-layout-horizontal u-form-group-9">
-              <label class="u-label">Transtorno</label>
+              <label class="u-label">Transtorno <span style="color: red">*</span></label>
               <div class="u-form-checkbox-group-wrapper">
                 <div class="checkbox-group required">
                   <input id="field-3dd5" type="checkbox" name="Padecimiento" value="1" class="u-field-input" data-calc="estrés">
@@ -117,64 +170,153 @@
                 </div>
               </div>
             </div>
-            <p class="u-form-group u-form-text u-text u-text-3"> Otros contactos</p>
-            <div class="u-form-group u-form-name u-form-partition-factor-2 u-form-group-11">
-              <label for="name-bf8f" class="u-label">Nombre(s)</label>
-              <input type="text" placeholder="Ingrese su nombre" id="name-bf8f" name="FamiliarNombre" class="u-input u-input-rectangle">
+
+            <!--  ADD CONTACTS -->
+            <div class="text-container-form">
+              <p class="u-form-group u-form-text u-text u-text-2"> Otros contactos</p>
             </div>
-            <div class="u-form-group u-form-name u-form-partition-factor-2 u-form-group-12">
-              <label for="name-bf8f" class="u-label">Apellidos</label>
-              <input type="text" placeholder="Ingrese sus apellidos" id="name-bf8f" name="FamiliarApellido" class="u-input u-input-rectangle">
-            </div>
-            <div class="u-form-group u-form-select u-form-group-13">
-              <label for="select-5ae0" class="u-label">Parentesco</label>
-              <div class="u-form-select-wrapper">
-                <select id="select-5ae0" name="Parentezco" class="u-input u-input-rectangle">
-                  <option value="1" data-calc="Hijo">Hijo</option>
-                  <option value="2" data-calc="cónyuge">Cónyuge</option>
-                  <option value="3" data-calc="tutor">Tutor</option>
-                </select>
-                <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve"><polygon class="st0" points="8,12 2,4 14,4 "></polygon></svg>
+            
+            <div class="container-contacts">
+              <!--  CONTACTO 1 -->
+              <div>
+                <label for="name-bf8f" class="u-label"><strong>Contacto 1</strong> </label>
+              </div>
+              
+              <!--p> <strong> Contacto 1</strong></p-->
+              <!--  NOMBRE Y APELLIDO CONTACTO -->
+              <div class="u-form-group u-form-name u-form-partition-factor-2 u-form-group-11">
+                <label for="name-bf8f" class="u-label">Nombre(s) <span style="color: red">*</span></label>
+                <input type="text" placeholder="Ingrese su nombre" id="name-bf8f" name="FamiliarNombre" class="u-input u-input-rectangle u-input-name-rec" required="required" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122 || event.charCode == 32)">
+              </div>
+              <div class="u-form-group u-form-name u-form-partition-factor-2 u-form-group-12">
+                <label for="name-bf8f" class="u-label">Apellidos <span style="color: red">*</span></label>
+                <input type="text" required="required" placeholder="Ingrese sus apellidos" id="name-bf8f" name="FamiliarApellido" class="u-input u-input-rectangle u-input-name-rec" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122 || event.charCode == 32)">
+              </div>
+              <!--  PARENTZCO CONTACTO 1 -->
+              <div class="u-form-group u-form-select u-form-group-13">
+                <label for="select-5ae0" class="u-label">Parentesco <span style="color: red">*</span></label>
+                <div class="u-form-select-wrapper">
+                  <select id="select-5ae0-2" name="Parentezco" class="u-input u-input-rectangle" required="required">
+                    <option value="1" data-calc="Hijo">Hijo</option>
+                    <option value="2" data-calc="cónyuge">Cónyuge</option>
+                    <option value="3" data-calc="tutor">Tutor</option>
+                  </select>
+                  <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve"><polygon class="st0" points="8,12 2,4 14,4 "></polygon></svg>
+                </div>
+              </div>
+              <!--  TELEFONO CONTATO 1 -->
+              <div class="u-form-group u-form-phone u-form-group-7">
+                <label for="phone2" class="u-label">Teléfono <span style="color: red">*</span></label>
+                <input id="phone2" type="tel" pattern="\+?\d{0,3}[\s\(\-]?([0-9]{4})[\s\)\-]?([\s\-]?)([0-9]{4})" name="phone2" class="u-input u-input-rectangle" required="required" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
+
+                <!--label for="phone-7ba8" class="u-label">Teléfono</label>
+                <input type="tel" pattern="\+?\d{0,3}[\s\(\-]?([0-9]{2,3})[\s\)\-]?([\s\-]?)([0-9]{3})[\s\-]?([0-9]{2})[\s\-]?([0-9]{2})" placeholder="Enter your phone (e.g. +14155552675)" id="phone-7ba8" name="FamiliarTelefono" class="u-input u-input-rectangle" required="required"-->
               </div>
             </div>
-            <div class="u-form-group u-form-phone u-form-group-14">
-              <label for="phone-7ba8" class="u-label">Teléfono</label>
-              <input type="tel" pattern="\+?\d{0,3}[\s\(\-]?([0-9]{2,3})[\s\)\-]?([\s\-]?)([0-9]{3})[\s\-]?([0-9]{2})[\s\-]?([0-9]{2})" placeholder="Enter your phone (e.g. +14155552675)" id="phone-7ba8" name="FamiliarTelefono" class="u-input u-input-rectangle">
-            </div>
-            <div class="u-form-group u-form-name u-form-partition-factor-2 u-form-group-15">
-              <label for="name-4739" class="u-label">Nombre(s)</label>
-              <input type="text" placeholder="Ingrese su nombre" id="name-4739" name="name-4" class="u-input u-input-rectangle">
-            </div>
-            <div class="u-form-group u-form-name u-form-partition-factor-2 u-form-group-16">
-              <label for="name-4739" class="u-label">Apellidos</label>
-              <input type="text" placeholder="Ingrese sus apellidos" id="name-4739" name="name-5" class="u-input u-input-rectangle">
-            </div>
-            <div class="u-form-group u-form-select u-form-group-17">
-              <label for="select-b9bd" class="u-label">Dropdown</label>
-              <div class="u-form-select-wrapper">
-                <select id="select-b9bd" name="select-1" class="u-input u-input-rectangle">
-                  <option value="hijo" data-calc="hijo">Hijo</option>
-                  <option value="conyuge" data-calc="conyuge">Cónyuge</option>
-                  <option value="tutor" data-calc="tutor">Tutor</option>
-                </select>
-                <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve"><polygon class="st0" points="8,12 2,4 14,4 "></polygon></svg>
+            <!--  CONTACTO 2 -->
+            <div class="container-contacts">
+              <div>
+                
+                <label for="name-bf8f" class="u-label"><strong>Contacto 2 <span style="color: rgb(180, 180, 180)">(opcional)</span></strong> </label>
+              </div>
+              <!--  NOMBRE Y APELLIDO CONTACTO 2 -->
+              <div class="u-form-group u-form-name u-form-partition-factor-2 u-form-group-15">
+                <label for="name-4739" class="u-label">Nombre(s) <!--span style="color: rgb(180, 180, 180)">(opcional)</span--></label>
+                <input type="text" placeholder="Ingrese su nombre" id="name-4739" name="name-4" class="u-input u-input-rectangle u-input-name-rec">
+              </div>
+              <div class="u-form-group u-form-name u-form-partition-factor-2 u-form-group-16">
+                <label for="name-4739" class="u-label">Apellidos <!--span style="color: rgb(180, 180, 180)">(opcional)</span--></label>
+                <input type="text" placeholder="Ingrese sus apellidos" id="name-4739" name="name-5" class="u-input u-input-rectangle u-input-name-rec">
+              </div>
+              <div class="u-form-group u-form-select u-form-group-17">
+                <!--  PARENTEZCO CONTACTO 2 -->
+                <label for="select-b9bd" class="u-label">Parentesco <!--span style="color: rgb(180, 180, 180)">(opcional)</span--></label>
+                <div class="u-form-select-wrapper">
+                  <select id="select-b9bd" name="select-1" class="u-input u-input-rectangle">
+                    <option value="hijo" data-calc="hijo">Hijo</option>
+                    <option value="conyuge" data-calc="conyuge">Cónyuge</option>
+                    <option value="tutor" data-calc="tutor">Tutor</option>
+                  </select>
+                  <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve"><polygon class="st0" points="8,12 2,4 14,4 "></polygon></svg>
+                </div>
+              </div>
+              <!--  TELEFONO CONTACTO 2 -->
+              <div class="u-form-group u-form-phone u-form-group-7">
+                <label for="phone3" class="u-label">Teléfono <!--span style="color: rgb(180, 180, 180)">(opcional)</span--></label>
+                <input id="phone3" type="tel" pattern="\+?\d{0,3}[\s\(\-]?([0-9]{4})[\s\)\-]?([\s\-]?)([0-9]{4})" name="phone3" class="u-input u-input-rectangle u-input-tel"  onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
+
+
+                <!--label for="phone-82fe" class="u-label">Teléfono</label>
+                <input type="tel" pattern="\+?\d{0,3}[\s\(\-]?([0-9]{2,3})[\s\)\-]?([\s\-]?)([0-9]{3})[\s\-]?([0-9]{2})[\s\-]?([0-9]{2})" placeholder="Enter your phone (e.g. +14155552675)" id="phone-82fe" name="phone-2" class="u-input u-input-rectangle"-->
               </div>
             </div>
-            <div class="u-form-group u-form-phone u-form-group-18">
-              <label for="phone-82fe" class="u-label">Teléfono</label>
-              <input type="tel" pattern="\+?\d{0,3}[\s\(\-]?([0-9]{2,3})[\s\)\-]?([\s\-]?)([0-9]{3})[\s\-]?([0-9]{2})[\s\-]?([0-9]{2})" placeholder="Enter your phone (e.g. +14155552675)" id="phone-82fe" name="phone-2" class="u-input u-input-rectangle">
-            </div>
+            <!--  FIN CONTAINER CONTACTO 2 (por si lo deseas eliminar) IR A LINEA 371-376-->
             <div class="u-align-left u-form-group u-form-submit">
+              <div class="btn-group">
+                <button type="button" class="btn btn-primary add-button" data-toggle="modal" data-target="#exampleModalLong" onclick="sendData()">Agregar Paciente</button>
+                <!--div class="alert alert-success" role="alert">
+                  <h4 class="alert-heading">Well done!</h4>
+                  <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+                  <hr>
+                  <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+                </div-->
+                  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle">Agregar Paciente</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <p>¿Estas seguro de desea añadir a <strong> <span id="nombre-modal"></span> <span id="apellidos-modal"></span> </strong> como un nuevo paciente?</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary cancel-button" data-dismiss="modal">Cerrar</button>
+                          <input type="submit" class="btn btn-primary add-button " placeholder="Añadir Paciente">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                <button type="button" class="btn btn-primary cancel-button" data-toggle="modal" data-target="#exampleModalCenter">Cancelar</button>
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Cancelar agregar paciente</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        ¿Estas seguro de cancelar el añadir un nuevo paciente?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary cancel-button" data-dismiss="modal">Cancelar</button>
+                        <button type="button" onclick="window.location.href='/Index'"  class="btn btn-primary add-button">Aceptar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+              
               <!--a href="/AgregarPaciente" class="u-border-none u-btn u-btn-submit u-button-style u-custom-color-1 u-hover-palette-2-base u-btn-1">Agregar paciente</a-->
-              <input type="submit" class="u-border-none u-btn u-btn-submit u-button-style u-custom-color-1 u-hover-palette-2-base u-btn-1" value="Agregar Paciente">
+
+              <!--SUBMIT ANTERIOR-->
+              <!--input type="submit" class="u-border-none u-btn u-btn-submit u-button-style u-custom-color-1 u-hover-palette-2-base u-btn-1" value="Agregar Paciente"-->
             </div>
-            <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
-            <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
+            <div class="u-form-send-message u-form-send-success"> Nuevo paciente registrado. </div>
+            <div class="u-form-send-error u-form-send-message"> Error: no se pudo añadir el nuevo paciente. </div>
             <input type="hidden" value="" name="recaptchaResponse">
             <input type="hidden" name="formServices" value="9c9200e6ee6509b1b8131a8b97db2bc6">
           </form>
         </div>
-        <a href="Menu.html" class="u-border-none u-btn u-button-style u-custom-color-4 u-hover-custom-color-5 u-btn-2">Cancelar</a>
+        </div>
+        <!-- CANCELAR ANTERIOR-->
+        <!--a href="Menu.html" class="u-border-none u-btn u-button-style u-custom-color-4 u-hover-custom-color-5 u-btn-2">Cancelar</a-->
       </div>
     </section>
     
@@ -191,5 +333,118 @@
         <span>Website Builder Software</span>
       </a>. 
     </section>
-  
+    <!-- script para fecha-->
+    <script src="js/edad.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+      flatpickr("input[type=datatime-local]", {});
+    </script>
+    <!-- SCRIPT IMAGEN-->
+    <script>
+      const input = document.getElementById('input-file');
+      const img = document.getElementById('profile-pic');
+    
+      input.addEventListener('change', () => {
+        const file = input.files[0];
+        const reader = new FileReader();
+    
+        reader.addEventListener('load', () => {
+          img.src = reader.result;
+        });
+    
+        reader.readAsDataURL(file);
+      });
+    </script>
+
+    <script>
+      const phoneInputField = document.querySelector("#phone");
+      const phoneInput = window.intlTelInput(phoneInputField, {
+        utilsScript:
+          "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+      });
+
+      const phoneInputField2 = document.querySelector("#phone2");
+      const phoneInput2 = window.intlTelInput(phoneInputField2, {
+        utilsScript:
+      "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+      });
+      /*  ELIMINAR/COMENTAR SI SE ELIMINA CONTACTO 2*/
+      const phoneInputField3 = document.querySelector("#phone3");
+      const phoneInput3 = window.intlTelInput(phoneInputField3, {
+        utilsScript:
+      "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+      }); //HASTA ACA
+    </script>
+
+    <script>
+      // Obtener los valores de los inputs
+        const nombreInput = document.getElementById("name-b6ca");
+        const apellidosInput = document.getElementById("name-b6ca-1");
+
+        // Agregar los valores al contenido del modal
+        const nombreModal = document.getElementById("nombre-modal");
+        const apellidosModal = document.getElementById("apellidos-modal");
+
+        nombreModal.textContent = nombreInput.value;
+        apellidosModal.textContent = apellidosInput.value;
+    </script>
+
+    <!--  MODAL SCRIPT RESUMEN DATOS PACIENTE -->
+    <!--
+    <script>
+      function sendData() {
+        var sexo = document.querySelector('input[name="Sexo"]:checked').value;
+        // Aquí puedes hacer una petición AJAX para enviar el valor del radio button a tu script.
+        return sexo // Imprime el valor del radio button en la consola para verificar que se ha capturado correctamente.
+      }
+
+      
+      document.querySelector(".add-button").addEventListener("click", function() {
+        // Obtener los valores de los inputs
+        var nombre = document.getElementById("name-b6ca").value;
+        var apellidos = document.getElementById("name-b6ca-1").value;
+        var expediente = document.getElementById("text-3d4d-1").value;
+        var fechaNacimiento = document.getElementById("fechaNacimiento").value;
+        var edad= document.getElementById("edad").value;
+        var sexo = sendData();
+        var telefono= document.getElementById("phone").value;
+        var padecimiento= document.getElementById("text-3d4d-1").value;
+        var nomCont1= document.getElementById("text-3d4d-1").value;
+        var parentezcoSelect = document.getElementById("select-5ae0-2");
+        var parentezcoValue = parentezcoSelect.options[parentezcoSelect.selectedIndex].value;
+        /*
+        var parCont1= selectElement;
+        var telCont1= document.getElementById("text-3d4d-1").value;
+        var nomCont2= document.getElementById("text-3d4d-1").value;
+        var parCont2= document.getElementById("text-3d4d-1").value;
+        var telCont2= document.getElementById("text-3d4d-1").value;*/
+        
+        var checkboxes = document.querySelectorAll('input[name="Padecimiento"]:checked');
+        var opcionesSeleccionadas = document.getElementById('opcionesSeleccionadas');
+        
+        // Recorrer los checkboxes seleccionados y agregar sus valores a la lista en el modal
+        for (var i = 0; i < checkboxes.length; i++) {
+          var opcion = document.createElement('li');
+          opcion.appendChild(document.createTextNode(checkboxes[i].getAttribute('data-calc')));
+          opcionesSeleccionadas.appendChild(opcion);
+        }
+
+        // Mostrar los valores en el cuerpo del modal
+        //*
+        document.querySelector(".modal-body").innerHTML = "<p>Nombre: " + nombre + apellidos + "</p>" +
+                                                          "<p>Expediente: " + expediente + "</p>" + 
+                                                          "<p>Fecha de Nacimiento: " + fechaNacimiento + "</p>" + 
+                                                          "<p>Edad: " + edad + "</p>" + 
+                                                          "<p>Sexo: " + sexo + "</p>"  +
+                                                          "<p>Telefono: " + telefono + "</p>" + 
+                                                          "<p>Padecimieto(s): " + "<ul>" + opcionesSeleccionadas + "</ul>"+ "</p>" + 
+                                                          "<p>Contacto 1: " +  
+                                                            "</p>" + "<p  >" + nomCont1 + "   " + parentezcoValue + "   "+ telCont1 + "   "+"</p>" +
+                                                            "<p>Contacto 1: " +  
+                                                            "</p>" + "<p  >" + nomCont2 + "   " + parCont2 + "   "+ telCont2 + "   "+"</p>" ; //*/
+                                                           
+      });
+    </script> -->
+    
+
 </body></html>

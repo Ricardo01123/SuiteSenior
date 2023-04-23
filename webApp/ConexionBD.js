@@ -30,6 +30,7 @@ app.use(express.static('public'))
 app.post('/AgregarPaciente', (req,res)=>{
 	let nombre = req.body.Nombre +' '+ req.body.Apellidos
 	let expediente = req.body.Expediente
+  let fechaNacimiento = req.body.fechaNacimiento
 	let edad = req.body.Edad
 	let sexo = req.body.Sexo
 	let tel = req.body.Telefono
@@ -38,14 +39,14 @@ app.post('/AgregarPaciente', (req,res)=>{
   let form = new formidable.IncomingForm();
   
   let FotoPath = req.files.Foto,
-      newPhotoPath = "/home/yerry/Documentos/github/SuiteSenior/webApp/public/FotosPacientes/" + FotoPath.name;
+      newPhotoPath = "C:/Users/MARTHA/OneDrive - Instituto Politecnico Nacional/SCHOOL/6TO/IHM/git_SeniorSuite/SuiteSenior/webApp/public/FotosPacientes/" + FotoPath.name;
   console.log(FotoPath)
 
 
   //variables del contacto del paciente
   let faNom = req.body.FamiliarNombre + ' ' + req.body.FamiliarApellido
   let parentezco = req.body.Parentezco
-  let faTelefono = req.body.FamiliarTelefono
+  let faTelefono = req.body.phone2
 
   //primero cargamos la foto al servidor para depsués agregar al nuevo paciente a la base de datos
 
@@ -78,12 +79,11 @@ app.post('/AgregarPaciente', (req,res)=>{
           console.log("familiar del paciente asignado")
         }
 
-        return res.send(
-          `
-          <h1>Paciente agregado con exito </h1>
-          <a href= /index>regresar al lobby</a>
-          
-          `);
+        return res.redirect(
+          "/Index"
+
+                 
+          );
       })
 	})
 
@@ -245,7 +245,7 @@ app.get('/index', (req, res)=>{
 	})
 })
 
-app.post('/eliminarPaciente', (req,res)=>{
+  app.post('/eliminarPaciente', (req,res)=>{
 	let expediente = req.body.expediente
   console.log("este es el expediente del que vamos a funar: " + expediente);
 	con.query("DELETE FROM Paciente where No_Expediente='"+expediente+"'", (err, respuesta, fields)=>{
@@ -360,7 +360,10 @@ app.post("/Paciente", (req, res)=>{
         <meta name="generator" content="Nicepage 5.8.2, nicepage.com">
         <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
         
-        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
         
         <script type="application/ld+json">{
         "@context": "http://schema.org",
@@ -456,72 +459,22 @@ app.post("/Paciente", (req, res)=>{
                       <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-34 u-layout-cell-2">
                         <div class="u-container-layout u-valign-bottom u-container-layout-2">
                           <h2 class="u-text u-text-12">${respuesta[0].Nombre}</h2>
-                          <h4 class="u-text u-text-13">${respuesta[0].No_Expediente}</h4>
+                          <h4 class="u-text u-text-13">Expediente: ${respuesta[0].No_Expediente}</h4>
                           <h5 class="u-text u-text-14">PADECIMIENTOS</h5>
                           ${pacienteHTML}
                           <h5 class="u-text u-text-15">RESUMEN</h5>
                           <p class="u-text u-text-16">${respuesta[0].Resumen}}</p>
-                          <a href="Paciente.html#sec-4792" class="u-border-none u-btn u-btn-rectangle u-button-style u-custom-color-1 u-hover-palette-2-base u-btn-1">nOTAS MEDICAS</a>
+                          <div class="btn-group" >
+                            <button type="button" class="btn btn-primary btn-group-lg  u-border-none  u-btn-rectangle u-button-style u-custom-color-1 u-hover-palette-2-base u-btn-1">Historial Médico</button>
+                            <button type="button " class="btn btn-primary btn-group-lg  u-border-none  u-btn-rectangle u-button-style u-custom-color-3 u-hover-palette-3-base u-btn-1">Iniciar nueva seseion</button>
+                          </div>
+                          
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-        <section class="u-align-center u-clearfix u-section-2" id="sec-4792">
-          <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-            <div class="u-expanded-width u-table u-table-responsive u-table-1">
-              <table class="u-table-entity u-table-entity-1">
-                <colgroup>
-                  <col width="20%">
-                  <col width="28.9%">
-                  <col width="15.3%">
-                  <col width="13.2%">
-                  <col width="22.6%">
-                </colgroup>
-                <thead class="u-custom-color-3 u-table-header u-table-header-1">
-                  <tr style="height: 26px;">
-                    <th class="u-border-1 u-border-custom-color-3 u-table-cell">Fecha</th>
-                    <th class="u-border-1 u-border-custom-color-3 u-table-cell">Resumen de Sesión</th>
-                    <th class="u-border-1 u-border-custom-color-3 u-table-cell">Sesión Completa</th>
-                    <th class="u-border-1 u-border-custom-color-3 u-table-cell">Audio</th>
-                    <th class="u-border-1 u-border-custom-color-3 u-table-cell">Observaciones</th>
-                  </tr>
-                </thead>
-                <tbody class="u-table-body">
-                  <tr style="height: 75px;">
-                    <td class="u-border-1 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-6">Row 1</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell"></td>
-                  </tr>
-                  <tr style="height: 76px;">
-                    <td class="u-border-1 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-11">Row 2</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell"></td>
-                  </tr>
-                  <tr style="height: 76px;">
-                    <td class="u-border-1 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-16">Row 3</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell"></td>
-                  </tr>
-                  <tr style="height: 76px;">
-                    <td class="u-border-1 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-21">Row 4</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell"></td>
-                  </tr>
-                </tbody>
-              </table>
             </div>
           </div>
         </section>
@@ -555,5 +508,7 @@ app.get("/grabarAudio", (req, res)=>{
 })
 
 app.listen(8080, ()=>{
+
 	console.log('Servidor escuchando en el puerto 8080 aiuda porfavor')
 })
+
