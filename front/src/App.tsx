@@ -1,20 +1,34 @@
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-import HomePage from "./pages/Home";
-import AboutPage from "./pages/About";
-import TestPage from "./pages/Test1";
+import { useWhisper } from '@chengsokdara/use-whisper'
 
-function App() {
-
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/test1" element={<TestPage />} />
-      </Routes>
-    </BrowserRouter>
-
-  )
+const App = () => {
+    const {
+      recording,
+      speaking,
+      transcribing,
+      transcript,
+      pauseRecording,
+      startRecording,
+      stopRecording,
+    } = useWhisper({
+      apiKey: "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",  // YOUR_OPEN_AI_TOKEN
+      streaming: true,
+      timeSlice: 1_000, // 1 second
+      whisperConfig: {
+        language: 'es',
+      },
+    })
+  
+    return (
+      <div>
+        <p>Recording: {recording}</p>
+        <p>Speaking: {speaking}</p>
+        <p>Transcribing: {transcribing}</p>
+        <p>Transcribed Text: {transcript.text}</p>
+        <button onClick={() => startRecording()}>Start</button>
+        <button onClick={() => pauseRecording()}>Pause</button>
+        <button onClick={() => stopRecording()}>Stop</button>
+      </div>
+    )
 }
 
 export default App
