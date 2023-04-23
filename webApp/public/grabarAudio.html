@@ -9,6 +9,19 @@
       <button type="button" id="btn">Start</button>
       <button type="button" id="btn_pause">Pause</button>
       <button type="button" id="btn_stop">Stop</button>
+
+      <input type="text" disabled="True" value="algo" id="texto" name="texto" >
+      <input type="text" disabled="True" value="algo" id="expediente" name="expediente" hidden="True">
+      <input type="text" disabled="True" value="algo" id="doctor" name="doctor" hidden="True">
+
+      <form action="/grabarAudio" method="post">
+        <input type="submit" value="guardar Sesion">
+
+      </form>
+
+      <!-- <form action="/grabarAudio" method="post">
+        <input type="submit" name="texto" id="texto" value="valor">
+      </form> -->
   </div>
   <!-- Para el codificador de mp3 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.2.1/lame.min.js"></script>

@@ -1,10 +1,11 @@
-const startBtn = document.getElementById("btn")
+    const startBtn = document.getElementById("btn")
     const pauseBtn = document.getElementById("btn_pause")
     const stopBtn = document.getElementById("btn_stop")
+    const labelText = document.getElementById("labelText")
     let chunks = []
     let localtext = ''
     let fullText = ''
-    const apiKey = "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"
+    const apiKey = "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"
     const whisperApiEndpoint = 'https://api.openai.com/v1/audio/'
     const mode = 'transcriptions'
 
@@ -124,8 +125,10 @@ const startBtn = document.getElementById("btn")
     }
     console.log(fullText)
     // Si van a querer guardar el fullText, debe ser aquí
-    fullText = ""
     chunks = []
+    document.getElementById("texto").value=fullText.toString();
+    fullText = ""
+    
   }
 
   startBtn.addEventListener("click", onStartStreaming)
