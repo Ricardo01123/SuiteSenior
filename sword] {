@@ -1,0 +1,499 @@
+[33mcommit e90d210334a7510a926d1ad80fad0d08f2901e5e[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Mon Apr 24 09:11:39 2023 -0600
+
+    todo conectado y listo para mostrar
+
+[33mcommit 335cbe16cb2fd69e60357096cecafcea39a7529c[m
+Merge: 1bd4e18 314a3c8
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Mon Apr 24 00:04:59 2023 -0600
+
+    Merge pull request #19 from Ricardo01123/donnieVoz
+    
+    Donnie voz fusionado!!!
+
+[33mcommit 1bd4e18617a4543848bc2aec2d695f7b796083ca[m
+Merge: 46d6817 380ecff
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Mon Apr 24 00:04:01 2023 -0600
+
+    Merge pull request #18 from Ricardo01123/jacob
+    
+    sesiones, base de datos y demas
+    listo
+
+[33mcommit 380ecfffb71bd187a30ff98f8fb80e0cd4cb339e[m[33m ([m[1;31morigin/jacob[m[33m)[m
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Mon Apr 24 00:02:32 2023 -0600
+
+    sesiones, base de datos y demas
+
+[33mcommit 314a3c8aa64c9b14df72727ec4ac62b6a52e2edf[m[33m ([m[1;31morigin/donnieVoz[m[33m)[m
+Merge: ab31ff5 46d6817
+Author: DonajiAG <kink176@gmail.com>
+Date:   Sun Apr 23 22:48:50 2023 -0600
+
+    Merge branch 'main' of https://github.com/Ricardo01123/SuiteSenior into donnieVoz
+
+[33mcommit 46d68170863806cd818e0475da82e703c093336d[m
+Merge: b3a0e7c a902a62
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Sun Apr 23 22:43:51 2023 -0600
+
+    Merge pull request #17 from Ricardo01123/jacob
+    
+    añadimos sesiones y correccion de detallitos
+    
+    ya sabemos de que trata este commit
+
+[33mcommit ab31ff5588260d6045023ae173439d0b93cd585a[m
+Author: DonajiAG <kink176@gmail.com>
+Date:   Sun Apr 23 22:42:25 2023 -0600
+
+    Vista Voz
+
+[33mcommit a902a62c54acd1b93de18fa0aa58369460077b5a[m
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Sun Apr 23 22:42:16 2023 -0600
+
+    añadimos sesiones y correccion de detallitos
+
+[33mcommit b3a0e7c57c0aeb2707451bafcdd104534727a556[m
+Merge: f35a128 bb9d248
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Sun Apr 23 19:41:05 2023 -0600
+
+    Merge pull request #16 from Ricardo01123/ricardoPrueba
+    
+    Ricardo prueba
+    
+    Listo
+
+[33mcommit f35a128a5971e076677e38ecc4e9be3876ef42f2[m
+Merge: 5cc1994 ea611cc
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Sun Apr 23 19:39:55 2023 -0600
+
+    Merge pull request #15 from Ricardo01123/jacob
+    
+    mas interconecciones funvionalidades
+    
+    Aqui vamos de nuevo
+
+[33mcommit ea611cc41e71f6fa23a9234ec7149a006d45a8c8[m
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Sun Apr 23 19:37:56 2023 -0600
+
+    mas interconecciones funvionalidades
+
+[33mcommit bb9d24801c238f37f559ac451cc954c89be11166[m
+Author: Ricardo01123 <rayalag1900@alumno.ipn.mx>
+Date:   Sun Apr 23 19:37:15 2023 -0600
+
+    prueba
+
+[33mcommit 640a00084f58955be99dc0972e7fffacc1f72c8a[m
+Author: Ricardo01123 <rayalag1900@alumno.ipn.mx>
+Date:   Sun Apr 23 18:57:34 2023 -0600
+
+    pueba
+
+[33mcommit 5cc19949127ff749ea5777670a5a8b2f7bd1e66d[m
+Merge: 9cb8088 07b4e10
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Sun Apr 23 16:03:53 2023 -0600
+
+    Merge pull request #14 from Ricardo01123/jacob
+    
+    avances en funcionalidad y conecciones
+    
+    Vamos !!!
+
+[33mcommit 07b4e1063d0aaf682ac05f798d3c055fbbcb9f34[m
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Sun Apr 23 16:02:26 2023 -0600
+
+    avances en funcionalidad y conecciones
+
+[33mcommit 9cb80886b2ba4282d14074194df892f431d1f3e4[m
+Merge: 3528902 344d846
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Sun Apr 23 01:23:23 2023 -0600
+
+    Merge pull request #13 from Ricardo01123/jacob
+    
+    Ya se la saben, hasta aqui todo funciona chidori
+
+[33mcommit 344d846cc2786f09d463840845e7a6d3d95a1968[m
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Sun Apr 23 01:20:36 2023 -0600
+
+    peuqeño cambio en el direccionamiento a grabarAudio
+
+[33mcommit abe3b58fae32631644cd97286700de3d7573ec16[m
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Sun Apr 23 01:09:06 2023 -0600
+
+    conecciones iniciales y grabarAudio html
+
+[33mcommit 3528902db2a40e29f5d651af4e2e9f3af3addb21[m
+Merge: 5500918 a1d5efb
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Sat Apr 22 21:35:21 2023 -0600
+
+    Merge pull request #11 from Ricardo01123/donnieVista
+    
+    Donnie vista Fusionado!!!
+
+[33mcommit a1d5efb81fe534b0196677441a1fdb3215b33cc8[m[33m ([m[1;31morigin/donnieVista[m[33m)[m
+Merge: c2ec016 5500918
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Sat Apr 22 21:35:05 2023 -0600
+
+    Merge branch 'main' into donnieVista
+
+[33mcommit 5500918efb8727de21b710fee153153dd61fda28[m
+Merge: e02d52d d537e54
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Sat Apr 22 21:31:09 2023 -0600
+
+    Merge pull request #10 from Ricardo01123/RichiHM
+    
+    fusionado
+
+[33mcommit c2ec0161a5fd5fa258531beb557bb4757bfe3154[m
+Author: DonajiAG <kink176@gmail.com>
+Date:   Sat Apr 22 21:24:57 2023 -0600
+
+    Editar Paciente
+
+[33mcommit d537e5455e5534d88849c8e5c9ccf874fee3c4e8[m[33m ([m[1;31morigin/RichiHM[m[33m, [m[1;32mRichiHM[m[33m)[m
+Author: Ricardo01123 <rayalag1900@alumno.ipn.mx>
+Date:   Sat Apr 22 20:48:54 2023 -0600
+
+    historial Medico
+
+[33mcommit ba03dda8c1aac9936b3456c8b0479299b8edca5a[m
+Author: Ricardo01123 <rayalag1900@alumno.ipn.mx>
+Date:   Sat Apr 22 16:09:37 2023 -0600
+
+    HM
+
+[33mcommit e02d52d10e45109e01bd2a6134607195d6d674ff[m
+Merge: cdbdfbb fde249c
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Sat Apr 22 11:50:03 2023 -0600
+
+    Merge pull request #8 from Ricardo01123/jacob
+    
+    Jacob
+    
+    Por el tiempo, ya lo voy a fusionar de una vez, cualquier aclaración saben que estamos siempre disponibles
+
+[33mcommit fde249cbbf92a2755162a8d920d75602f6c76657[m
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Sat Apr 22 00:21:40 2023 -0600
+
+    actualizacion de base de datos, servidor node y servidor flask
+
+[33mcommit 7f9cf79547adff7b059616d068b5dccefc2cc21b[m
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Fri Apr 21 10:31:54 2023 -0600
+
+    microcommit: conexion con mysql y python
+
+[33mcommit 3153b2a1e2cfd33e9d61cef8cd0015993ac3bd70[m
+Author: DonajiAG <kink176@gmail.com>
+Date:   Fri Apr 21 08:37:53 2023 -0600
+
+    vista agregar paciente
+
+[33mcommit 247c3453bea84ea85fa88f7ac5ab17db4e144aac[m
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Thu Apr 20 23:23:58 2023 -0600
+
+    microcomit: actualizacion de bd
+
+[33mcommit b8078ec9e1edd1b1dd9c85f4fd63fd5ef6fed745[m
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Wed Apr 19 23:49:19 2023 -0600
+
+    trabajando en recuperacion de archivos multimedia
+
+[33mcommit cdbdfbbf3900a5fefc8961f2475ede01950355cf[m
+Author: ireneabm98 <ireneabmesc98@gmail.com>
+Date:   Wed Apr 19 21:26:42 2023 -0600
+
+    Resumen actualizado
+
+[33mcommit 2b575c3ef13b413066df8334637ae4b3667a2be5[m
+Author: Ricardo01123 <rayalag1900@alumno.ipn.mx>
+Date:   Wed Apr 19 14:59:31 2023 -0600
+
+    mochandonos la careta del front
+
+[33mcommit fe736a31f6f9a45597d905b596abdb7517b00744[m
+Author: Ricardo01123 <rayalag1900@alumno.ipn.mx>
+Date:   Wed Apr 19 14:53:38 2023 -0600
+
+    carpetas para audio, texto y resumen
+
+[33mcommit 578b46bc9c30d18f8aa6e27279d95a0f58c18aea[m
+Merge: 8bbf8c6 3cfe822
+Author: Ricardo01123 <rayalag1900@alumno.ipn.mx>
+Date:   Wed Apr 19 14:44:00 2023 -0600
+
+    Merge branch 'main' of https://github.com/Ricardo01123/SuiteSenior
+
+[33mcommit 3cfe822672a0c3a95f5244b7c93bb77892c41ab8[m
+Merge: 7aa7e5d d0992c9
+Author: AlyneStephanie <40817893+AlyneStephanie@users.noreply.github.com>
+Date:   Tue Apr 18 20:13:39 2023 -0600
+
+    Merge pull request #7 from Ricardo01123/feat/Alyne
+    
+    Se inicio front
+
+[33mcommit d0992c9dc5d8ff78516ebadfc790dc63fd953ccf[m
+Author: AlyneStephanie <bigboss_snake@live.com.mx>
+Date:   Tue Apr 18 19:54:44 2023 -0600
+
+    Se inicio front
+
+[33mcommit 7aa7e5d3c65df8a55d04d0dd5bfefea366ca8690[m
+Merge: 0f739a5 0f7a103
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Mon Apr 17 22:01:21 2023 -0600
+
+    Merge pull request #6 from Ricardo01123/jacob
+    
+    Corte 14-04-23
+
+[33mcommit 0f7a1037a57a9ed04b16fb552ea6ad2682387cc6[m
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Mon Apr 17 20:06:34 2023 -0600
+
+    microcommit actualización de requirements.txt
+
+[33mcommit 0f739a595d05a65b172150bbdc60cfb493f39386[m
+Author: PVertiz <youtube-londres@hotmail.com>
+Date:   Mon Apr 17 18:47:29 2023 -0600
+
+    Se agrega fragmentar audio
+
+[33mcommit 8bbf8c649b91f2202de892eae6f266156aabf007[m
+Merge: afb01b0 490b70e
+Author: Ricardo01123 <rayalag1900@alumno.ipn.mx>
+Date:   Mon Apr 17 11:54:09 2023 -0600
+
+    Merge branch 'main' of https://github.com/Ricardo01123/SuiteSenior
+
+[33mcommit 852bf96f5c6cfc917c6020c8aeca6e9adebdbeb8[m
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Mon Apr 17 10:48:58 2023 -0600
+
+    microcomit adaptaacion a laptop windows
+
+[33mcommit 490b70e1c29e4524951da8348db777fdd65fb637[m
+Merge: cbfc51e de76a4e
+Author: Ricardo Angel Ayala Gonzalez <89054625+Ricardo01123@users.noreply.github.com>
+Date:   Mon Apr 17 06:57:31 2023 -0600
+
+    Merge pull request #5 from Ricardo01123/feat/Alyne
+    
+    Feat/alyne
+
+[33mcommit 0d41d022e694c2b363ba621ada7dbf7376ac4b55[m
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Thu Apr 13 00:46:49 2023 -0600
+
+    borrando imagenes de usuarios
+
+[33mcommit ffe006813507615c73c739d89620df71a382526a[m
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Thu Apr 13 00:40:53 2023 -0600
+
+    actulizacion de estructura de la base de datos y casi finalizada la interfaz web
+
+[33mcommit 8f59d4717895d5f01d7d36548d6ffa88569fda2d[m
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Wed Apr 12 14:43:08 2023 -0600
+
+    microcommit: cambio a la estructura de la base de datos
+
+[33mcommit 43428aa2ac29875cd7c80afcd2d2d66d6ca8c1b3[m
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Wed Apr 12 14:38:45 2023 -0600
+
+    microCommit: actualizacion de pantallas y funcionalidad equivalente
+
+[33mcommit cbfc51eb505d8e8de4ca42d9f0d5114781c04d1c[m
+Author: IRENE BRIONES <89046344+ireneabm98@users.noreply.github.com>
+Date:   Mon Apr 10 12:16:18 2023 -0600
+
+    Add files via upload
+
+[33mcommit 8ca5a44684d7d2d18859c331ac5d024d5be60c3d[m
+Author: IRENE BRIONES <89046344+ireneabm98@users.noreply.github.com>
+Date:   Mon Apr 10 12:07:38 2023 -0600
+
+    Add files via upload
+
+[33mcommit de76a4ed18c7b046fc0579791bcb97fbab258fd5[m
+Merge: 0ac2974 d1aa0c9
+Author: AlyneStephanie <bigboss_snake@live.com.mx>
+Date:   Mon Apr 10 03:12:28 2023 -0600
+
+    Merge branch 'main' of https://github.com/Ricardo01123/SuiteSenior into feat/Alyne
+
+[33mcommit d1aa0c9791229ca7d876bb612771fb7d8ab722e3[m
+Merge: e0a05cc 1de95b0
+Author: AlyneStephanie <40817893+AlyneStephanie@users.noreply.github.com>
+Date:   Mon Apr 10 03:12:16 2023 -0600
+
+    Merge pull request #3 from Ricardo01123/feat/kivy_poc
+    
+    Se agrego una prueba de concepto con kivy
+
+[33mcommit 0ac297442b4ce8c859322823659d2ec7d13d7705[m
+Author: AlyneStephanie <bigboss_snake@live.com.mx>
+Date:   Mon Apr 10 03:11:25 2023 -0600
+
+    Genera audio en JS, lo envia al servidor, y lo transcribe
+
+[33mcommit 5b996e886b1fa791d307b2ec760b33dda298bb3a[m
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Sun Apr 9 23:18:45 2023 -0600
+
+    logica para guardar y mostrar imagenes cargadas por el usuario añadida
+
+[33mcommit e0a05cc2f6c0cec23df5b6ec70dc6c8f4cf36d25[m
+Merge: 8118ec7 dd2989c
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Fri Apr 7 09:23:28 2023 -0600
+
+    Merge pull request #4 from Ricardo01123/jacob
+    
+    Avance en aplicacion web y actualizacion en la base de datos
+
+[33mcommit afb01b09eb1add994fc1f2073a9cdf5ff829e7f3[m
+Merge: 8118ec7 dd2989c
+Author: Ricardo01123 <rayalag1900@alumno.ipn.mx>
+Date:   Fri Apr 7 08:38:42 2023 -0600
+
+    avance de Bases de datos
+
+[33mcommit 8118ec7824d7b418e1fd38bbf2ce5ca0ce79efb8[m
+Merge: 0bef798 02d3e5c
+Author: Ricardo01123 <rayalag1900@alumno.ipn.mx>
+Date:   Fri Apr 7 08:32:06 2023 -0600
+
+    Merge branch 'main' of https://github.com/Ricardo01123/SuiteSenior
+
+[33mcommit 0bef798f047bb695906e132dbc60480e96481d7e[m
+Author: Ricardo01123 <rayalag1900@alumno.ipn.mx>
+Date:   Fri Apr 7 08:25:22 2023 -0600
+
+    delete conv.csv
+
+[33mcommit 02d3e5c6737fd541d173350dac54de518d442ad6[m
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Fri Apr 7 00:32:31 2023 -0600
+
+    Update README.md
+
+[33mcommit ba17528ef86f8c5d6a58f2dc172aac86574d37b0[m
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Fri Apr 7 00:32:01 2023 -0600
+
+    Update README.md
+
+[33mcommit dd2989cda488cbbe1783a77b0af7949372c52cc7[m
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Fri Apr 7 00:12:51 2023 -0600
+
+    Avance en aplicacion web y actualizacion en la base de datos
+
+[33mcommit 1de95b00f2b547c9dd85ff851693619ee10fa467[m[33m ([m[1;31morigin/feat/kivy_poc[m[33m)[m
+Author: AlyneStephanie <bigboss_snake@live.com.mx>
+Date:   Sun Apr 2 23:39:42 2023 -0600
+
+    Se agrego una prueba de concepto con kivy
+
+[33mcommit 611c6e1ca7b1a8a2fc91d5a46d72782323bcd3bf[m
+Merge: 29175bf 5d47af2
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Sun Apr 2 22:32:08 2023 -0600
+
+    Merge pull request #2 from Ricardo01123/jacob
+    
+    agregando avance de conecciones sql
+    
+    Voy a hacer el mrge ya que me marca que no hay ningñun conflicto, espero no te moleste mi Richi XD
+
+[33mcommit 29175bfc6cf62f085a7c703405a6dbb63e6d79a4[m
+Merge: f4c2fe9 d386faf
+Author: Ricardo01123 <rayalag1900@alumno.ipn.mx>
+Date:   Sun Apr 2 21:02:14 2023 -0600
+
+    avance en MySQL y Edith
+
+[33mcommit 5d47af2620b1a55831845ad28590c01d925501bd[m
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Sun Apr 2 19:22:35 2023 -0600
+
+    agregando avance de conecciones sql
+
+[33mcommit f4c2fe9e64f8fdf2df2f397a7e0e4f7ce8e26332[m
+Author: Ricardo01123 <rayalag1900@alumno.ipn.mx>
+Date:   Sun Apr 2 13:30:24 2023 -0600
+
+    Requerimientos modificado
+
+[33mcommit d386faf20795a723b418195faf9da61b9ffa5fa2[m
+Merge: 468bfcd c74bc00
+Author: Ricardo Angel Ayala Gonzalez <89054625+Ricardo01123@users.noreply.github.com>
+Date:   Sun Apr 2 12:31:07 2023 -0600
+
+    Merge pull request #1 from Ricardo01123/jacob
+    
+    Jacob
+
+[33mcommit c74bc00a6c2d87f5b5026d7f5ee32c12b9f6dafb[m
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Sun Apr 2 00:42:48 2023 -0600
+
+    aporte de Donnie, y ajuste de dependencias
+
+[33mcommit 8ece5d0f014f9e819adab6ca47aa530249e23f3f[m
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Sat Apr 1 22:52:16 2023 -0600
+
+    actualizando requirements.txt
+
+[33mcommit d148160c4f17a7c71e3cb3ad81f82a41cdb35e94[m
+Author: Ricardo Angel Ayala Gonzalez <89054625+Ricardo01123@users.noreply.github.com>
+Date:   Sat Apr 1 22:39:01 2023 -0600
+
+    Delete Requerimientos.txt
+
+[33mcommit 41b50b9ed13481f3c178e4730cb3213c5bfb3ee2[m
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Sat Apr 1 13:45:41 2023 -0600
+
+    Create README.md
+    
+    Agregamos un readme para que se vea binoto el repositorio y para que la gente que lo visite sepa de que trata este proyecto
+
+[33mcommit 036ab650ebbfa1a66461483f44fd64fed9e42284[m
+Author: JacobHawk603 <62320033+JacobHawk603@users.noreply.github.com>
+Date:   Sat Apr 1 00:38:36 2023 -0600
+
+    añadiendo requierements.txt
+
+[33mcommit 468bfcd2ae8d27d6e514c080897a0e5dcccd85f4[m
+Author: Ricardo01123 <rayalag1900@alumno.ipn.mx>
+Date:   Fri Mar 31 02:17:42 2023 -0600
+
+    first commit

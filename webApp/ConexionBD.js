@@ -56,7 +56,7 @@ app.post('/AgregarPaciente', (req,res)=>{
   let form = new formidable.IncomingForm();
   
   let FotoPath = req.files.Foto,
-      newPhotoPath = "/home/yerry/Documentos/github/SuiteSenior/webApp/public/FotosPacientes/" + FotoPath.name;
+      newPhotoPath = "/Users/angel/OneDrive - Instituto Politecnico Nacional/ESCOM/TT/Protocolo TT/SuiteSenior/webApp/public/FotosPacientes/" + FotoPath.name;
   console.log(FotoPath)
 
 
@@ -718,7 +718,7 @@ app.post('/editarPaciente', (req,res)=>{
   let form = new formidable.IncomingForm();
   
   let FotoPath = req.files.Foto,
-      newPhotoPath = "/home/yerry/Documentos/github/SuiteSenior/webApp/public/FotosPacientes/" + FotoPath.name;
+      newPhotoPath = "/Users/angel/OneDrive - Instituto Politecnico Nacional/ESCOM/TT/Protocolo TT/SuiteSenior/webApp/public/FotosPacientes/" + FotoPath.name;
   console.log(FotoPath)
 
 
