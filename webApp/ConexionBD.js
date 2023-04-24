@@ -554,7 +554,8 @@ app.post("/HistorialMedico", (req, res)=>{
     respuesta.forEach((sesion, index) => {
 
       sesionesFechasHTML += `
-        <tr>
+      <br/>  
+      <tr>
           <th scope="row">${index + 1}</th>
           <td>${sesion.fechaSesion}</td>
           <td><a class="btn btn-link" data-toggle="collapse" href="#collapse${index + 1}" role="button" aria-expanded="false" aria-controls="collapse${index + 1}">Sesión ${respuesta.length - index}</a></td>
@@ -738,34 +739,6 @@ app.post("/HistorialMedico", (req, res)=>{
 
 
                               <!--Datos Resumen-->
-<div class="col">
-  <div class="panel-group" id="accordion">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Sesión ${contador}</a>
-        </h4>
-      </div>
-      <div id="collapse1" class="panel-collapse collapse in">
-        <div class="panel-body" style="height: 300px; overflow-y: auto;">
-          ${respuesta[0].SesionCompleta}
-        </div>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Resumen</a>
-        </h4>
-      </div>
-      <div id="collapse2" class="panel-collapse collapse">
-        <div class="panel-body" style="height: 300px; overflow-y: auto;">
-          ${respuesta[0].Resumen}
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 
                           </div>
