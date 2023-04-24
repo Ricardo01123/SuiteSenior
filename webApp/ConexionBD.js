@@ -961,7 +961,7 @@ app.post("/Paciente", (req, res)=>{
                       <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-34 u-layout-cell-2">
                         <div class="u-container-layout u-valign-bottom u-container-layout-2">
                           <h2 class="u-text u-text-12">${respuesta[0].Nombre}</h2>
-                          <h4 class="u-text u-text-13">Expediente: ${respuesta[0].No_Expediente}</h4>
+                          <h4 class="u-text u-text-13"><p>Expediente: </p>${respuesta[0].No_Expediente}</h4>
                           <h5 class="u-text u-text-14">PADECIMIENTOS</h5>
                           ${pacienteHTML}
                           <h5 class="u-text u-text-15">RESUMEN</h5>
@@ -1039,21 +1039,28 @@ app.post("/HistorialMedico", (req, res)=>{
     })
 
     contador = 0;
-    respuesta.forEach(sesion =>{
-      
+    respuesta.forEach((sesion, index) => {
 
       sesionesFechasHTML += `
-      
-      <tr>
-        <th scope="row">${contador}</th>
-        <td>${sesion.fechaSesion}</td>
-        <td>Sesión ${respuesta.length - contador}</td>
-      </tr>
-      
-      `
-
-      contador++;
-    })
+        <tr>
+          <th scope="row">${index + 1}</th>
+          <td>${sesion.fechaSesion}</td>
+          <td><a class="btn btn-link" data-toggle="collapse" href="#collapse${index + 1}" role="button" aria-expanded="false" aria-controls="collapse${index + 1}">Sesión ${respuesta.length - index}</a></td>
+        </tr>
+        <tr>
+          <td colspan="3">
+            <div class="collapse" id="collapse${index + 1}">
+              <div class="card card-body">
+                <h5 class="card-title">Sesión ${respuesta.length - index}</h5>
+                <p class="card-text">${sesion.SesionCompleta}</p>
+                <h5 class="card-title">Resumen</h5>
+                <p class="card-text">${sesion.Resumen}</p>
+              </div>
+            </div>
+          </td>
+        </tr>
+      `;
+    });
 
     res.send(`
     
@@ -1200,54 +1207,55 @@ app.post("/HistorialMedico", (req, res)=>{
                         <div class="u-container-layout u-valign-top u-container-layout-2">
                           <h2 class="u-text u-text-12">${respuesta[0].Nombre}</h2>
                           <h4 class="u-text u-text-13">${respuesta[0].No_Expediente}</h4>
-                          <div class = "row">
-                            <div class = "col">
-<!--Tabla que contiene la fecha de sesión y el número de la sesión0-->
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Fecha</th>
-      <th scope="col">No. Sesión</th>
-    </tr>
-  </thead>
-  <tbody>
-    ${sesionesFechasHTML}
-  </tbody>
-</table>
-                            </div>
-<!--Datos Resumen-->
-                            <div class = "col">
-<!--Visualizasión de resumen y al presionar el botón "Resumen" despliega el texto del resumen -->
-<!----------------------------------------------------------->
-                              <div class="panel-group" id="accordion">
-                                <div class="panel panel-default">
-                                  <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Sesión ${contador}</a>
-                                    </h4>
-                                  </div>
-                                  <div id="collapse1" class="panel-collapse collapse in">
-                                    <div class="panel-body" style="height: 300px; overflow-y: auto;">
-                                    ${respuesta[0].SesionCompleta}
-                                  </div>
-                                  </div>
-                                </div>
-                                <div class="panel panel-default">
-                                  <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Resumen</a>
-                                    </h4>
-                                  </div>
-                                  <div id="collapse2" class="panel-collapse collapse">
-                                    <div class="panel-body" style="height: 300px; overflow-y: auto;">
-                                    ${respuesta[0].Resumen}
-                                    </div>
-                                  </div>
-                                </div>
-                              </div> 
-                              </div>
-                            </div>
+                          
+                          <!--Tabla que contiene la fecha de sesión y el número de la sesión-->
+                          <div class = "col">
+                            <table class="table table-hover">
+                              <thead>
+                                <tr>
+                                  <th scope="col">#</th>
+                                  <th scope="col">Fecha</th>
+                                  <th scope="col">No. Sesión</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                ${sesionesFechasHTML}
+                              </tbody>
+                            </table>
+                          </div>
+
+
+                              <!--Datos Resumen-->
+<div class="col">
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Sesión ${contador}</a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse in">
+        <div class="panel-body" style="height: 300px; overflow-y: auto;">
+          ${respuesta[0].SesionCompleta}
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Resumen</a>
+        </h4>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse">
+        <div class="panel-body" style="height: 300px; overflow-y: auto;">
+          ${respuesta[0].Resumen}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
                           </div>
                         </div>
                       </div>
