@@ -8,6 +8,8 @@ var formidable = require('formidable');
 var fs = require('fs');
 const fileUpload = require('express-fileupload');
 
+const session = require("express-session");
+
 var bodyParser= require('body-parser');
 var con = mysql.createConnection({
 	host:'localhost',
@@ -16,6 +18,13 @@ var con = mysql.createConnection({
 	database:'SeniorSuite'
 })
 con.connect()
+
+app.use(session({
+  secret: "987f4bd6d4315c20b2ec70a46ae846d19d0ce563450c02c5b1bc71d5d580060b",
+  saveUninitialized: true,
+  resave: true,
+}));
+
 
 app.use(bodyParser.json())
 
@@ -26,6 +35,14 @@ app.use(bodyParser.urlencoded({
 app.use(fileUpload());
 
 app.use(express.static('public'))
+
+app.get("/CerrarSesion", (req, res)=>{
+  req.session.nombre = null;
+  req.session.contraseña = null;
+  req.session.id_usuario = null;
+
+  res.redirect("/Iniciar-Sesion.html");
+})
 
 app.post('/AgregarPaciente', (req,res)=>{
 	let nombre = req.body.Nombre +' '+ req.body.Apellidos
@@ -59,7 +76,7 @@ app.post('/AgregarPaciente', (req,res)=>{
   newPhotoPath = "./FotosPacientes/" + FotoPath.name
 
   //query para insertar al paciente
-	con.query('INSERT INTO Paciente(No_Expediente, Nombre, Edad, FechaNacimiento, Sexo, Padecimiento, Telefono, Foto) values("'+expediente+'","'+nombre+'","'+edad+'","'+fechaNacimiento+'","'+sexo+'","'+padecimiento+'","'+tel+'","'+newPhotoPath+'")', (err, respuesta, fields)=>{
+	con.query('INSERT INTO Paciente(No_Expediente, Nombre, Edad, FechaNacimiento, Sexo, Padecimiento, Telefono, Foto, id_usuario) values("'+expediente+'","'+nombre+'","'+edad+'","'+fechaNacimiento+'","'+sexo+'","'+padecimiento+'","'+tel+'","'+newPhotoPath+'","'+req.session.id_usuario+'")', (err, respuesta, fields)=>{
 		if(err) return console.log('ERROR', err);
 		console.log("Paciente agregado correctamente")
 
@@ -95,154 +112,161 @@ app.post('/AgregarPaciente', (req,res)=>{
 
 app.get('/index', (req, res)=>{
 
-	con.query('select * from Paciente natural join Sexo natural join Padecimiento', (err, respuesta, field)=>{
-		if(err) return console.log('ERROR: ', err);
-
-		var userHTML = ``
-		var i = 0
-		console.log(respuesta)
-		respuesta.forEach(user =>{
-			i++
-			userHTML +=`<tr style="height: 29px;">
-							<td class="u-border-1 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-7">
-								<!--a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-body-color u-btn-1" href="Paciente.html"-->
-								<form action="/Paciente" method="post">
-                  <input type="submit" name="expediente" value=${user.No_Expediente}>  
-                </form>
-								<!-- /a>-->
-							</td>
-							<td class="u-border-1 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-7">
-								<!-- a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-body-color u-btn-1" href="Paciente.html"-->
-                
-                ${user.Nombre}
-                
-								<!--/a-->
-							</td>
-							<td class="u-border-1 u-border-grey-30 u-table-cell">${user.Edad}</td>
-							<td class="u-border-1 u-border-grey-30 u-table-cell">${user.Genero}</td>
-							<td class="u-border-1 u-border-grey-30 u-table-cell">${user.Valor_Padecimiento}</td>
-							<td class="u-border-1 u-border-grey-30 u-table-cell"><span class="u-file-icon u-icon"><form action="/eliminarPaciente" method="post"><button type="submit" name="expediente" value=${user.No_Expediente}><img src="../images/3405244-aebb539c.png" alt=""></button></form></span>
-              <td class="u-border-1 u-border-grey-30 u-table-cell"><span class="u-file-icon u-icon"><form action="/editarPacientePagina" method="post"><button type="submit" name="expediente" value=${user.No_Expediente}><img src="../images/2990079.png" alt=""></button></form></span>
-						</tr>`
-							
-		})
-		return res.send(`
-			
-<!DOCTYPE html>
-  <html style="font-size: 16px;" lang="en"><head>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta charset="utf-8">
-      <meta name="keywords" content="Pacientes">
-      <meta name="description" content="">
-      <title>Menu</title>
-      <link rel="stylesheet" href="./css/nicepage.css" media="screen">
-  <link rel="stylesheet" href="./css/Menu.css" media="screen">
-      <script class="u-script" type="text/javascript" src="./js/jquery.js" defer=""></script>
-      <script class="u-script" type="text/javascript" src="./js/nicepage.js" defer=""></script>
-      <meta name="generator" content="Nicepage 5.8.2, nicepage.com">
-      <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
-      
-      
-      <script type="application/ld+json">{
-      "@context": "http://schema.org",
-      "@type": "Organization",
-      "name": "",
-      "logo": "images/image.png"
-  }</script>
-      <meta name="theme-color" content="#478ac9">
-      <meta property="og:title" content="Menu">
-      <meta property="og:type" content="website">
-    <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
-    <body class="u-body u-xl-mode" data-lang="en"><header class="u-clearfix u-header u-header" id="sec-12bb"><div class="u-clearfix u-sheet u-sheet-1">
-          <a href="index" class="u-image u-logo u-image-1" data-image-width="572" data-image-height="190" title="Menu">
-            <img src="images/image.png" class="u-logo-image u-logo-image-1">
-          </a>
-          <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
-            <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
-              <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
-                <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
-                <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
-  </g></svg>
-              </a>
-            </div>
-            <div class="u-custom-menu u-nav-container">
-              <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="index" style="padding: 10px 20px;">Menu</a>
-  </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="index" style="padding: 10px 20px;">Sesión</a><div class="u-nav-popup"><ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10"><li class="u-nav-item"><a class="u-button-style u-nav-link u-white" href="Iniciar-Sesion.html">Cerrar sesión</a>
-  </li></ul>
-  </div>
-  </li></ul>
-            </div>
-            <div class="u-custom-menu u-nav-container-collapse">
-              <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
-                <div class="u-inner-container-layout u-sidenav-overflow">
-                  <div class="u-menu-close"></div>
-                  <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-3"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index">Menu</a>
-  </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index">Sesión</a><div class="u-nav-popup"><ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Iniciar-Sesion.html">Cerrar sesión</a>
-  </li></ul>
-  </div>
-  </li></ul>
-                </div>
-              </div>
-              <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
-            </div>
-          </nav>
-        </div></header>
-      <section class="u-align-center u-clearfix u-section-1" id="sec-6cce">
-        <div class="u-clearfix u-sheet u-valign-top u-sheet-1">
-          <!-- TITULO PACIENTES -->
-          <h2 class="u-align-left u-text u-text-default u-text-1">Pacientes</h2>
-          <div class="u-expanded-width u-table u-table-responsive u-table-1">
-            <!-- LISTA DE PACIENTES -->
-            <table class="u-table-entity u-table-entity-1">
-              <colgroup>
-                <col width="14.3%">
-                <col width="15.6%">
-                <col width="14.9%">
-                <col width="12.4%">
-                <col width="33.4%">
-                <col width="4.7%">
-                <col width="4.7%">
-              </colgroup>
-              <thead class="u-custom-color-3 u-table-header u-table-header-1">
-                <tr style="height: 26px;">
-                  <th class="u-border-1 u-border-custom-color-3 u-table-cell">No. Expediente</th>
-                  <th class="u-border-1 u-border-custom-color-3 u-table-cell">Nombre</th>
-                  <th class="u-border-1 u-border-custom-color-3 u-table-cell">Edad</th>
-                  <th class="u-border-1 u-border-custom-color-3 u-table-cell">Sexo</th>
-                  <th class="u-border-1 u-border-custom-color-3 u-table-cell">Padecimiento</th>
-                  <th class="u-border-1 u-border-custom-color-3 u-table-cell"></th>
-                  <th class="u-border-1 u-border-custom-color-3 u-table-cell"></th>
-                </tr>
-              </thead>
-              <tbody class="u-table-body">
-                <tr style="height: 36px;">
-                  ${userHTML}
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <a href="/AgregarPaciente.html" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-1 u-hover-palette-2-base u-radius-6 u-btn-9">Agregar Paciente</a>
-        </div>
-      </section>
-      
-      
-      <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-b565"><div class="u-clearfix u-sheet u-sheet-1"></div></footer>
-      <section class="u-backlink u-clearfix u-grey-80">
-        <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
-          <span>Website Templates</span>
-        </a>
-        <p class="u-text">
-          <span>created with</span>
-        </p>
-        <a class="u-link" href="" target="_blank">
-          <span>Website Builder Software</span>
-        </a>. 
-      </section>
+    // Si, por ejemplo, no hay nombre
+    if(!req.session.nombre){
+      res.redirect("./Iniciar-Sesion.html");
+    }else{
     
-  </body></html>
-						
-						`)
-	})
+
+      con.query('select * from Paciente natural join Sexo natural join Padecimiento where id_usuario="'+req.session.id_usuario+'"', (err, respuesta, field)=>{
+        if(err) return console.log('ERROR: ', err);
+
+        var userHTML = ``
+        var i = 0
+        console.log(respuesta)
+        respuesta.forEach(user =>{
+          i++
+          userHTML +=`<tr style="height: 29px;">
+                  <td class="u-border-1 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-7">
+                    <!--a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-body-color u-btn-1" href="Paciente.html"-->
+                    <form action="/Paciente" method="post">
+                      <input type="submit" name="expediente" value=${user.No_Expediente}>  
+                    </form>
+                    <!-- /a>-->
+                  </td>
+                  <td class="u-border-1 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-7">
+                    <!-- a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-body-color u-btn-1" href="Paciente.html"-->
+                    
+                    ${user.Nombre}
+                    
+                    <!--/a-->
+                  </td>
+                  <td class="u-border-1 u-border-grey-30 u-table-cell">${user.Edad}</td>
+                  <td class="u-border-1 u-border-grey-30 u-table-cell">${user.Genero}</td>
+                  <td class="u-border-1 u-border-grey-30 u-table-cell">${user.Valor_Padecimiento}</td>
+                  <td class="u-border-1 u-border-grey-30 u-table-cell"><span class="u-file-icon u-icon"><form action="/eliminarPaciente" method="post"><button type="submit" name="expediente" value=${user.No_Expediente}><img src="../images/3405244-aebb539c.png" alt=""></button></form></span>
+                  <td class="u-border-1 u-border-grey-30 u-table-cell"><span class="u-file-icon u-icon"><form action="/editarPacientePagina" method="post"><button type="submit" name="expediente" value=${user.No_Expediente}><img src="../images/2990079.png" alt=""></button></form></span>
+                </tr>`
+                  
+        })
+        return res.send(`
+          
+    <!DOCTYPE html>
+      <html style="font-size: 16px;" lang="en"><head>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <meta charset="utf-8">
+          <meta name="keywords" content="Pacientes">
+          <meta name="description" content="">
+          <title>Menu</title>
+          <link rel="stylesheet" href="./css/nicepage.css" media="screen">
+      <link rel="stylesheet" href="./css/Menu.css" media="screen">
+          <script class="u-script" type="text/javascript" src="./js/jquery.js" defer=""></script>
+          <script class="u-script" type="text/javascript" src="./js/nicepage.js" defer=""></script>
+          <meta name="generator" content="Nicepage 5.8.2, nicepage.com">
+          <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+          
+          
+          <script type="application/ld+json">{
+          "@context": "http://schema.org",
+          "@type": "Organization",
+          "name": "",
+          "logo": "images/image.png"
+      }</script>
+          <meta name="theme-color" content="#478ac9">
+          <meta property="og:title" content="Menu">
+          <meta property="og:type" content="website">
+        <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
+        <body class="u-body u-xl-mode" data-lang="en"><header class="u-clearfix u-header u-header" id="sec-12bb"><div class="u-clearfix u-sheet u-sheet-1">
+              <a href="index" class="u-image u-logo u-image-1" data-image-width="572" data-image-height="190" title="Menu">
+                <img src="images/image.png" class="u-logo-image u-logo-image-1">
+              </a>
+              <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
+                <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
+                  <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
+                    <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
+                    <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
+      </g></svg>
+                  </a>
+                </div>
+                <div class="u-custom-menu u-nav-container">
+                  <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="index" style="padding: 10px 20px;">Menu</a>
+      </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="index" style="padding: 10px 20px;">Sesión</a><div class="u-nav-popup"><ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10"><li class="u-nav-item"><a class="u-button-style u-nav-link u-white" href="/CerrarSesion">Cerrar sesión</a>
+      </li></ul>
+      </div>
+      </li></ul>
+                </div>
+                <div class="u-custom-menu u-nav-container-collapse">
+                  <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+                    <div class="u-inner-container-layout u-sidenav-overflow">
+                      <div class="u-menu-close"></div>
+                      <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-3"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index">Menu</a>
+      </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index">Sesión</a><div class="u-nav-popup"><ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/CerrarSesion">Cerrar sesión</a>
+      </li></ul>
+      </div>
+      </li></ul>
+                    </div>
+                  </div>
+                  <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+                </div>
+              </nav>
+            </div></header>
+          <section class="u-align-center u-clearfix u-section-1" id="sec-6cce">
+            <div class="u-clearfix u-sheet u-valign-top u-sheet-1">
+              <!-- TITULO PACIENTES -->
+              <h2 class="u-align-left u-text u-text-default u-text-1">Pacientes</h2>
+              <div class="u-expanded-width u-table u-table-responsive u-table-1">
+                <!-- LISTA DE PACIENTES -->
+                <table class="u-table-entity u-table-entity-1">
+                  <colgroup>
+                    <col width="14.3%">
+                    <col width="15.6%">
+                    <col width="14.9%">
+                    <col width="12.4%">
+                    <col width="33.4%">
+                    <col width="4.7%">
+                    <col width="4.7%">
+                  </colgroup>
+                  <thead class="u-custom-color-3 u-table-header u-table-header-1">
+                    <tr style="height: 26px;">
+                      <th class="u-border-1 u-border-custom-color-3 u-table-cell">No. Expediente</th>
+                      <th class="u-border-1 u-border-custom-color-3 u-table-cell">Nombre</th>
+                      <th class="u-border-1 u-border-custom-color-3 u-table-cell">Edad</th>
+                      <th class="u-border-1 u-border-custom-color-3 u-table-cell">Sexo</th>
+                      <th class="u-border-1 u-border-custom-color-3 u-table-cell">Padecimiento</th>
+                      <th class="u-border-1 u-border-custom-color-3 u-table-cell"></th>
+                      <th class="u-border-1 u-border-custom-color-3 u-table-cell"></th>
+                    </tr>
+                  </thead>
+                  <tbody class="u-table-body">
+                    <tr style="height: 36px;">
+                      ${userHTML}
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <a href="/AgregarPaciente.html" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-1 u-hover-palette-2-base u-radius-6 u-btn-9">Agregar Paciente</a>
+            </div>
+          </section>
+          
+          
+          <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-b565"><div class="u-clearfix u-sheet u-sheet-1"></div></footer>
+          <section class="u-backlink u-clearfix u-grey-80">
+            <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
+              <span>Website Templates</span>
+            </a>
+            <p class="u-text">
+              <span>created with</span>
+            </p>
+            <a class="u-link" href="" target="_blank">
+              <span>Website Builder Software</span>
+            </a>. 
+          </section>
+        
+      </body></html>
+                
+                `)
+      })
+    }
 })
 
   app.post('/eliminarPaciente', (req,res)=>{
@@ -318,7 +342,7 @@ app.post("/editarPacientePagina", (req, res)=>{
               </div>
               <div class="u-custom-menu u-nav-container">
                 <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="/index" style="padding: 10px 20px;">Menu</a>
-    </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="/index" style="padding: 10px 20px;">Sesión</a><div class="u-nav-popup"><ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10"><li class="u-nav-item"><a class="u-button-style u-nav-link u-white" href="/Iniciar-Sesion.html">Cerrar sesión</a>
+    </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="/index" style="padding: 10px 20px;">Sesión</a><div class="u-nav-popup"><ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10"><li class="u-nav-item"><a class="u-button-style u-nav-link u-white" href="//CerrarSesion">Cerrar sesión</a>
     </li></ul>
     </div>
     </li></ul>
@@ -328,7 +352,7 @@ app.post("/editarPacientePagina", (req, res)=>{
                   <div class="u-inner-container-layout u-sidenav-overflow">
                     <div class="u-menu-close"></div>
                     <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-3"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/index">Menu</a>
-    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Iniciar-Sesion.html">Sesión</a><div class="u-nav-popup"><ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/Iniciar-Sesion.html">Cerrar sesión</a>
+    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/CerrarSesion">Sesión</a><div class="u-nav-popup"><ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="//CerrarSesion">Cerrar sesión</a>
     </li></ul>
     </div>
     </li></ul>
@@ -720,7 +744,7 @@ app.post('/editarPaciente', (req,res)=>{
 
     id_Familiar = respuesta[0].Familiar
 
-    con.query('Update Paciente set No_Expediente="'+expediente+'", Nombre="'+nombre+'", Edad="'+edad+'", FechaNacimiento="'+fechaNacimiento+'", Sexo="'+sexo+'", Padecimiento="'+padecimiento+'", Telefono="'+tel+'", Foto="'+newPhotoPath+'" where No_Expediente = "'+expediente+'"', (err, respuesta, fields)=>{
+    con.query('Update Paciente set No_Expediente="'+expediente+'", Nombre="'+nombre+'", Edad="'+edad+'", FechaNacimiento="'+fechaNacimiento+'", Sexo="'+sexo+'", Padecimiento="'+padecimiento+'", Telefono="'+tel+'", Foto="'+newPhotoPath+'", id_usuario="'+req.session.id_usuario+'" where No_Expediente = "'+expediente+'"', (err, respuesta, fields)=>{
       if(err) return console.log('ERROR', err);
       console.log("Paciente agregado correctamente")
   
@@ -752,7 +776,7 @@ app.post('/editarPaciente', (req,res)=>{
 
 })
 
-app.post('/iniciarSesion', (req, res) =>{
+app.post('/iniciarSesion', (req, res) =>{  
   let usuario = req.body.usuario
   let contraseña = req.body.contraseña
 
@@ -768,6 +792,12 @@ app.post('/iniciarSesion', (req, res) =>{
     try{
       if (respuesta[0].usuario != null){
         console.log(respuesta[0].usuario, " ha iniciado sesion en el sistema");
+        
+        //agregamos los datos a la sesion
+        req.session.nombre = req.body.usuario;
+        req.session.contraseña = req.body.contraseña;
+        req.session.id_usuario = respuesta[0].id_usuario;
+
         return res.redirect("/index");
       }
     }catch(error){
@@ -891,7 +921,7 @@ app.post("/Paciente", (req, res)=>{
               </div>
               <div class="u-custom-menu u-nav-container">
                 <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="index" style="padding: 10px 20px;">Menu</a>
-    </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="index" style="padding: 10px 20px;">Sesión</a><div class="u-nav-popup"><ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10"><li class="u-nav-item"><a class="u-button-style u-nav-link u-white" href="Iniciar-Sesion.html">Cerrar sesión</a>
+    </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="index" style="padding: 10px 20px;">Sesión</a><div class="u-nav-popup"><ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10"><li class="u-nav-item"><a class="u-button-style u-nav-link u-white" href="/CerrarSesion">Cerrar sesión</a>
     </li></ul>
     </div>
     </li></ul>
@@ -901,7 +931,7 @@ app.post("/Paciente", (req, res)=>{
                   <div class="u-inner-container-layout u-sidenav-overflow">
                     <div class="u-menu-close"></div>
                     <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-3"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index">Menu</a>
-    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index">Sesión</a><div class="u-nav-popup"><ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Iniciar-Sesion.html">Cerrar sesión</a>
+    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index">Sesión</a><div class="u-nav-popup"><ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/CerrarSesion">Cerrar sesión</a>
     </li></ul>
     </div>
     </li></ul>
@@ -1061,7 +1091,7 @@ app.post("/HistorialMedico", (req, res)=>{
         </tr>
       `;
     });
-
+    contador++;
     res.send(`
     
     <!DOCTYPE html>
@@ -1124,7 +1154,7 @@ app.post("/HistorialMedico", (req, res)=>{
                   <div class="u-nav-popup">
                     <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10">
                       <li class="u-nav-item">
-                        <a class="u-button-style u-nav-link u-white" href="Iniciar-Sesion.html">Cerrar sesión</a>
+                        <a class="u-button-style u-nav-link u-white" href="/CerrarSesion">Cerrar sesión</a>
                         </li>
                     </ul>
                   </div>
@@ -1141,7 +1171,7 @@ app.post("/HistorialMedico", (req, res)=>{
                         <a class="u-button-style u-nav-link" href="index">Sesión</a>
                         <div class="u-nav-popup">
                           <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10">
-                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Iniciar-Sesion.html">Cerrar sesión</a>
+                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/CerrarSesion">Cerrar sesión</a>
                       </li>
                     </ul>
                       </div>
@@ -1226,34 +1256,7 @@ app.post("/HistorialMedico", (req, res)=>{
 
 
                               <!--Datos Resumen-->
-<div class="col">
-  <div class="panel-group" id="accordion">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Sesión ${contador}</a>
-        </h4>
-      </div>
-      <div id="collapse1" class="panel-collapse collapse in">
-        <div class="panel-body" style="height: 300px; overflow-y: auto;">
-          ${respuesta[0].SesionCompleta}
-        </div>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Resumen</a>
-        </h4>
-      </div>
-      <div id="collapse2" class="panel-collapse collapse">
-        <div class="panel-body" style="height: 300px; overflow-y: auto;">
-          ${respuesta[0].Resumen}
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 
                           </div>
