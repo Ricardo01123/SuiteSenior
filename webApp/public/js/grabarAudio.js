@@ -1,17 +1,50 @@
+    // Voice to text
     const startBtn = document.getElementById("btn")
     const pauseBtn = document.getElementById("btn_pause")
     const stopBtn = document.getElementById("btn_stop")
-    const labelText = document.getElementById("labelText")
     let chunks = []
     let localtext = ''
     let fullText = ''
-    const apiKey = "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"
+    const API_KEY = ''
     const whisperApiEndpoint = 'https://api.openai.com/v1/audio/'
     const mode = 'transcriptions'
 
     let recorder;
     const encoder = new lamejs.Mp3Encoder(1, 44100, 96)
     let stream;
+
+
+    // Summary
+    const MODEL_ID = 'gpt-3.5-turbo';
+    let summary_text = ''
+
+    
+
+    async function toChatGPT() {
+      const data = {
+        // prompt: 'Write me a song for sleeping a spicy wife ',
+        messages: [{'role': 'user', 'content': `Hazme un resumen de máximo 300 palabras del siguiente testimonio: "${fullText}"`}],
+        model: MODEL_ID,
+      };
+      const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${API_KEY}`,
+      };
+      console.log(data)
+      fetch(`https://api.openai.com/v1/chat/completions`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify(data),
+      })
+      .then(response => response.json())
+      .then(data_json => {
+        console.log(data_json.choices[0].message.content);
+        summary_text += data_json.choices[0].message.content
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    }
 
     const toWhisper = async (file) => {
         // Whisper only accept multipart/form-data currently
@@ -21,8 +54,8 @@
         body.append('language', 'es')
         const headers = {}
         headers['Content-Type'] = 'multipart/form-data'
-        if (apiKey) {
-          headers['Authorization'] = `Bearer ${apiKey}`
+        if (API_KEY) {
+          headers['Authorization'] = `Bearer ${API_KEY}`
         }
         const response = await axios.post(whisperApiEndpoint + mode, body, {
           headers,
@@ -124,11 +157,14 @@
         fullText += " " + localtext
     }
     console.log(fullText)
+    toChatGPT()
     // Si van a querer guardar el fullText, debe ser aquí
-    chunks = []
     document.getElementById("texto").value=fullText.toString();
+    document.getElementById("resumen").value=summary_text.toString();
+    alert("ya puedes guardar la sesion");
     fullText = ""
-    
+    summary_text = ""
+    chunks = []
   }
 
   startBtn.addEventListener("click", onStartStreaming)
