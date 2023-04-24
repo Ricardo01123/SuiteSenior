@@ -1,0 +1,123 @@
+.container{
+    margin-top: 50px;
+    
+
+    justify-content: center;
+}
+.regresar{
+    background: transparent;
+    color: rgb(143, 143, 143);
+    border: 1px solid rgb(182, 182, 182);
+    width: 250px;
+    height: 40px;
+    border-radius: 5px;
+}
+.regresar:hover{
+    background: rgb(194, 194, 194);
+    border: 1px solid rgb(182, 182, 182);
+    color: white;
+}
+
+.card{
+    width: 400px;
+    height: 500px;
+    border: none;
+    margin-left: 34%;
+    
+}
+.card-title{
+    text-align: center;
+}
+
+.button-section{
+    text-align: center;
+}
+
+/*  ANIMACION CIRCULO text-align: center;*/
+section{
+    display: flex;
+    margin: 100px;
+    
+    animation: colorAnimate 8s linear infinite;
+}
+/*
+@keyframes colorAnimate {
+    100%{
+        filter: hue-rotate(360deg);
+    }
+    
+}
+*/
+.pulse{
+    position: relative;
+    width: 150px;
+    height: 150px;
+    background: #6DB8BB;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+
+.pulse span{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    border-radius: inherit;
+    animation: pulseAnimate 4s ease-in-out infinite;
+    animation-delay: calc(1s *var(--i));
+}
+
+@keyframes pulseAnimate{
+    100%{
+        opacity: 0;
+        transform: scale(2);
+    }
+}
+
+.material-symbols-outlined{
+    color: #6DB8BB;
+}
+
+.btn-tape{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    justify-content: center;
+    background: transparent;
+    border: 2px solid #6DB8BB;
+}
+.btn-tape:hover{
+    background-color: #6DB8BB;
+    border: 2px solid #6DB8BB;
+}
+.material-symbols-outlined:hover{
+    color: white;
+}
+
+.g{
+    margin: 10px;
+    text-align: center;
+}
+
+.guardar{
+    background-color: #E38F84;
+    border: none;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.guardar:hover{
+    background-color: #e17a6d ;
+}
+
+.add-button{
+
+    background: #E38F84;
+    border: none;
+    
+}
+
+.add-button:hover {
+    background: #d1796d; /* Cambia el color de fondo al pasar el cursor sobre el elemento */
+    color: #fff; /* Cambia el color del texto al pasar el cursor sobre el elemento */
+}
