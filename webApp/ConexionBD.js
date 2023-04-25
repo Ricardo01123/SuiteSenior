@@ -56,8 +56,9 @@ app.post('/AgregarPaciente', (req,res)=>{
   let form = new formidable.IncomingForm();
   
   let FotoPath = req.files.Foto,
+
       newPhotoPath = "C:/Users/Yerry/Documents/github/SuiteSenior/webApp/public/FotosPacientes" + FotoPath.name;
-  console.log(FotoPath)
+
 
 
   //variables del contacto del paciente
@@ -721,8 +722,9 @@ app.post('/editarPaciente', (req,res)=>{
   let form = new formidable.IncomingForm();
   
   let FotoPath = req.files.Foto,
+
       newPhotoPath = "C:/Users/Yerry/Documents/github/SuiteSenior/webApp/public/FotosPacientes" + FotoPath.name;
-  console.log(FotoPath)
+
 
 
   //variables del contacto del paciente
