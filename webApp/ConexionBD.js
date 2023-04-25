@@ -180,46 +180,97 @@ app.get('/index', (req, res)=>{
           <meta property="og:title" content="Menu">
           <meta property="og:type" content="website">
         <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
-        <body class="u-body u-xl-mode" data-lang="en"><header class="u-clearfix u-header u-header" id="sec-12bb"><div class="u-clearfix u-sheet u-sheet-1">
-              <a href="index" class="u-image u-logo u-image-1" data-image-width="572" data-image-height="190" title="Menu">
-                <img src="images/image.png" class="u-logo-image u-logo-image-1">
+        <body class="u-body u-xl-mode" data-lang="en">
+
+
+
+<!-- Barra de Navegación --> 
+        <header class="u-clearfix u-header u-header" id="sec-12bb">
+          <div class="u-clearfix u-sheet u-sheet-1">
+            <a href="index" class="u-image u-logo u-image-1" data-image-width="572" data-image-height="190" title="Menu">
+              <img src="images/image.png" class="u-logo-image u-logo-image-1">
               </a>
-              <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
-                <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
-                  <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
-                    <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
-                    <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
-      </g></svg>
+            <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
+              <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
+                <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
+                  <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use>
+                  </svg>
+                    <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect>
+                      <rect y="7" width="16" height="2"> 
+                      </rect>
+                      <rect y="13" width="16" height="2">
+                      </rect>
+                    </g>
+                  </svg>
                   </a>
-                </div>
-                <div class="u-custom-menu u-nav-container">
-                  <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="index" style="padding: 10px 20px;">Menu</a>
-      </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="index" style="padding: 10px 20px;">Sesión</a><div class="u-nav-popup"><ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10"><li class="u-nav-item"><a class="u-button-style u-nav-link u-white" href="/CerrarSesion">Cerrar sesión</a>
-      </li></ul>
-      </div>
-      </li></ul>
-                </div>
-                <div class="u-custom-menu u-nav-container-collapse">
-                  <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
-                    <div class="u-inner-container-layout u-sidenav-overflow">
-                      <div class="u-menu-close"></div>
-                      <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-3"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index">Menu</a>
-      </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index">Sesión</a><div class="u-nav-popup"><ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/CerrarSesion">Cerrar sesión</a>
-      </li></ul>
-      </div>
-      </li></ul>
+              </div>
+              <div class="u-custom-menu u-nav-container">
+                <ul class="u-nav u-unstyled u-nav-1">
+                  <li class="u-nav-item">
+                    <!-- Account -->
+                    <div class="dropdown">
+                      <a class="navbar-dropdown-account-wrapper" href="index" id="accountNavbarDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" data-bs-dropdown-animation="">
+                        <div class="avatar avatar-sm avatar-circle"> Dra. Brenda Lopez Dominguez 
+                          <img class="avatar-img" src="doctora.png" alt="logo" style="width:40px;">
+                          <span class="avatar-status avatar-sm-status avatar-status-success"></span>
+                        </div>
+                      </a>
                     </div>
+                    <!-- End Account -->
+                  </li>
+                  <li class="u-nav-item">
+                    <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="index" style="padding: 10px 20px;">Menu</a>
+                    </li>
+                  <li class="u-nav-item">
+                    <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="index" style="padding: 10px 20px;">Sesión</a>
+                    <div class="u-nav-popup">
+                      <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10">
+                        <li class="u-nav-item">
+                          <a class="u-button-style u-nav-link u-white" href="/CerrarSesion">Cerrar sesión</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="u-custom-menu u-nav-container-collapse">
+                <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+                  <div class="u-inner-container-layout u-sidenav-overflow">
+                    <div class="u-menu-close">
+                    </div>
+                    <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-3">
+                      <li class="u-nav-item">
+                        <a class="u-button-style u-nav-link" href="index">Menu</a>
+                        </li>
+                      <li class="u-nav-item">
+                        <a class="u-button-style u-nav-link" href="index">Sesión</a>
+                        <div class="u-nav-popup">
+                          <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10">
+                            <li class="u-nav-item">
+                              <a class="u-button-style u-nav-link" href="/CerrarSesion">Cerrar sesión</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </li>
+                    </ul>
                   </div>
-                  <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
                 </div>
-              </nav>
-            </div></header>
+                <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+              </div>
+            </nav>
+            </div>
+          </header>
+  
+
+
+        
           <section class="u-align-center u-clearfix u-section-1" id="sec-6cce">
             <div class="u-clearfix u-sheet u-valign-top u-sheet-1">
               <!-- TITULO PACIENTES -->
               <h2 class="u-align-left u-text u-text-default u-text-1">Pacientes</h2>
+
+<!-- LISTA DE PACIENTES -->
               <div class="u-expanded-width u-table u-table-responsive u-table-1">
-                <!-- LISTA DE PACIENTES -->
                 <table class="u-table-entity u-table-entity-1">
                   <colgroup>
                     <col width="14.3%">
@@ -230,6 +281,8 @@ app.get('/index', (req, res)=>{
                     <col width="4.7%">
                     <col width="4.7%">
                   </colgroup>
+
+<!-- ENCABEZADO DE LA TABLA -->
                   <thead class="u-custom-color-3 u-table-header u-table-header-1">
                     <tr style="height: 26px;">
                       <th class="u-border-1 u-border-custom-color-3 u-table-cell">No. Expediente</th>
@@ -241,32 +294,29 @@ app.get('/index', (req, res)=>{
                       <th class="u-border-1 u-border-custom-color-3 u-table-cell"></th>
                     </tr>
                   </thead>
+
+
                   <tbody class="u-table-body">
                     <tr style="height: 36px;">
                       ${userHTML}
                     </tr>
                   </tbody>
                 </table>
+                
               </div>
               <a href="/AgregarPaciente.html" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-1 u-hover-palette-2-base u-radius-6 u-btn-9">Agregar Paciente</a>
             </div>
           </section>
           
-          
-          <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-b565"><div class="u-clearfix u-sheet u-sheet-1"></div></footer>
-          <section class="u-backlink u-clearfix u-grey-80">
-            <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
-              <span>Website Templates</span>
-            </a>
-            <p class="u-text">
-              <span>created with</span>
-            </p>
-            <a class="u-link" href="" target="_blank">
-              <span>Website Builder Software</span>
-            </a>. 
-          </section>
+<!--Footer-->    
+          <footer class="u-align-center  u-footer" id="sec-b565">
+            <div class="u-clearfix u-sheet u-sheet-1">
+              <p class="u-small-text u-text u-text-variant u-text-1">© Suite Senior, 2023</p>  
+            </div>
+          </footer>
         
-      </body></html>
+      </body>
+</html>
                 
                 `)
       })
@@ -332,40 +382,87 @@ app.post("/editarPacientePagina", (req, res)=>{
         <meta property="og:title" content="Editar Paciente">
         <meta property="og:type" content="website">
       <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
-      <body class="u-body u-xl-mode" data-lang="en"><header class="u-clearfix u-header u-header" id="sec-12bb"><div class="u-clearfix u-sheet u-sheet-1">
-            <a href="/index" class="u-image u-logo u-image-1" data-image-width="572" data-image-height="190" title="Menu">
-              <img src="images/image.png" class="u-logo-image u-logo-image-1">
+      <body class="u-body u-xl-mode" data-lang="en">
+      
+      
+      
+      <!-- Barra de Navegación --> 
+      <header class="u-clearfix u-header u-header" id="sec-12bb">
+        <div class="u-clearfix u-sheet u-sheet-1">
+          <a href="index" class="u-image u-logo u-image-1" data-image-width="572" data-image-height="190" title="Menu">
+            <img src="images/image.png" class="u-logo-image u-logo-image-1">
             </a>
-            <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
-              <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
-                <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
-                  <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
-                  <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
-    </g></svg>
+          <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
+            <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
+              <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
+                <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use>
+                </svg>
+                  <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect>
+                    <rect y="7" width="16" height="2"> 
+                    </rect>
+                    <rect y="13" width="16" height="2">
+                    </rect>
+                  </g>
+                </svg>
                 </a>
-              </div>
-              <div class="u-custom-menu u-nav-container">
-                <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="/index" style="padding: 10px 20px;">Menu</a>
-    </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="/index" style="padding: 10px 20px;">Sesión</a><div class="u-nav-popup"><ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10"><li class="u-nav-item"><a class="u-button-style u-nav-link u-white" href="//CerrarSesion">Cerrar sesión</a>
-    </li></ul>
-    </div>
-    </li></ul>
-              </div>
-              <div class="u-custom-menu u-nav-container-collapse">
-                <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
-                  <div class="u-inner-container-layout u-sidenav-overflow">
-                    <div class="u-menu-close"></div>
-                    <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-3"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/index">Menu</a>
-    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/CerrarSesion">Sesión</a><div class="u-nav-popup"><ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="//CerrarSesion">Cerrar sesión</a>
-    </li></ul>
-    </div>
-    </li></ul>
+            </div>
+            <div class="u-custom-menu u-nav-container">
+              <ul class="u-nav u-unstyled u-nav-1">
+                <li class="u-nav-item">
+                  <!-- Account -->
+                  <div class="dropdown">
+                    <a class="navbar-dropdown-account-wrapper" href="index" id="accountNavbarDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" data-bs-dropdown-animation="">
+                      <div class="avatar avatar-sm avatar-circle"> Dra. Brenda Lopez Dominguez 
+                        <img class="avatar-img" src="doctora.png" alt="logo" style="width:40px;">
+                        <span class="avatar-status avatar-sm-status avatar-status-success"></span>
+                      </div>
+                    </a>
                   </div>
+                  <!-- End Account -->
+                </li>
+                <li class="u-nav-item">
+                  <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="index" style="padding: 10px 20px;">Menu</a>
+                  </li>
+                <li class="u-nav-item">
+                  <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="index" style="padding: 10px 20px;">Sesión</a>
+                  <div class="u-nav-popup">
+                    <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10">
+                      <li class="u-nav-item">
+                        <a class="u-button-style u-nav-link u-white" href="/CerrarSesion">Cerrar sesión</a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="u-custom-menu u-nav-container-collapse">
+              <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+                <div class="u-inner-container-layout u-sidenav-overflow">
+                  <div class="u-menu-close">
+                  </div>
+                  <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-3">
+                    <li class="u-nav-item">
+                      <a class="u-button-style u-nav-link" href="index">Menu</a>
+                      </li>
+                    <li class="u-nav-item">
+                      <a class="u-button-style u-nav-link" href="index">Sesión</a>
+                      <div class="u-nav-popup">
+                        <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10">
+                          <li class="u-nav-item">
+                            <a class="u-button-style u-nav-link" href="/CerrarSesion">Cerrar sesión</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
                 </div>
-                <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
               </div>
-            </nav>
-          </div></header>
+              <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+            </div>
+          </nav>
+          </div>
+        </header>
+
     
         <section class="u-clearfix u-section-1" id="sec-6cd5">
           <div class="u-clearfix u-sheet u-sheet-1">
@@ -702,7 +799,8 @@ app.post("/editarPacientePagina", (req, res)=>{
         </script> -->
         
     
-    </body></html>
+    </body>
+  </html>
 
     `)
   })
@@ -891,7 +989,7 @@ app.post("/Paciente", (req, res)=>{
         <meta name="description" content="">
         <title>Paciente</title>
         <link rel="stylesheet" href="./css/nicepage.css" media="screen">
-    <link rel="stylesheet" href="./css/Paciente.css" media="screen">
+        <link rel="stylesheet" href="./css/Paciente.css" media="screen">
         <script class="u-script" type="text/javascript" src="./js/jquery.js" defer=""></script>
         <script class="u-script" type="text/javascript" src="./js/nicepage.js" defer=""></script>
         <meta name="generator" content="Nicepage 5.8.2, nicepage.com">
@@ -907,45 +1005,98 @@ app.post("/Paciente", (req, res)=>{
         "@type": "Organization",
         "name": "",
         "logo": "images/image.png"
-    }</script>
+        }</script>
         <meta name="theme-color" content="#478ac9">
         <meta property="og:title" content="Paciente">
         <meta property="og:type" content="website">
-      <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
-      <body class="u-body u-xl-mode" data-lang="en"><header class="u-clearfix u-header u-header" id="sec-12bb"><div class="u-clearfix u-sheet u-sheet-1">
-            <a href="index" class="u-image u-logo u-image-1" data-image-width="572" data-image-height="190" title="Menu">
-              <img src="images/image.png" class="u-logo-image u-logo-image-1">
+      <meta data-intl-tel-input-cdn-path="intlTelInput/">
+    </head>
+
+    <body class="u-body u-xl-mode" data-lang="en">
+    
+    
+    
+    <!-- Barra de Navegación --> 
+      <header class="u-clearfix u-header u-header" id="sec-12bb">
+        <div class="u-clearfix u-sheet u-sheet-1">
+          <a href="index" class="u-image u-logo u-image-1" data-image-width="572" data-image-height="190" title="Menu">
+            <img src="images/image.png" class="u-logo-image u-logo-image-1">
             </a>
-            <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
-              <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
-                <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
-                  <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
-                  <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
-    </g></svg>
+          <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
+            <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
+              <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
+                <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use>
+                </svg>
+                  <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect>
+                    <rect y="7" width="16" height="2"> 
+                    </rect>
+                    <rect y="13" width="16" height="2">
+                    </rect>
+                  </g>
+                </svg>
                 </a>
-              </div>
-              <div class="u-custom-menu u-nav-container">
-                <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="index" style="padding: 10px 20px;">Menu</a>
-    </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="index" style="padding: 10px 20px;">Sesión</a><div class="u-nav-popup"><ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10"><li class="u-nav-item"><a class="u-button-style u-nav-link u-white" href="/CerrarSesion">Cerrar sesión</a>
-    </li></ul>
-    </div>
-    </li></ul>
-              </div>
-              <div class="u-custom-menu u-nav-container-collapse">
-                <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
-                  <div class="u-inner-container-layout u-sidenav-overflow">
-                    <div class="u-menu-close"></div>
-                    <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-3"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index">Menu</a>
-    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index">Sesión</a><div class="u-nav-popup"><ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/CerrarSesion">Cerrar sesión</a>
-    </li></ul>
-    </div>
-    </li></ul>
+            </div>
+            <div class="u-custom-menu u-nav-container">
+              <ul class="u-nav u-unstyled u-nav-1">
+                <li class="u-nav-item">
+                  <!-- Account -->
+                  <div class="dropdown">
+                    <a class="navbar-dropdown-account-wrapper" href="index" id="accountNavbarDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" data-bs-dropdown-animation="">
+                      <div class="avatar avatar-sm avatar-circle"> Dra. Brenda Lopez Dominguez 
+                        <img class="avatar-img" src="doctora.png" alt="logo" style="width:40px;">
+                        <span class="avatar-status avatar-sm-status avatar-status-success"></span>
+                      </div>
+                    </a>
                   </div>
+                  <!-- End Account -->
+                </li>
+                <li class="u-nav-item">
+                  <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="index" style="padding: 10px 20px;">Menu</a>
+                  </li>
+                <li class="u-nav-item">
+                  <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="index" style="padding: 10px 20px;">Sesión</a>
+                  <div class="u-nav-popup">
+                    <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10">
+                      <li class="u-nav-item">
+                        <a class="u-button-style u-nav-link u-white" href="/CerrarSesion">Cerrar sesión</a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="u-custom-menu u-nav-container-collapse">
+              <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+                <div class="u-inner-container-layout u-sidenav-overflow">
+                  <div class="u-menu-close">
+                  </div>
+                  <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-3">
+                    <li class="u-nav-item">
+                      <a class="u-button-style u-nav-link" href="index">Menu</a>
+                      </li>
+                    <li class="u-nav-item">
+                      <a class="u-button-style u-nav-link" href="index">Sesión</a>
+                      <div class="u-nav-popup">
+                        <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10">
+                          <li class="u-nav-item">
+                            <a class="u-button-style u-nav-link" href="/CerrarSesion">Cerrar sesión</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
                 </div>
-                <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
               </div>
-            </nav>
-          </div></header>
+              <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+            </div>
+          </nav>
+          </div>
+        </header>
+
+
+
+
+
         <section class="u-clearfix u-section-1" id="sec-64c6">
           <div class="u-clearfix u-sheet u-sheet-1">
             <h2 class="u-text u-text-default u-text-1">Paciente<span style="font-weight: 700;"></span>
@@ -1024,20 +1175,15 @@ app.post("/Paciente", (req, res)=>{
         </section>
         
         
-        <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-b565"><div class="u-clearfix u-sheet u-sheet-1"></div></footer>
-        <section class="u-backlink u-clearfix u-grey-80">
-          <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
-            <span>Website Templates</span>
-          </a>
-          <p class="u-text">
-            <span>created with</span>
-          </p>
-          <a class="u-link" href="" target="_blank">
-            <span>Website Builder Software</span>
-          </a>. 
-        </section>
-      
-    </body></html>
+        <!--Footer-->    
+    <footer class="u-align-center  u-footer" id="sec-b565">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-small-text u-text u-text-variant u-text-1">© Suite Senior, 2023</p>  
+      </div>
+    </footer>
+  
+</body>
+</html>
     
     `)
   })
@@ -1135,22 +1281,44 @@ app.post("/HistorialMedico", (req, res)=>{
         <meta data-intl-tel-input-cdn-path="intlTelInput/">
       </head>
       <body class="u-body u-xl-mode" data-lang="en">
-<!-- Navigation Bar -->        
-        <header class="u-clearfix u-header u-header" id="sec-12bb">
-          <div class="u-clearfix u-sheet u-sheet-1">
-            <div class="navbar">
-              
-            </div>
-            <a href="index" class="u-image u-logo u-image-1" data-image-width="572" data-image-height="190" title="Menu">
-                <img src="images/image.png" class="u-logo-image u-logo-image-1">
+
+
+
+
+      <!-- Barra de Navegación --> 
+      <header class="u-clearfix u-header u-header" id="sec-12bb">
+        <div class="u-clearfix u-sheet u-sheet-1">
+          <a href="index" class="u-image u-logo u-image-1" data-image-width="572" data-image-height="190" title="Menu">
+            <img src="images/image.png" class="u-logo-image u-logo-image-1">
             </a>
-            <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
+          <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1 ">
             <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
-            <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
-            </a>
+              <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
+                <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use>
+                </svg>
+                  <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect>
+                    <rect y="7" width="16" height="2"> 
+                    </rect>
+                    <rect y="13" width="16" height="2">
+                    </rect>
+                  </g>
+                </svg>
+                </a>
             </div>
             <div class="u-custom-menu u-nav-container">
               <ul class="u-nav u-unstyled u-nav-1">
+                <li class="u-nav-item">
+                  <!-- Account -->
+                  <div class="dropdown">
+                    <a class="navbar-dropdown-account-wrapper" href="index" id="accountNavbarDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" data-bs-dropdown-animation="">
+                      <div class="avatar avatar-sm avatar-circle"> Dra. Brenda Lopez Dominguez 
+                        <img class="avatar-img" src="doctora.png" alt="logo" style="width:40px;">
+                        <span class="avatar-status avatar-sm-status avatar-status-success"></span>
+                      </div>
+                    </a>
+                  </div>
+                  <!-- End Account -->
+                </li>
                 <li class="u-nav-item">
                   <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="index" style="padding: 10px 20px;">Menu</a>
                   </li>
@@ -1160,7 +1328,7 @@ app.post("/HistorialMedico", (req, res)=>{
                     <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10">
                       <li class="u-nav-item">
                         <a class="u-button-style u-nav-link u-white" href="/CerrarSesion">Cerrar sesión</a>
-                        </li>
+                      </li>
                     </ul>
                   </div>
                 </li>
@@ -1169,26 +1337,37 @@ app.post("/HistorialMedico", (req, res)=>{
             <div class="u-custom-menu u-nav-container-collapse">
               <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
                 <div class="u-inner-container-layout u-sidenav-overflow">
-                  <div class="u-menu-close"></div>
-                    <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-3"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index">Menu</a>
+                  <div class="u-menu-close">
+                  </div>
+                  <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-3">
+                    <li class="u-nav-item">
+                      <a class="u-button-style u-nav-link" href="index">Menu</a>
                       </li>
-                      <li class="u-nav-item">
-                        <a class="u-button-style u-nav-link" href="index">Sesión</a>
-                        <div class="u-nav-popup">
-                          <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10">
-                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/CerrarSesion">Cerrar sesión</a>
-                      </li>
-                    </ul>
+                    <li class="u-nav-item">
+                      <a class="u-button-style u-nav-link" href="index">Sesión</a>
+                      <div class="u-nav-popup">
+                        <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10">
+                          <li class="u-nav-item">
+                            <a class="u-button-style u-nav-link" href="/CerrarSesion">Cerrar sesión</a>
+                          </li>
+                        </ul>
                       </div>
-                      </li>
-                    </ul>
+                    </li>
+                  </ul>
                 </div>
               </div>
               <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
             </div>
-            </nav>
+          </nav>
           </div>
         </header>
+
+
+
+
+
+
+        
 <!-- Fin de Navigation Bar -->        
         <section class="u-clearfix u-section-1" id="sec-64c6">
           <div class="u-clearfix u-sheet u-sheet-1">

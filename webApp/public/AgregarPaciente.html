@@ -283,18 +283,12 @@
     </section>
     
     
-    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-b565"><div class="u-clearfix u-sheet u-sheet-1"></div></footer>
-    <section class="u-backlink u-clearfix u-grey-80">
-      <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
-        <span>Website Templates</span>
-      </a>
-      <p class="u-text">
-        <span>created with</span>
-      </p>
-      <a class="u-link" href="" target="_blank">
-        <span>Website Builder Software</span>
-      </a>. 
-    </section>
+    <!--Footer-->    
+    <footer class="u-align-center  u-footer" id="sec-b565">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-small-text u-text u-text-variant u-text-1">© Suite Senior, 2023</p>  
+      </div>
+    </footer>
     <!-- script para fecha-->
     <script src="js/edad.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -350,63 +344,4 @@
         nombreModal.textContent = nombreInput.value;
         apellidosModal.textContent = apellidosInput.value;
     </script>
-
-    <!--  MODAL SCRIPT RESUMEN DATOS PACIENTE -->
-    <!--
-    <script>
-      function sendData() {
-        var sexo = document.querySelector('input[name="Sexo"]:checked').value;
-        // Aquí puedes hacer una petición AJAX para enviar el valor del radio button a tu script.
-        return sexo // Imprime el valor del radio button en la consola para verificar que se ha capturado correctamente.
-      }
-
-      
-      document.querySelector(".add-button").addEventListener("click", function() {
-        // Obtener los valores de los inputs
-        var nombre = document.getElementById("name-b6ca").value;
-        var apellidos = document.getElementById("name-b6ca-1").value;
-        var expediente = document.getElementById("text-3d4d-1").value;
-        var fechaNacimiento = document.getElementById("fechaNacimiento").value;
-        var edad= document.getElementById("edad").value;
-        var sexo = sendData();
-        var telefono= document.getElementById("phone").value;
-        var padecimiento= document.getElementById("text-3d4d-1").value;
-        var nomCont1= document.getElementById("text-3d4d-1").value;
-        var parentezcoSelect = document.getElementById("select-5ae0-2");
-        var parentezcoValue = parentezcoSelect.options[parentezcoSelect.selectedIndex].value;
-        /*
-        var parCont1= selectElement;
-        var telCont1= document.getElementById("text-3d4d-1").value;
-        var nomCont2= document.getElementById("text-3d4d-1").value;
-        var parCont2= document.getElementById("text-3d4d-1").value;
-        var telCont2= document.getElementById("text-3d4d-1").value;*/
-        
-        var checkboxes = document.querySelectorAll('input[name="Padecimiento"]:checked');
-        var opcionesSeleccionadas = document.getElementById('opcionesSeleccionadas');
-        
-        // Recorrer los checkboxes seleccionados y agregar sus valores a la lista en el modal
-        for (var i = 0; i < checkboxes.length; i++) {
-          var opcion = document.createElement('li');
-          opcion.appendChild(document.createTextNode(checkboxes[i].getAttribute('data-calc')));
-          opcionesSeleccionadas.appendChild(opcion);
-        }
-
-        // Mostrar los valores en el cuerpo del modal
-        //*
-        document.querySelector(".modal-body").innerHTML = "<p>Nombre: " + nombre + apellidos + "</p>" +
-                                                          "<p>Expediente: " + expediente + "</p>" + 
-                                                          "<p>Fecha de Nacimiento: " + fechaNacimiento + "</p>" + 
-                                                          "<p>Edad: " + edad + "</p>" + 
-                                                          "<p>Sexo: " + sexo + "</p>"  +
-                                                          "<p>Telefono: " + telefono + "</p>" + 
-                                                          "<p>Padecimieto(s): " + "<ul>" + opcionesSeleccionadas + "</ul>"+ "</p>" + 
-                                                          "<p>Contacto 1: " +  
-                                                            "</p>" + "<p  >" + nomCont1 + "   " + parentezcoValue + "   "+ telCont1 + "   "+"</p>" +
-                                                            "<p>Contacto 1: " +  
-                                                            "</p>" + "<p  >" + nomCont2 + "   " + parCont2 + "   "+ telCont2 + "   "+"</p>" ; //*/
-                                                           
-      });
-    </script> -->
-    
-
 </body></html>
