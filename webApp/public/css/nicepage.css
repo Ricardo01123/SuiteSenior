@@ -41973,3 +41973,9 @@ a.u-link.u-text-hover-grey-90:hover {
 #sec-b565 {
   color: #9b9b9b ;
 }
+
+#tituloBd {
+  color: #6DB8BB ;
+  /*Con negritas el texto*/
+  font-weight: bold;
+}

@@ -22,7 +22,15 @@
           <meta name="theme-color" content="#478ac9">
           <meta property="og:title" content="Menu">
           <meta property="og:type" content="website">
-        <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
+        <meta data-intl-tel-input-cdn-path="intlTelInput/">
+      
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+      
+      
+      </head>
         <body class="u-body u-xl-mode" data-lang="en"><header class="u-clearfix u-header u-header" id="sec-12bb"><div class="u-clearfix u-sheet u-sheet-1">
               <a href="index" class="u-image u-logo u-image-1" data-image-width="572" data-image-height="190" title="Menu">
                 <img src="images/image.png" class="u-logo-image u-logo-image-1">
@@ -73,25 +81,35 @@
                     <col width="4.7%">
                     <col width="4.7%">
                   </colgroup>
-<!-- TABLA DE PACIENTES -->                  
-                  <thead class="u-custom-color-3 u-table-header u-table-header-1">
-                    <tr style="height: 26px;">
-                      <th class="u-border-1 u-border-custom-color-3 u-table-cell">No. Expediente</th>
-                      <th class="u-border-1 u-border-custom-color-3 u-table-cell">Nombre</th>
-                      <th class="u-border-1 u-border-custom-color-3 u-table-cell">Edad</th>
-                      <th class="u-border-1 u-border-custom-color-3 u-table-cell">Sexo</th>
-                      <th class="u-border-1 u-border-custom-color-3 u-table-cell">Padecimiento</th>
-                      <th class="u-border-1 u-border-custom-color-3 u-table-cell"></th>
-                      <th class="u-border-1 u-border-custom-color-3 u-table-cell"></th>
-                    </tr>
-                  </thead>
-<!-- TABLA DE PACIENTES -->                  
-                  <tbody class="u-table-body">
-                    <tr style="height: 36px;">
-                      ${userHTML}
-                    </tr>
-                  </tbody>
-                </table>
+<!-- TABLA DE PACIENTES --> 
+
+<div class="container">
+  <table class="table table-hover">
+    <thead>
+      <tr id = "tituloBd">
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>John</td>
+        <td>Doe</td>
+        <td>john@example.com</td>
+      </tr>
+      <tr>
+        <td>Mary</td>
+        <td>Moe</td>
+        <td>mary@example.com</td>
+      </tr>
+      <tr>
+        <td>July</td>
+        <td>Dooley</td>
+        <td>july@example.com</td>
+      </tr>
+    </tbody>
+  </table>
               </div>
               <a href="/AgregarPaciente.html" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-1 u-hover-palette-2-base u-radius-6 u-btn-9">Agregar Paciente</a>
             </div>
