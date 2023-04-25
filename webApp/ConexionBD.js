@@ -57,7 +57,7 @@ app.post('/AgregarPaciente', (req,res)=>{
   
   let FotoPath = req.files.Foto,
 
-      newPhotoPath = "C:/Users/Yerry/Documents/github/SuiteSenior/webApp/public/FotosPacientes" + FotoPath.name;
+      newPhotoPath = "/home/yerry/Documentos/github/SuiteSenior/webApp/public/FotosPacientes/" + FotoPath.name;
 
 
 
@@ -821,7 +821,7 @@ app.post('/editarPaciente', (req,res)=>{
   
   let FotoPath = req.files.Foto,
 
-      newPhotoPath = "C:/Users/Yerry/Documents/github/SuiteSenior/webApp/public/FotosPacientes" + FotoPath.name;
+      newPhotoPath = "/home/yerry/Documentos/github/SuiteSenior/webApp/public/FotosPacientes/" + FotoPath.name;
 
 
 
@@ -1108,7 +1108,7 @@ app.post("/Paciente", (req, res)=>{
                     <div class="u-layout-row">
                       <div class="u-container-style u-custom-color-3 u-layout-cell u-left-cell u-radius-50 u-shape-round u-size-26 u-layout-cell-1" src="">
                         <div class="u-container-layout u-container-layout-1">
-                          <img class="u-image u-image-circle u-image-1" data-image-width="1080" data-image-height="1080" src="./FotosPacientes/wolf.jpg">
+                          <img class="u-image u-image-circle u-image-1" data-image-width="1080" data-image-height="1080" src="${respuesta[0].Foto}">
                           <h6 class="u-align-center u-text u-text-2">DATOS PERSONALES</h6>
                           <p class="u-align-left u-text u-text-3"><span class="u-file-icon u-icon u-text-white"><img src="images/3239948-dbce9193.png" alt=""></span>&nbsp; Fecha de nacimiento
                           </p>
@@ -1600,6 +1600,7 @@ app.post("/grabarAudio", (req, res)=>{
   let texto = req.body.texto;
   let resumen = req.body.resumen;
   console.log(texto)
+  console.log("este es el resumen\n\n\n" + resumen)
   console.log(expediente)
   var cadena = "http://localhost:5000/"+expediente
 
