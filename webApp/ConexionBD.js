@@ -40,6 +40,7 @@ app.get("/CerrarSesion", (req, res)=>{
   req.session.nombre = null;
   req.session.contraseña = null;
   req.session.id_usuario = null;
+  req.session.sexo = null;
 
   res.redirect("/Iniciar-Sesion.html");
 })
@@ -48,7 +49,7 @@ app.post('/AgregarPaciente', (req,res)=>{
 	let nombre = req.body.Nombre +' '+ req.body.Apellidos
 	let expediente = req.body.Expediente
   let fechaNacimiento = req.body.FechaNacimiento
-	let edad = req.body.Edad
+	let edad = Math.abs((new Date(Date.now() - new Date(fechaNacimiento).getTime()).getUTCFullYear()) - 1970);
 	let sexo = req.body.Sexo
 	let tel = req.body.Telefono
 	let padecimiento = req.body.Padecimiento
@@ -57,7 +58,7 @@ app.post('/AgregarPaciente', (req,res)=>{
   
   let FotoPath = req.files.Foto,
 
-      newPhotoPath = "/home/yerry/Documentos/github/SuiteSenior/webApp/public/FotosPacientes/" + FotoPath.name;
+      newPhotoPath = "C:/Users/Yerry/Documents/github/SuiteSenior/webApp/public/FotosPacientes/" + FotoPath.name;
 
 
 
@@ -127,7 +128,32 @@ app.get('/index', (req, res)=>{
 
         var userHTML = ``
         var i = 0
+        var membreteDoctor = "";
+
         console.log(respuesta)
+
+        //logica para sacar el membrete del doctor
+        if(req.session.sexo == 1){
+          membreteDoctor= `
+          
+          <div class="avatar avatar-sm avatar-circle"> Dr. ${req.session.nombre} 
+            <img class="avatar-img" src="doctor.png" alt="logo" style="width:40px;">
+            <span class="avatar-status avatar-sm-status avatar-status-success"></span>
+          </div>
+
+          `
+        }else{
+          membreteDoctor= `
+          
+          <div class="avatar avatar-sm avatar-circle"> Dra. ${req.session.nombre} 
+            <img class="avatar-img" src="doctora.png" alt="logo" style="width:40px;">
+            <span class="avatar-status avatar-sm-status avatar-status-success"></span>
+          </div>
+
+          `
+        }
+
+
         respuesta.forEach(user =>{
           i++
           userHTML +=`<tr style="height: 29px;">
@@ -210,10 +236,7 @@ app.get('/index', (req, res)=>{
                     <!-- Account -->
                     <div class="dropdown">
                       <a class="navbar-dropdown-account-wrapper" href="index" id="accountNavbarDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" data-bs-dropdown-animation="">
-                        <div class="avatar avatar-sm avatar-circle"> Dra. Brenda Lopez Dominguez 
-                          <img class="avatar-img" src="doctora.png" alt="logo" style="width:40px;">
-                          <span class="avatar-status avatar-sm-status avatar-status-success"></span>
-                        </div>
+                        ${membreteDoctor}
                       </a>
                     </div>
                     <!-- End Account -->
@@ -258,16 +281,16 @@ app.get('/index', (req, res)=>{
                 <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
               </div>
             </nav>
-            </div>
-          </header>
+          </div>
+        </header>
   
 
 
         
-          <section class="u-align-center u-clearfix u-section-1" id="sec-6cce">
-            <div class="u-clearfix u-sheet u-valign-top u-sheet-1">
-              <!-- TITULO PACIENTES -->
-              <h2 class="u-align-left u-text u-text-default u-text-1">Pacientes</h2>
+        <section class="u-align-center u-clearfix u-section-1" id="sec-6cce">
+          <div class="u-clearfix u-sheet u-valign-top u-sheet-1">
+            <!-- TITULO PACIENTES -->
+            <h2 class="u-align-left u-text u-text-default u-text-1">Pacientes</h2>
 
 <!-- LISTA DE PACIENTES -->
               <div class="u-expanded-width u-table u-table-responsive u-table-1">
@@ -338,6 +361,29 @@ app.post("/editarPacientePagina", (req, res)=>{
 
   con.query("select * from Paciente natural join Notas_medicas natural join Padecimiento natural join Sexo natural join Sesiones_diarias natural join Familiar natural join Parentezco where No_Expediente='"+expediente+"' ORDER BY id_sesion ASC", (err, respuesta, fields)=>{
     if(err) return console.log('ERROR', err);
+
+    var membreteDoctor=""
+
+    //logica para sacar el membrete del doctor
+    if(req.session.sexo == 1){
+      membreteDoctor= `
+      
+      <div class="avatar avatar-sm avatar-circle"> Dr. ${req.session.nombre} 
+        <img class="avatar-img" src="doctor.png" alt="logo" style="width:40px;">
+        <span class="avatar-status avatar-sm-status avatar-status-success"></span>
+      </div>
+
+      `
+    }else{
+      membreteDoctor= `
+      
+      <div class="avatar avatar-sm avatar-circle"> Dra. ${req.session.nombre} 
+        <img class="avatar-img" src="doctora.png" alt="logo" style="width:40px;">
+        <span class="avatar-status avatar-sm-status avatar-status-success"></span>
+      </div>
+
+      `
+    }
 
     return res.send(`
     
@@ -412,10 +458,7 @@ app.post("/editarPacientePagina", (req, res)=>{
                   <!-- Account -->
                   <div class="dropdown">
                     <a class="navbar-dropdown-account-wrapper" href="index" id="accountNavbarDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" data-bs-dropdown-animation="">
-                      <div class="avatar avatar-sm avatar-circle"> Dra. Brenda Lopez Dominguez 
-                        <img class="avatar-img" src="doctora.png" alt="logo" style="width:40px;">
-                        <span class="avatar-status avatar-sm-status avatar-status-success"></span>
-                      </div>
+                      ${membreteDoctor}
                     </a>
                   </div>
                   <!-- End Account -->
@@ -512,15 +555,15 @@ app.post("/editarPacientePagina", (req, res)=>{
                 <div class="u-form-date u-form-group u-form-group-5">
                   <label for="date-aeb1" class="u-label">Fecha de Nacimiento <span style="color: red">*</span></label>
                   <input  type="date" id="fechaNacimiento" name="FechaNacimiento"
-                        min="1900-01-01" max="2024-12-31" class="u-input u-input-rectangle grid-grow u-input-date-rec" required="required" >
+                        min="1900-01-01" max="1973-12-31" class="u-input u-input-rectangle grid-grow u-input-date-rec" required="required" >
                   <!--input type="text" readonly="readonly" placeholder="MM/DD/YYYY" id="date-aeb1" name="Edad" class="u-input u-input-rectangle" required="" data-date-format="mm/dd/yyyy"-->
                   <!--input type="number" name="Edad" class="u-input u-input-rectangle" required=""-->
                 </div>
                 <!--  EDAD EN NUMERO -->
-                <div class="u-form-group u-form-date u-form-partition-factor-2 u-form-group-5 flex-grow">
+                <!--div class="u-form-group u-form-date u-form-partition-factor-2 u-form-group-5 flex-grow">
                   <label for="name-b6ca" class="u-label">Edad <span style="color: red">*</span></label>
                   <input id="edad" type="text" placeholder="Ingrese su Edad" id="name-b6ca" name="Edad" value="${respuesta[0].Edad}" class="u-input u-input-rectangle u-input-name-rec" required="">
-                </div>
+                </div-->
                 
                 <!--  SEXO -->
                 <div class="u-form-checkbox-group u-form-group u-form-input-layout-horizontal u-form-group-6">
@@ -812,7 +855,7 @@ app.post('/editarPaciente', (req,res)=>{
 	let expediente = req.body.Expediente
   let id_Familiar = 0
   let fechaNacimiento = req.body.FechaNacimiento
-	let edad = req.body.Edad
+	let edad = Math.abs((new Date(Date.now() - new Date(fechaNacimiento).getTime()).getUTCFullYear()) - 1970);
 	let sexo = req.body.Sexo
 	let tel = req.body.Telefono
 	let padecimiento = req.body.Padecimiento
@@ -821,7 +864,7 @@ app.post('/editarPaciente', (req,res)=>{
   
   let FotoPath = req.files.Foto,
 
-      newPhotoPath = "/home/yerry/Documentos/github/SuiteSenior/webApp/public/FotosPacientes/" + FotoPath.name;
+      newPhotoPath = "C:/Users/Yerry/Documents/github/SuiteSenior/webApp/public/FotosPacientes/" + FotoPath.name;
 
 
 
@@ -900,6 +943,7 @@ app.post('/iniciarSesion', (req, res) =>{
         req.session.nombre = req.body.usuario;
         req.session.contraseña = req.body.contraseña;
         req.session.id_usuario = respuesta[0].id_usuario;
+        req.session.sexo = respuesta[0].Sexo;
 
         return res.redirect("/index");
       }
@@ -925,9 +969,31 @@ app.post("/Paciente", (req, res)=>{
     var i = 0, j=0
     var previousFam = "";
     var previousSick = "";
+    var membreteDoctor = "";
 
     console.log(respuesta)
     
+    //logica para sacar el membrete del doctor
+    if(req.session.sexo == 1){
+      membreteDoctor= `
+      
+      <div class="avatar avatar-sm avatar-circle"> Dr. ${req.session.nombre} 
+        <img class="avatar-img" src="doctor.png" alt="logo" style="width:40px;">
+        <span class="avatar-status avatar-sm-status avatar-status-success"></span>
+      </div>
+
+      `
+    }else{
+      membreteDoctor= `
+      
+      <div class="avatar avatar-sm avatar-circle"> Dra. ${req.session.nombre} 
+        <img class="avatar-img" src="doctora.png" alt="logo" style="width:40px;">
+        <span class="avatar-status avatar-sm-status avatar-status-success"></span>
+      </div>
+
+      `
+    }
+
     respuesta.forEach(paciente =>{
       if(paciente.Valor_Padecimiento == previousSick){
 
@@ -1042,10 +1108,7 @@ app.post("/Paciente", (req, res)=>{
                   <!-- Account -->
                   <div class="dropdown">
                     <a class="navbar-dropdown-account-wrapper" href="index" id="accountNavbarDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" data-bs-dropdown-animation="">
-                      <div class="avatar avatar-sm avatar-circle"> Dra. Brenda Lopez Dominguez 
-                        <img class="avatar-img" src="doctora.png" alt="logo" style="width:40px;">
-                        <span class="avatar-status avatar-sm-status avatar-status-success"></span>
-                      </div>
+                      ${membreteDoctor}
                     </a>
                   </div>
                   <!-- End Account -->
@@ -1201,6 +1264,29 @@ app.post("/HistorialMedico", (req, res)=>{
 
   con.query("select * from Paciente natural join Notas_medicas natural join Padecimiento natural join Sexo natural join Sesiones_diarias natural join Familiar natural join Parentezco where No_Expediente='"+expediente+"' ORDER BY id_sesion DESC;", (err, respuesta, fields)=>{
 
+    var membreteDoctor="";
+
+    //logica para sacar el membrete del doctor
+    if(req.session.sexo == 1){
+      membreteDoctor= `
+      
+      <div class="avatar avatar-sm avatar-circle"> Dr. ${req.session.nombre} 
+        <img class="avatar-img" src="doctor.png" alt="logo" style="width:40px;">
+        <span class="avatar-status avatar-sm-status avatar-status-success"></span>
+      </div>
+
+      `
+    }else{
+      membreteDoctor= `
+      
+      <div class="avatar avatar-sm avatar-circle"> Dra. ${req.session.nombre} 
+        <img class="avatar-img" src="doctora.png" alt="logo" style="width:40px;">
+        <span class="avatar-status avatar-sm-status avatar-status-success"></span>
+      </div>
+
+      `
+    }
+
     respuesta.forEach(familiar =>{
 
       if(familiar.Nombre_Familiar == previousFam){
@@ -1311,10 +1397,7 @@ app.post("/HistorialMedico", (req, res)=>{
                   <!-- Account -->
                   <div class="dropdown">
                     <a class="navbar-dropdown-account-wrapper" href="index" id="accountNavbarDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" data-bs-dropdown-animation="">
-                      <div class="avatar avatar-sm avatar-circle"> Dra. Brenda Lopez Dominguez 
-                        <img class="avatar-img" src="doctora.png" alt="logo" style="width:40px;">
-                        <span class="avatar-status avatar-sm-status avatar-status-success"></span>
-                      </div>
+                      ${membreteDoctor}
                     </a>
                   </div>
                   <!-- End Account -->
