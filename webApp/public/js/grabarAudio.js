@@ -6,7 +6,7 @@
     let localtext = ''
     let fullText = ''
 
-    const API_KEY = 'YOUR_API_KEY'
+    const API_KEY = 'YOUR-API-KEY'
 
     const whisperApiEndpoint = 'https://api.openai.com/v1/audio/'
     const mode = 'transcriptions'
@@ -43,6 +43,7 @@
         console.log(data_json.choices[0].message.content);
         summary_text += data_json.choices[0].message.content;
         document.getElementById("resumen").value=summary_text;
+        alert("ya puedes guardar la sesion");
       })
       .catch(error => {
         console.error(error);
@@ -164,8 +165,8 @@
     // Si van a querer guardar el fullText, debe ser aquí
     document.getElementById("texto").value=fullText.toString();
 
-    alert("ya puedes guardar la sesion");
-    alert("resumen: \n\n"+ document.getElementById("resumen").value);
+    
+    //alert("resumen: \n\n"+ document.getElementById("resumen").value);
     fullText = ""
     summary_text = ""
     chunks = []
