@@ -1493,7 +1493,7 @@ app.post("/HistorialMedico", (req, res)=>{
           <div class="u-clearfix u-sheet u-sheet-1">
           <div style="border-radius: 10px; background-color: #FFFCFC; padding: 20px; border: 2px solid black;">
 
-            <h2 class="u-text u-text-default u-text-3">Historial de Sesiones<span style="font-weight: 700;"></span>
+            <h2 class="u-text u-text-default u-text-3">Historial de sesiones<span style="font-weight: 700;"></span>
             </h2>
             <div class="u-clearfix u-gutter-10 u-layout-wrap u-layout-wrap-1">
               <div class="u-layout">
