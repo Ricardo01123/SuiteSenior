@@ -58,7 +58,7 @@ app.post('/AgregarPaciente', (req,res)=>{
   
   let FotoPath = req.files.Foto,
 
-      newPhotoPath = "C:/Users/Yerry/Documents/github/SuiteSenior/webApp/public/FotosPacientes/" + FotoPath.name;
+      newPhotoPath = "/home/yerry/Documentos/github/SuiteSenior/webApp/public/FotosPacientes" + FotoPath.name;
 
 
 
@@ -865,7 +865,7 @@ app.post('/editarPaciente', (req,res)=>{
   
   let FotoPath = req.files.Foto,
 
-      newPhotoPath = "C:/Users/Yerry/Documents/github/SuiteSenior/webApp/public/FotosPacientes/" + FotoPath.name;
+      newPhotoPath = "/home/yerry/Documentos/github/SuiteSenior/webApp/public/FotosPacientes" + FotoPath.name;
 
 
 
