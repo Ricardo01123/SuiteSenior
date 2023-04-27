@@ -1335,7 +1335,7 @@ app.post("/grabarAudioPantalla", (req, res)=>{
       <div class="card" >
         <!--img class="card-img-top" src="data:image/jpeg;base64,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" alt="Card image cap"-->
         <div class="card-body">
-          <h5 class="card-title">Iniciar Nueva Sesión Terapeutica</h5>
+          <h5 class="card-title">Iniciar nueva sesión terapéutica</h5>
           <div>
             <section>
               
@@ -1345,6 +1345,7 @@ app.post("/grabarAudioPantalla", (req, res)=>{
                 <span style="--i:1;"></span>
                 <span style="--i:2;"></span>
                 <span style="--i:3;"></span>
+                <p class="pulse-text"><strong id="texto-grabar">Grabar</strong></p>
                 
               </div>
               
@@ -1405,6 +1406,49 @@ app.post("/grabarAudioPantalla", (req, res)=>{
         animation.classList.add("active");
       });
     </script>
+
+    <script>
+      // selecciona el botón y agrega un event listener
+      const play = document.querySelector('#btn');
+      const textoGrabar = document.querySelector('#texto-grabar');
+      play.addEventListener('click', () => {
+        // selecciona el elemento que deseas cambiar
+        const elemento = document.querySelector('.pulse');
+        textoGrabar.textContent = 'Grabando...';
+        // cambia el color del elemento
+        elemento.style.background = 'green';
+      });
+
+    </script>
+
+    <script>
+      // selecciona el botón y agrega un event listener
+      const pause = document.querySelector('#btn_pause');
+      const textoPause = document.querySelector('#texto-grabar');
+      pause.addEventListener('click', () => {
+        // selecciona el elemento que deseas cambiar
+        const elemento = document.querySelector('.pulse');
+        textoPause.textContent = 'Sesión pausada';
+        // cambia el color del elemento
+        elemento.style.background = "#c03dac";
+      });
+
+    </script>
+
+    <script>
+      // selecciona el botón y agrega un event listener
+      const stopbtn = document.querySelector('#btn_stop');
+      const textoStop = document.querySelector('#texto-grabar');
+      stopbtn.addEventListener('click', () => {
+        // selecciona el elemento que deseas cambiar
+        const elemento = document.querySelector('.pulse');
+        textoStop.textContent = 'Sesión finalizada';
+        // cambia el color del elemento
+        elemento.style.background = "#ff0000";
+      });
+
+    </script>
+
   
   </body>
   

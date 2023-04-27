@@ -6,14 +6,14 @@
 }
 .regresar{
     background: transparent;
-    color: rgb(143, 143, 143);
-    border: 1px solid rgb(182, 182, 182);
+    color: rgb(98, 98, 98);
+    border: 1px solid rgb(98, 98, 98);
     width: 250px;
     height: 40px;
     border-radius: 5px;
 }
 .regresar:hover{
-    background: rgb(194, 194, 194);
+    background: rgb(98, 98, 98);
     border: 1px solid rgb(182, 182, 182);
     color: white;
 }
@@ -55,7 +55,17 @@ section{
     background: #6DB8BB;
     border-radius: 50%;
     margin-left: 10px;
+    
 }
+
+.pulse p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color:#fff;
+    text-align: center;
+    }
 
 .pulse span{
     position: absolute;
@@ -121,3 +131,4 @@ section{
     background: #d1796d; /* Cambia el color de fondo al pasar el cursor sobre el elemento */
     color: #fff; /* Cambia el color del texto al pasar el cursor sobre el elemento */
 }
+
