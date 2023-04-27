@@ -122,15 +122,15 @@
             <div class="u-form-date u-form-group u-form-group-5">
               <label for="date-aeb1" class="u-label">Fecha de Nacimiento <span style="color: red">*</span></label>
               <input  type="date" id="fechaNacimiento" name="FechaNacimiento"
-                    min="1900-01-01" max="2024-12-31" class="u-input u-input-rectangle grid-grow u-input-date-rec" required="required" >
+                    min="1900-01-01" max="1973-12-31" class="u-input u-input-rectangle grid-grow u-input-date-rec" required="required" >
               <!--input type="text" readonly="readonly" placeholder="MM/DD/YYYY" id="date-aeb1" name="Edad" class="u-input u-input-rectangle" required="" data-date-format="mm/dd/yyyy"-->
               <!--input type="number" name="Edad" class="u-input u-input-rectangle" required=""-->
             </div>
             <!--  EDAD EN NUMERO -->
-            <div class="u-form-group u-form-date u-form-partition-factor-2 u-form-group-5 flex-grow">
+            <!-- <div class="u-form-group u-form-date u-form-partition-factor-2 u-form-group-5 flex-grow">
               <label for="name-b6ca" class="u-label">Edad <span style="color: red">*</span></label>
               <input id="edad" type="text" placeholder="Ingrese su Edad" id="name-b6ca" name="Edad" class="u-input u-input-rectangle u-input-name-rec" required="">
-            </div>
+            </div> -->
             
             <!--  SEXO -->
             <div class="u-form-checkbox-group u-form-group u-form-input-layout-horizontal u-form-group-6">
@@ -283,18 +283,12 @@
     </section>
     
     
-    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-b565"><div class="u-clearfix u-sheet u-sheet-1"></div></footer>
-    <section class="u-backlink u-clearfix u-grey-80">
-      <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
-        <span>Website Templates</span>
-      </a>
-      <p class="u-text">
-        <span>created with</span>
-      </p>
-      <a class="u-link" href="" target="_blank">
-        <span>Website Builder Software</span>
-      </a>. 
-    </section>
+    <!--Footer-->    
+    <footer class="u-align-center  u-footer" id="sec-b565">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-small-text u-text u-text-variant u-text-1">© Suite Senior, 2023</p>  
+      </div>
+    </footer>
     <!-- script para fecha-->
     <script src="js/edad.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -350,8 +344,7 @@
         nombreModal.textContent = nombreInput.value;
         apellidosModal.textContent = apellidosInput.value;
     </script>
-
-    
+  
 
     <!--  MODAL SCRIPT RESUMEN DATOS PACIENTE -->
     <!--

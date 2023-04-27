@@ -41969,3 +41969,36 @@ a.u-link.u-text-hover-grey-90:hover {
  /*begin-variables base-font-size*/ 
  html { font-size: 16px; }
  /*end-variables base-font-size*/
+
+#sec-b565 {
+  color: #9b9b9b ;
+}
+
+#tituloBd {
+  color: #6DB8BB ;
+  /*Con negritas el texto*/
+  font-weight: bold;
+}
+
+#accountNavbarDropdown{
+  color: black; 
+}
+
+#tabla-grande {
+  font-size: 50px;
+}
+
+/*modifca el margin .form-style1de altura = 40, ancho = 50*/
+.form-style-1 {
+  margin-top: 50px;
+  margin-block-end: 10px;
+  max-width: 400px;
+  padding: 20px 12px 10px 20px;
+  font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+.centered-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
