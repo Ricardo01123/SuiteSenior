@@ -36,6 +36,18 @@ app.use(fileUpload());
 
 app.use(express.static('public'))
 
+//Funciones que pueden servir de algo------------------------------//
+
+function formatDate(date, format) {
+
+  return format.replace('mm', date.getMonth() + 1)
+                .replace('yyyy', date.getFullYear())
+                .replace('dd', date.getDate());
+}
+
+//-----------------------------------------------------------------------//
+
+
 app.get("/CerrarSesion", (req, res)=>{
   req.session.nombre = null;
   req.session.contraseña = null;
@@ -1334,34 +1346,36 @@ app.post("/HistorialMedico", (req, res)=>{
     })
 
     contador = 0;
-    respuesta.forEach((sesion, index) => {
+    respuesta.forEach((sesion, index, array) => {
 
-      sesionesFechasHTML += `
-      <tr>
-        <th scope="row">${index + 1}</th>
-        <td>${new Date(sesion.fechaSesion).toLocaleDateString('es-ES')}</td>
-        <td><a class="btn btn-link" data-toggle="collapse" href="#collapse${index + 1}" role="button" aria-expanded="false" aria-controls="collapse${index + 1}">Sesión ${respuesta.length - index}</a></td>
-      </tr>
-      <tr>
+      if(index != array.length - 1){
+        sesionesFechasHTML += `
+        <tr>
+          <th scope="row">${index + 1}</th>
+          <td>${new Date(sesion.fechaSesion).toLocaleDateString('es-ES')}</td>
+          <td><a class="btn btn-link" data-toggle="collapse" href="#collapse${index + 1}" role="button" aria-expanded="false" aria-controls="collapse${index + 1}">Sesión ${respuesta.length - index - 1}</a></td>
+        </tr>
+        <tr>
 
 
-      <td colspan="3">
-      <div class="collapse" id="collapse${index + 1}">
-        <div class="card card-body">
-          <div style="height: 400px; overflow-y: scroll;">
-            <h3 class="card-title"><b>Sesión ${respuesta.length - index}</b> <button type="button" class="btn btn-light" onclick="document.querySelector('#collapse${index + 1} .card-text:last-child').scrollIntoView({ behavior: 'smooth' });"><b>Ver resumen</b></button> </h3>
-            <p class="card-text">${sesion.SesionCompleta}</p>          
-                <h3 class="card-title"><b>Resumen</b> <button type="button" class="btn btn-light" onclick="document.querySelector('#collapse${index + 1} .card-title:first-child').scrollIntoView({ behavior: 'smooth' });"><b>Ir al inicio</b></button></h3>
-                <p class="card-text">${sesion.Resumen}</p>
+          <td colspan="3">
+          <div class="collapse" id="collapse${index + 1}">
+            <div class="card card-body">
+              <div style="height: 400px; overflow-y: scroll;">
+                <h3 class="card-title"><b>Sesión ${respuesta.length - index}</b> <button type="button" class="btn btn-light" onclick="document.querySelector('#collapse${index + 1} .card-text:last-child').scrollIntoView({ behavior: 'smooth' });"><b>Ver resumen</b></button> </h3>
+                <p class="card-text">${sesion.SesionCompleta}</p>          
+                    <h3 class="card-title"><b>Resumen</b> <button type="button" class="btn btn-light" onclick="document.querySelector('#collapse${index + 1} .card-title:first-child').scrollIntoView({ behavior: 'smooth' });"><b>Ir al inicio</b></button></h3>
+                    <p class="card-text">${sesion.Resumen}</p>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </td>
-    
-    
-      </tr>
-    
-      `;
+        </td>
+      
+      
+        </tr>
+      
+        `;
+      }
     });
     contador++;
     res.send(`
@@ -1788,7 +1802,7 @@ app.post("/grabarAudio", (req, res)=>{
   console.log(expediente)
   var cadena = "http://localhost:5000/"+expediente
 
-  con.query("insert into Sesiones_diarias(No_Expediente, SesionCompleta, Resumen) values('"+expediente+"', '"+texto+"','"+resumen+"')", (err, respuesta, fields)=>{
+  con.query("insert into Sesiones_diarias(No_Expediente, SesionCompleta, Resumen, fechaSesion) values('"+expediente+"', '"+texto+"','"+resumen+"','"+formatDate(new Date(), 'yyyy-mm-dd')+"')", (err, respuesta, fields)=>{
     if(err) return console.log('Ha ocurrido un error en la insercion de la sesion', err);
 
     console.log("se ha insertado una sesion para el paciente")

@@ -5,7 +5,7 @@ let chunks = []
 let localtext = ''
 let fullText = ''
 let fullTextLength = 0
-const API_KEY = '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'
+const API_KEY = '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'
 const whisperApiEndpoint = 'https://api.openai.com/v1/audio/'
 const mode = 'transcriptions'
 
