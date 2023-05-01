@@ -973,7 +973,7 @@ app.post("/Paciente", (req, res)=>{
   let expediente = req.body.expediente
   let nombre = req.body.nombre
   console.log("este es el expediente, y estamos en paciente: "+ expediente)
-  con.query("select * from Paciente natural join Notas_medicas natural join Padecimiento natural join Sexo natural join Sesiones_diarias natural join Familiar natural join Parentezco where No_Expediente='"+expediente+"' ORDER BY id_sesion DESC", (err, respuesta, fields)=>{
+  con.query("select * from Paciente natural join Notas_medicas natural join Padecimiento natural join Sexo natural join Sesiones_diarias natural join Familiar natural join Parentezco where No_Expediente='"+expediente+"' ORDER BY fechaSesion DESC", (err, respuesta, fields)=>{
     if(err) return console.log('Ha ocurrido un error en la visualizacion del paciente', err);
 
     var pacienteHTML=``
@@ -1302,7 +1302,7 @@ app.post("/HistorialMedico", (req, res)=>{
 
   var contador = 0;
 
-  con.query("select * from Paciente natural join Notas_medicas natural join Padecimiento natural join Sexo natural join Sesiones_diarias natural join Familiar natural join Parentezco where No_Expediente='"+expediente+"' ORDER BY id_sesion DESC;", (err, respuesta, fields)=>{
+  con.query("select * from Paciente natural join Padecimiento natural join Sexo natural join Sesiones_diarias natural join Familiar natural join Parentezco where No_Expediente='"+expediente+"' ORDER BY fechaSesion DESC;", (err, respuesta, fields)=>{
 
     var membreteDoctor="";
 
@@ -1348,7 +1348,7 @@ app.post("/HistorialMedico", (req, res)=>{
     contador = 0;
     respuesta.forEach((sesion, index, array) => {
 
-      if(index != array.length - 1){
+      if(index < array.length - 1){
         sesionesFechasHTML += `
         <tr>
           <th scope="row">${index + 1}</th>

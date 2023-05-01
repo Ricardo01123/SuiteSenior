@@ -5,7 +5,7 @@ let chunks = []
 let localtext = ''
 let fullText = ''
 let fullTextLength = 0
-const API_KEY = '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'
+const API_KEY = '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'
 const whisperApiEndpoint = 'https://api.openai.com/v1/audio/'
 const mode = 'transcriptions'
 
@@ -139,7 +139,9 @@ async function onPauseResumeStreaming() {
 async function validateSummary() {
   fullTextLength = fullText.replace(/^\s*|\s*$/gi, '').split(' ').length;
   if (fullTextLength <= 150) {
-    summaryText = fullText
+    summaryText = fullText;
+    document.getElementById("resumen").value=summaryText;
+    alert("Ya puedes guardar la sesion");
   } else {
     summaryLength = Math.floor(fullTextLength * 0.4)
     toChatGPT()
