@@ -7,7 +7,7 @@
     let fullText = ''
 
 
-    const API_KEY = 'YOUR-API-KEY'
+    const API_KEY = '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'
 
 
     const whisperApiEndpoint = 'https://api.openai.com/v1/audio/'

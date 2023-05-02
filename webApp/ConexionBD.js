@@ -58,7 +58,7 @@ app.post('/AgregarPaciente', (req,res)=>{
   
   let FotoPath = req.files.Foto,
 
-      newPhotoPath = "/home/yerry/Documentos/github/SuiteSenior/webApp/public/FotosPacientes" + FotoPath.name;
+      newPhotoPath = "C:/Users/angel/OneDrive - Instituto Politecnico Nacional/ESCOM/TT/Protocolo TT//SuiteSenior/webApp/public/FotosPacientes" + FotoPath.name;
 
 
 
@@ -297,7 +297,7 @@ app.get('/index', (req, res)=>{
         <section class="u-align-center u-clearfix u-section-1" id="sec-6cce">
           <div class="u-clearfix u-sheet u-valign-top u-sheet-1">
             <!-- TITULO PACIENTES -->
-            <h2 class="u-align-left u-text u-text-default u-text-1">Pacientes</h2>
+            <h2 class="u-text u-text-default u-text-3">Pacientes</h2>
 
 <!-- LISTA DE PACIENTES -->
               <div class="u-expanded-width u-table u-table-responsive u-table-1">
@@ -510,13 +510,13 @@ app.post("/editarPacientePagina", (req, res)=>{
               <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
             </div>
           </nav>
-          </div>
-        </header>
+        </div>
+      </header>
 
     
         <section class="u-clearfix u-section-1" id="sec-6cd5">
           <div class="u-clearfix u-sheet u-sheet-1">
-            <h3 class="u-text u-text-default u-text-1">Editar Paciente</h3>
+          <h2 class="u-text u-text-default u-text-3">Editar Paciente</h2>
             <div class="container-forms">
               <div class="text-container-form">
                 <p class="u-form-group u-form-text u-text u-text-2"> DATOS DEL PACIENTE</p>
@@ -538,7 +538,7 @@ app.post("/editarPacientePagina", (req, res)=>{
                   
                   <!--input type="file" placeholder="" id="text-10ec" name="Foto" class="u-input u-input-rectangle"-->
                 </div>
-                <!--  NOMBRE Y APELLIDO PACIENTE -->
+<!--  NOMBRE Y APELLIDO PACIENTE -->
                 <div class="u-form-group u-form-name u-form-partition-factor-2 u-form-group-3 flex-grow">
                   <label for="name-b6ca" class="u-label">Nombre(s) <span style="color: red">*</span></label>
                   <input type="text" placeholder="Ingrese su nombre" id="name-b6ca" name="Nombre" value="${respuesta[0].Nombre}" class="u-input u-input-rectangle u-input-name-rec" required="" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122 || event.charCode == 32)">
@@ -548,7 +548,7 @@ app.post("/editarPacientePagina", (req, res)=>{
                   <input type="text" placeholder="Ingrese sus apellidos" id="name-b6ca-1" name="Apellidos" class="u-input u-input-rectangle u-input-name-rec" required="" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122 || event.charCode == 32)">
                 </div>
                 
-                <!-- NO EXPENDIE -->
+<!-- NO EXPENDIE -->
                 <div class="u-form-group u-form-group-2">
                   <!-- 4año de registro 3institucion (072) no paciente 4digito -->
                   <!-- 20210720001-->
@@ -558,7 +558,7 @@ app.post("/editarPacientePagina", (req, res)=>{
                   onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
                 
-                <!--  FECHA NACIMIENTO -->
+<!--  FECHA NACIMIENTO -->
                 <div class="u-form-date u-form-group u-form-group-5">
                   <label for="date-aeb1" class="u-label">Fecha de Nacimiento <span style="color: red">*</span></label>
                   <input  type="date" id="fechaNacimiento" name="FechaNacimiento"
@@ -601,6 +601,9 @@ app.post("/editarPacientePagina", (req, res)=>{
                     <div class="checkbox-group required">
                       <input id="field-3dd5" type="radio" name="Padecimiento" value="1" class="u-field-input" data-calc="estrés">
                       <label class="u-field-label" for="field-3dd5">Estrés</label>
+
+                      <input id="field-3dd5" type="radio" name="Padecimiento" value="2" class="u-field-input" data-calc="depresión">
+                      <label class="u-field-label" for="field-3dd5">Depresión</label>
                     
                       <input id="field-4c54" type="radio" name="Padecimiento" value="3" class="u-field-input" data-calc="ansiedad">
                       <label class="u-field-label" for="field-4c54">Ansiedad</label>
@@ -865,7 +868,7 @@ app.post('/editarPaciente', (req,res)=>{
   
   let FotoPath = req.files.Foto,
 
-      newPhotoPath = "/home/yerry/Documentos/github/SuiteSenior/webApp/public/FotosPacientes" + FotoPath.name;
+      newPhotoPath = "C:/Users/angel/OneDrive - Instituto Politecnico Nacional/ESCOM/TT/Protocolo TT/SuiteSenior/webApp/public/FotosPacientes" + FotoPath.name;
 
 
 
@@ -1165,7 +1168,7 @@ app.post("/Paciente", (req, res)=>{
         <section class="u-clearfix u-section-1" id="sec-64c6">
           <div class="u-clearfix u-sheet u-sheet-1">
           <div style="border-radius: 10px; background-color: #FFFCFC; padding: 20px; border: 2px solid black;">
-            <h2 class="u-text u-text-default u-text-3">Paciente<span style="font-weight: 700;"></span>
+          <h2 class="u-text u-text-default u-text-3">Paciente<span style="font-weight: 700;"></span>
             </h2>
 
 
@@ -1231,14 +1234,13 @@ app.post("/Paciente", (req, res)=>{
                         <h2 class="u-text u-text-12" style="font-size: 40px;">${respuesta[0].Nombre}</h2>
                       
                         <h4 class="u-text u-text-13"> <b>No. de Expediente:</b> <u>${respuesta[0].No_Expediente}</u></h4>
-                      
-                        <!--Scrool para el resumen-->
-                        
-                        <h5 class="u-text u-text-14">PADECIMIENTOS</h5> ${pacienteHTML}
+
+<!--Resuemn de la ultima sesion-->                        
+                        <h5 class="u-text u-text-14">PADECIMIENTOS</h5> <label style = "font-size: 50px;">${pacienteHTML}</label>
                           <h5 class="u-text u-text-15">Resumen de la ultima Sesión</h5>
                           <p></p>
                           <div class = "centered-content" scroll="no" style="overflow: auto; height: 400px; width: 98%; border: 1px black; padding: 10px; border-radius: 10px;">
-                          <p class="u-text u-text-16" align = "justify">${respuesta[0].Resumen}}</p>
+                          <p class="u-text u-text-16" align = "justify">${respuesta[0].Resumen}</p>
                           </div>
                           
                            <p></p>
