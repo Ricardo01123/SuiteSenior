@@ -40,9 +40,12 @@ app.use(express.static('public'))
 
 function formatDate(date, format) {
 
-  return format.replace('mm', date.getMonth() + 1)
-                .replace('yyyy', date.getFullYear())
-                .replace('dd', date.getDate());
+  return format.replace('MM', date.getMonth() + 1)
+                .replace('YYYY', date.getFullYear())
+                .replace('DD', date.getDate())
+                .replace('hh', date.getHours())
+                .replace('mm', date.getMinutes())
+                .replace('ss', date.getSeconds());
 }
 
 //-----------------------------------------------------------------------//
@@ -70,7 +73,7 @@ app.post('/AgregarPaciente', (req,res)=>{
   
   let FotoPath = req.files.Foto,
 
-      newPhotoPath = "/home/yerry/Documentos/github/SuiteSenior/webApp/public/FotosPacientes" + FotoPath.name;
+      newPhotoPath = "C:/Users/Yerry/Documents/github/SuiteSenior/webApp/public/FotosPacientes/" + FotoPath.name;
 
 
 
@@ -877,7 +880,7 @@ app.post('/editarPaciente', (req,res)=>{
   
   let FotoPath = req.files.Foto,
 
-      newPhotoPath = "/home/yerry/Documentos/github/SuiteSenior/webApp/public/FotosPacientes" + FotoPath.name;
+      newPhotoPath = "C:/Users/Yerry/Documents/github/SuiteSenior/webApp/public/FotosPacientes/" + FotoPath.name;
 
 
 
@@ -1814,7 +1817,7 @@ app.post("/grabarAudio", (req, res)=>{
   console.log(expediente)
   var cadena = "http://localhost:5000/"+expediente
 
-  con.query("insert into Sesiones_diarias(No_Expediente, SesionCompleta, Resumen, fechaSesion) values('"+expediente+"', '"+texto+"','"+resumen+"','"+formatDate(new Date(), 'yyyy-mm-dd')+"')", (err, respuesta, fields)=>{
+  con.query("insert into Sesiones_diarias(No_Expediente, SesionCompleta, Resumen, fechaSesion) values('"+expediente+"', '"+texto+"','"+resumen+"','"+formatDate(new Date(), 'YYYY-MM-DD hh:mm:ss')+"')", (err, respuesta, fields)=>{
     if(err) return console.log('Ha ocurrido un error en la insercion de la sesion', err);
 
     console.log("se ha insertado una sesion para el paciente")
