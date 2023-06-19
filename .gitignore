@@ -1,4 +1,4 @@
 node_modules/
 *.wav
-./webApp/public/js/grabarAudio.js
-./webApp/public/FotosPacientes
+grabarAudio.js
+FotosPacientes/
