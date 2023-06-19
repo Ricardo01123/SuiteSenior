@@ -1365,7 +1365,7 @@ app.post("/HistorialMedico", (req, res)=>{
           <div class="collapse" id="collapse${index + 1}">
             <div class="card card-body">
               <div style="height: 400px; overflow-y: scroll;">
-                <h3 class="card-title"><b>Sesión ${respuesta.length - index}</b> <button type="button" class="btn btn-light" onclick="document.querySelector('#collapse${index + 1} .card-text:last-child').scrollIntoView({ behavior: 'smooth' });"><b>Ver resumen</b></button> </h3>
+                <h3 class="card-title"><b>Sesión ${respuesta.length - index - 1}</b> <button type="button" class="btn btn-light" onclick="document.querySelector('#collapse${index + 1} .card-text:last-child').scrollIntoView({ behavior: 'smooth' });"><b>Ver resumen</b></button> </h3>
                 <p class="card-text">${sesion.SesionCompleta}</p>          
                     <h3 class="card-title"><b>Resumen</b> <button type="button" class="btn btn-light" onclick="document.querySelector('#collapse${index + 1} .card-title:first-child').scrollIntoView({ behavior: 'smooth' });"><b>Ir al inicio</b></button></h3>
                     <p class="card-text">${sesion.Resumen}</p>
